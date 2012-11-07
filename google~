@@ -1,0 +1,106 @@
+Hello,
+
+I have some expirience in Javascript and web programing, but i'm not a professional.
+I'm working with Angular since a few weeks and made a small example of a set up for an app with an interactive map.
+
+I want to share this code here to check my assumptions and to give an example for other people.
+
+So, lets start:
+
+In the example the user sees a map and kann add markers to the map through an input form. In the following I show the different AngularJs parts and add my thoughts and questions.
+
+1. create a model
+var app = angular.module('app', [])
+
+2. Provie the Leaflet library
+I use the Leaflet library which does all the mapping stuff. (show a base map, draw markers,...)
+
+To make the library injectable i use this provier, where I also can modify the Library if i want. 
+
+app.provider('Leaflet', function() {
+    var Leaflet = L;	//L ... Leaflet Object in the global scope
+
+	// here i can add adjustments to the Leaflet Library
+
+    this.$get = function() {
+        return Leaflet;
+    };
+});
+
+3. Form
+Straight forward form with validation. The Show button calls the showMarker() function of the FormController
+
+        <div ng-controller="app.FormController">
+                <form name="form"  novalidate class="css-form">
+                    Lat: <input type="number" ng-model="point.lat" min="-90" max="90" smart-float /><br />
+                    Lon: <input type="number" ng-model="point.lng" min="-180" max="180" smart-float /><br />
+                    <button ng-click="showMarker(point)" ng-disabled="form.$invalid || isUnchanged(user)">Show</button>
+                </form>
+            </div>
+        <div ng-view></div>
+
+4. Form Controller
+When the user submits the form, the controller broadcasts the event "addMarker". The controllers says like: Whoever can draw a marker do it!
+
+app.FormController = function( $scope,$rootScope ) {
+    $scope.showMarker = function(point){
+        $rootScope.$broadcast('addMarker',  angular.copy(point));
+    }
+};
+
+5. Map Element
+To implement the map, I wrote a directive, which has its own controller ("app.MapController").
+In the linking function first the map object is created and a layer is added.
+Then I added a watch function to the scope attribut "newMarker", which will be manipulated be the MapController, when the attribut changes a marker is added to the map.
+
+app.directive('map', function(Leaflet) {
+    return {
+        restrict: 'E',
+        replace: true,
+        template: '<div></div>',
+        require: app.MapController,
+        link: function(scope, element, attrs) {
+	    //create a map element
+            var map = Leaflet.map(attrs.id, {
+                center: [0,0],
+                zoom: 1
+            });
+            //create a CloudMade tile layer and add it to the map
+            Leaflet.tileLayer('http://{s}.tile.cloudmade.com/API-Key/997/256/{z}/{x}/{y}.png', {
+                maxZoom: 18
+            }).addTo(map);
+
+
+            scope.$watch('newMarker', function(newPoint, oldPoint){
+                if(newPoint != null) {
+                    Leaflet.marker([newPoint.lat, newPoint.lng]).addTo(map);
+                }
+            },true);
+        }
+    };
+});
+
+6. MapController
+In the last step I add the MapController. This controller listens for the event "addMarker" and changes the scope attribute "newMarker" when an event comes in.
+
+app.MapController = function( $scope ) {
+    $scope.newMarker = null;
+
+    $scope.$on('addMarker', function(e,point){
+
+	//Process the point data if needed, for example get the address from a geocoder.
+
+        $scope.newMarker = point;
+    });
+};
+
+
+I hope you can follow me. It would be very nice if you could give me a response whether this approch is in line with the angularjs idea to seperate view and controller stuff. And wheter this is a good approch to implement a external library like Leaflet?
+
+Few more questions, i know it is a long post.
+-why is DI not possible in a provider. Code like this fails ( also unminified):
+
+app.value('a',1);
+app.provider('test', function(a) {
+	var b=a;
+});

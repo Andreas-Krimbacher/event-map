@@ -1,0 +1,64 @@
+<div ng-controller="archWalk.FormController">
+    <p>
+        <strong>Data Input</strong> <small class="text-info" ng-show="!form.title.$error.pattern">Page Title: {{title|pageNameTitle}}_{{mainCategory}}_{{markerInfo|pageNameLocation}}_{{language|pageNameLanguage}}</small>
+        <small class="text-error" ng-show="form.title.$error.pattern">Title characters: A-Z a-z 0-9 ' '</small>
+    </p>
+    <form name="form" class="css-form" novalidate>
+        <span id="title-label" class="span1">Title: </span> <input id="title" class="span5"  type="text" ng-model="title" name="title" ng-pattern="/^[A-Za-z0-9äöüÄÖÜ ]+$/" required>
+
+
+
+        <div class="controls controls-row">
+            <label class="span2">Main category</label>
+            <label class="span2">Other categories</label>
+            <label class="span2">Language</label>
+        </div>
+        <div class="controls controls-row">
+            <select size="4" class="span2" ng-model="mainCategory" name="mainCategory" required>
+                <option selected="selected">Architecture</option>
+            </select>
+
+            <select multiple="multiple" class="span2" ng-model="otherCategories" name="otherCategories">
+                <option>Public Building</option>
+                <option>Test</option>
+            </select>
+
+            <select class="span2" ng-model="language" name="language">
+                <option selected="selected">English</option>
+                <option>German</option>
+            </select>
+        </div>
+
+        <label>Information</label>
+        <textarea ng-model="information" name="information" rows="6" class="span6" required></textarea>
+
+        <p>
+        <strong>Map Input</strong> <small class="text-info">({{markerInfo.formatted_address}})</small>
+        </p>
+
+        <map ng-controller="archWalk.MapController"></map>
+
+        <div class="controls controls-row">
+            <div class="btn-group">
+                <a class="btn span1" ng-class="{true:'active', false:''}[polygonEdit]" ng-click="editPolygon()" id="map-polygon" href="" title="Edit Polygon"><i class="icon-edit"></i></a>
+                <a class="btn span1" ng-class="{true:'active', false:''}[pointEdit]" ng-click="editPoint()" id="map-point" href="" title="Edit Point"><i class="icon-pencil"></i></a>
+                <a class="btn span1" ng-class="{true:'', false:'disabled'}[polygonEdit || pointEdit]" ng-click="deleteElement()" id="map-delete" href="" title="Edit Point"><i class="icon-remove"></i></a>
+            </div>
+
+            <form name="searchForm" class="css-form" novalidate>
+                <div class="input-append" id="map-search">
+                    <input class="span3"  type="text" ng-model="locationSearchText">
+                    <button type="submit" class="btn" title="Search" ng-click="showLocation(locationSearchText)"><i class="icon-search"></i></button>
+                </div>
+            </form>
+
+            <input type="checkbox" style="display: none" ng-model="mapData" name="mapData" required>
+
+        </div>
+
+        <button id="form-submit" ng-click="saveData()" ng-disabled="form.$invalid" ng-class="{true:'btn btn-warning disabled', false:'btn btn-success'}[form.$invalid]">Save</button>
+        <small class="text-warning" ng-show="form.title.$error.required">(Add a title!)</small>
+        <small class="text-warning" ng-show="!form.title.$error.required && form.information.$error.required">(Add some information!)</small>
+        <small class="text-warning" ng-show="!form.title.$error.required && !form.information.$error.required && form.mapData.$error.required">(Define a polygon and a center point!)</small>
+    </form>
+</div>
