@@ -10,8 +10,8 @@ eventMap.directive('map', function(Leaflet) {
         link: function(scope, element, attrs) {
 
             var imageBoundaries = new google.maps.LatLngBounds (
-                new google.maps.LatLng(47.3635 ,8.52219), // lower left coordinate
-                new google.maps.LatLng(47.3834 ,8.55099) // upper right coordinate
+                new google.maps.LatLng(47.3635184326772 ,8.52219235359625), // lower left coordinate
+                new google.maps.LatLng(47.3825878958978 , 8.55067793132157) // upper right coordinate
             );
 //            var mapOptions = {
 //                zoom: 16,
@@ -53,7 +53,7 @@ eventMap.directive('map', function(Leaflet) {
 
 
                 var mapOptions = {
-                    center: new google.maps.LatLng(47.37345,8.53659),
+                    center: new google.maps.LatLng(47.37295,8.53659),
                     zoom: 15,
                     draggable:false,
                     streetViewControl: false,
@@ -99,7 +99,7 @@ eventMap.directive('map', function(Leaflet) {
                 }
                 else{
                     map.setOptions({draggable:false});
-                    map.setCenter(new google.maps.LatLng(47.37345,8.53659));
+                    map.setCenter(new google.maps.LatLng(47.37295,8.53659));
                 }
 
                  });
