@@ -1,15 +1,19 @@
-<div id="filter-bar" ng-controller="eventMap.FormController">
-    <div id="filter-bar-concert" class="filter-sym"></div>
-    <div id="filter-bar-exhib"  class="filter-sym"></div>
-    <div id="filter-bar-film"  class="filter-sym"></div>
-    <div id="filter-bar-other"  class="filter-sym"></div>
-    <div id="filter-slider"></div>
+<div id="filter-bar" ng-controller="eventMap.FilterBarController">
+    <div id="filter-bar-concert" ng-click="onCategoryBtnClick('concert')" class="filter-sym" ng-class="{true:'', false:'filter-btn-off'}[filter.concert]"></div>
+    <div id="filter-bar-exhib" ng-click="onCategoryBtnClick('exhib')" class="filter-sym" ng-class="{true:'', false:'filter-btn-off'}[filter.exhib]"></div>
+    <div id="filter-bar-film" ng-click="onCategoryBtnClick('film')" class="filter-sym" ng-class="{true:'', false:'filter-btn-off'}[filter.film]"></div>
+    <div id="filter-bar-other" ng-click="onCategoryBtnClick('other')" class="filter-sym" ng-class="{true:'', false:'filter-btn-off'}[filter.other]"></div>
+    <div id="filter-time-info-start" class="filter-time-info">12.12</div><div id="filter-slider"></div><div id="filter-time-info-end" class="filter-time-info">01.01</div>
     <button class="btn btn-mini btn btn-inverse filter-button" type="button">Today</button>
     <button class="btn btn-mini btn btn-inverse filter-button" type="button">Tomorrow</button>
     <button class="btn btn-mini btn btn-inverse filter-button" type="button">This Week</button>
+    <a class="btn btn-mini btn btn-inverse filter-button" href="#"><i class="icon-time icon-white"></i></a>
 </div>
         <div id="map-main">
 <map ng-controller="eventMap.MapController"></map>
             <div id="info-view"></div>
         </div>
-<div id="bottom-bar"></div>
+<div id="bottom-bar">
+    <div id="bottom-bar-uni">ETH Zürich - IKG</div>
+    <div id="bottom-bar-creator">Millo Pozzi - Andreas Krimbacher</div>
+</div>
