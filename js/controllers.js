@@ -2,7 +2,17 @@
 
 /* Controllers */
 
-eventMap.MapController = function( $scope ) {
+eventMap.MapController = function( $scope , MapData, MapService) {
+    MapData.generateTestData(500);
+    MapData.clusterData();
+
+    var mapData = MapData.getMapData();
+
+
+
+    $scope.showMarkers = function(){
+            MapService.showMarkers(mapData);
+    }
 
 
 
