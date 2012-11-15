@@ -2,23 +2,26 @@
 
 /* Controllers */
 
-eventMap.MapController = function( $scope , MapData, MapService) {
-    MapData.generateTestData(500);
-    MapData.clusterData();
+eventMap.MapController = function( $scope , MapData, MapService,ImageLoader) {
 
-    var mapData = MapData.getMapData();
+    $scope.mapData = null;
 
+    $scope.$on('generateData', function(event) {
+        MapData.generateTestData(500);
+        MapData.clusterData();
+        $scope.mapData = MapData.getMapData();
+        ImageLoader.setOnLoad(function(){
+            MapService.showMarkers($scope.mapData);
+        });
+        ImageLoader.loadImages();
+    });
 
-
-    $scope.showMarkers = function(){
-            MapService.showMarkers(mapData);
-    }
 
 
 
 };
 
-eventMap.FilterBarController = function( $scope) {
+eventMap.FilterBarController = function( $scope, $rootScope) {
     jQuery("#filter-slider").slider({
         range: true,
         min: 0,
@@ -39,6 +42,10 @@ eventMap.FilterBarController = function( $scope) {
 
     $scope.onCategoryBtnClick = function(category){
         $scope.filter[category] = !$scope.filter[category];
+    }
+
+    $scope.generateData = function(){
+        $rootScope.$broadcast('generateData');
     }
 
 

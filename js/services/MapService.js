@@ -3,10 +3,19 @@
 eventMap.service('MapService', function(ImageLoader) {
 
     var map = null;
+    var overlay = null;
     var mapData = null;
 
     var currentMarkers = [];
 
+
+    this.getOverlay = function(){
+        return overlay;
+    }
+
+    this.getMap = function(){
+        return map;
+    }
 
     this.showMarkers = function(mapData){
         mapData = mapData;
@@ -31,15 +40,49 @@ eventMap.service('MapService', function(ImageLoader) {
             if(map.getZoom() == 16){
                 for(var x in mapData.zoom16){
                     if(mapData.zoom16[x].hasData){
-                        that.drawCluster(mapData.zoom16[x]);
+                        if(mapData.zoom16[x].hasSingleData){
+                            if(mapData.zoom16[x].data.concert[0]) that.drawMarker(mapData.zoom16[x].data.concert[0]);
+                            if(mapData.zoom16[x].data.exhib[0]) that.drawMarker(mapData.zoom16[x].data.exhib[0]);
+                            if(mapData.zoom16[x].data.film[0]) that.drawMarker(mapData.zoom16[x].data.film[0]);
+                            if(mapData.zoom16[x].data.other[0]) that.drawMarker(mapData.zoom16[x].data.other[0]);
+                        }
+                        else{
+                            that.drawCluster(mapData.zoom16[x]);
+                        }
                     }
                 }
             }
             if(map.getZoom() == 17){
                 for(var x in mapData.zoom17){
-                    that.drawMarker(mapData.zoom17[x]);
+                    if(mapData.zoom17[x].hasData){
+                        if(mapData.zoom17[x].hasSingleData){
+                            if(mapData.zoom17[x].data.concert[0]) that.drawMarker(mapData.zoom17[x].data.concert[0]);
+                            if(mapData.zoom17[x].data.exhib[0]) that.drawMarker(mapData.zoom17[x].data.exhib[0]);
+                            if(mapData.zoom17[x].data.film[0]) that.drawMarker(mapData.zoom17[x].data.film[0]);
+                            if(mapData.zoom17[x].data.other[0]) that.drawMarker(mapData.zoom17[x].data.other[0]);
+                        }
+                        else{
+                            that.drawCluster(mapData.zoom17[x]);
+                        }
+                    }
                 }
             }
+            if(map.getZoom() == 18){
+                for(var x in mapData.zoom18){
+                    if(mapData.zoom18[x].hasData){
+                        if(mapData.zoom18[x].hasSingleData){
+                            if(mapData.zoom18[x].data.concert[0]) that.drawMarker(mapData.zoom18[x].data.concert[0]);
+                            if(mapData.zoom18[x].data.exhib[0]) that.drawMarker(mapData.zoom18[x].data.exhib[0]);
+                            if(mapData.zoom18[x].data.film[0]) that.drawMarker(mapData.zoom18[x].data.film[0]);
+                            if(mapData.zoom18[x].data.other[0]) that.drawMarker(mapData.zoom18[x].data.other[0]);
+                        }
+                        else{
+                            that.drawCluster(mapData.zoom18[x]);
+                        }
+                    }
+                }
+            }
+
 
         });
 
@@ -93,8 +136,23 @@ eventMap.service('MapService', function(ImageLoader) {
 //            var xPosition = 16 - (textWidth/2);
 //            context.fillText(value,xPosition+36,29+36);
 
-            canvas.width = 78;
-            canvas.height = 42;
+            var symbolCount = 0;
+            for(var x in cluster.data){
+                if(cluster.data[x][0]) symbolCount++;
+            }
+
+            if(symbolCount < 2){
+                canvas.width = 38;
+                canvas.height = 20;
+            }
+            else if(symbolCount < 3){
+                canvas.width = 38;
+                canvas.height = 42;
+            }
+            else{
+                canvas.width = 78;
+                canvas.height = 42;
+            }
 
             var context = canvas.getContext("2d");
 
@@ -157,13 +215,13 @@ eventMap.service('MapService', function(ImageLoader) {
 
 
 
-            var url = canvas.toDataURL();
+            var icon = new google.maps.MarkerImage(canvas.toDataURL(),new google.maps.Size(78, 42),new google.maps.Point(0,0),new google.maps.Point(canvas.width/2,canvas.height/2));
 
             var myLatlng = new google.maps.LatLng(cluster.point.lat,cluster.point.lng);
 
             cluster.marker = new google.maps.Marker({
                 position: myLatlng,
-                icon:url
+                icon:icon
             });
         }
 
@@ -172,6 +230,10 @@ eventMap.service('MapService', function(ImageLoader) {
 
 
     };
+
+
+
+
 
     this.drawMarker = function(event){
 
@@ -184,18 +246,22 @@ eventMap.service('MapService', function(ImageLoader) {
 
             context.drawImage(ImageLoader.getImage(event.type+'Map'),0,0);
 
-            var url = canvas.toDataURL();
+            var icon = new google.maps.MarkerImage(canvas.toDataURL(),new google.maps.Size(24, 24),new google.maps.Point(0,0),new google.maps.Point(12,12));
 
             var myLatlng = new google.maps.LatLng(event.point.lat,event.point.lng);
             event.marker = new google.maps.Marker({
                 position: myLatlng,
-                icon:url
+                icon:icon
             });
+//                google.maps.event.addListener(event.marker, 'click', function toggleBounce() {
+//                var point = overlay.getProjection().fromLatLngToDivPixel(myLatlng);
+//                alert('lat:'+event.point.lat+' lng:'+event.point.lng+' x:'+point.x+' y:'+point.y+' width:'+ overlay.getProjection().getWorldWidth())});
         }
+
+
 
         event.marker.setMap(map);
         currentMarkers.push(event.marker);
-//        google.maps.event.addListener(marker, 'click', function toggleBounce() {alert(event.point.lat+',lng: '+event.point.lng)});
     };
 
     this.showMap = function(){
@@ -218,7 +284,7 @@ eventMap.service('MapService', function(ImageLoader) {
             },
             tileSize: new google.maps.Size(256, 256),
             maxZoom: 18,
-            minZoom: 15,
+//            minZoom: 15,
             name: "Moon"
         };
 
@@ -237,9 +303,14 @@ eventMap.service('MapService', function(ImageLoader) {
 
         map = new google.maps.Map(document.getElementById("map"),
             mapOptions);
+
+        overlay = new google.maps.OverlayView();
+        overlay.draw = function() {};
+        overlay.setMap(map);
+
+
         map.mapTypes.set('moon', moonMapType);
         map.setMapTypeId('moon');
-
 
 
         // Normalizes the coords that tiles repeat across the x axis (horizontally)
