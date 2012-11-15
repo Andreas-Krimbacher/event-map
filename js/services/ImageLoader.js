@@ -4,18 +4,19 @@ eventMap.service('ImageLoader', function() {
 
     var imageLoaded = function(){};
 
-//    var sources = {
-//        concertMap: 'img/concert2.png',
-//        exhibMap: 'img/exhib2.png',
-//        filmMap: 'img/film2.png',
-//        otherMap: 'img/other2.png'
-//    };
-
     var sources = {
-        concertMap: 'img/concert3.png',
-        exhibMap: 'img/exhib3.png',
-        filmMap: 'img/film3.png',
-        otherMap: 'img/other3.png'
+        concertMapNR: 'img/concert3.png',
+        exhibMapNR: 'img/exhib3.png',
+        filmMapNR: 'img/film3.png',
+        otherMapNR: 'img/other3.png',
+        concertMapNB: 'img/concert2.png',
+        exhibMapNB: 'img/exhib2.png',
+        filmMapNB: 'img/film2.png',
+        otherMapNB: 'img/other2.png',
+        concertMap: 'img/concert1.png',
+        exhibMap: 'img/exhib1.png',
+        filmMap: 'img/film1.png',
+        otherMap: 'img/other1.png'
     };
 
     var images = {};

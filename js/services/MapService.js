@@ -23,15 +23,27 @@ eventMap.service('MapService', function(ImageLoader) {
                 currentMarkers.pop().setMap(null);
             }
 
-            if(true){
+            if(map.getZoom() == 15){
                 for(var x in mapData.zoom15){
                     that.drawCluster(mapData.zoom15[x]);
+                }
+            }
+            if(map.getZoom() == 16){
+                for(var x in mapData.zoom16){
+                    if(mapData.zoom16[x].hasData){
+                        that.drawCluster(mapData.zoom16[x]);
+                    }
+                }
+            }
+            if(map.getZoom() == 17){
+                for(var x in mapData.zoom17){
+                    that.drawMarker(mapData.zoom17[x]);
                 }
             }
 
         });
 
-    }
+    };
 
 
 
@@ -81,8 +93,8 @@ eventMap.service('MapService', function(ImageLoader) {
 //            var xPosition = 16 - (textWidth/2);
 //            context.fillText(value,xPosition+36,29+36);
 
-            canvas.width = 38;
-            canvas.height = 86;
+            canvas.width = 78;
+            canvas.height = 42;
 
             var context = canvas.getContext("2d");
 
@@ -93,40 +105,57 @@ eventMap.service('MapService', function(ImageLoader) {
             context.font =  "normal bold 12px sans-serif";
             context.fillStyle    = "#000000";
 
-            context.drawImage(ImageLoader.getImage('concertMap'),0,0);
-            context.drawImage(ImageLoader.getImage('exhibMap'),0,22);
-            context.drawImage(ImageLoader.getImage('filmMap'),0,44);
-            context.drawImage(ImageLoader.getImage('otherMap'),0,66);
+            var position = [{imageX : 0,
+            imageY : 0,
+            textX : 21,
+            textY : 14
+        },{imageX : 0,
+                imageY : 22,
+                textX : 21,
+                textY : 36
+            },{imageX : 40,
+            imageY : 0,
+            textX : 61,
+            textY : 14
+        },{imageX : 40,
+            imageY : 22,
+            textX : 61,
+            textY : 36
+        }];
+
+            var positionCount = 0;
 
             var value = cluster.data.concert.length;
-            context.fillText(value,21,14);
+            if(value){
+                context.drawImage(ImageLoader.getImage('concertMapNR'),position[positionCount].imageX,position[positionCount].imageY);
+                context.fillText(value,position[positionCount].textX,position[positionCount].textY);
+                positionCount++;
+            }
 
-            var value = cluster.data.exhib.length;
-            context.fillText(value,21,36);
+            value = cluster.data.film.length;
+            if(value){
+                context.drawImage(ImageLoader.getImage('filmMapNR'),position[positionCount].imageX,position[positionCount].imageY);
+                context.fillText(value,position[positionCount].textX,position[positionCount].textY);
+                positionCount++;
+            }
 
-            var value = cluster.data.film.length;
-            context.fillText(value,21,58);
+            value = cluster.data.exhib.length;
+            if(value){
+                context.drawImage(ImageLoader.getImage('exhibMapNR'),position[positionCount].imageX,position[positionCount].imageY);
+                context.fillText(value,position[positionCount].textX,position[positionCount].textY);
+                positionCount++;
+            }
 
-            var value = cluster.data.other.length;
-            context.fillText(value,21,80);
-//
-//            var value = cluster.data.exhib.length;
-//            var metrics = context.measureText(value);
-//            var textWidth = metrics.width;
-//            var xPosition = 16 - (textWidth/2);
-//            context.fillText(value,xPosition+36,29);
-//
-//            var value = cluster.data.film.length;
-//            var metrics = context.measureText(value);
-//            var textWidth = metrics.width;
-//            var xPosition = 16 - (textWidth/2);
-//            context.fillText(value,xPosition,29+36);
-//
-//            var value = cluster.data.other.length;
-//            var metrics = context.measureText(value);
-//            var textWidth = metrics.width;
-//            var xPosition = 16 - (textWidth/2);
-//            context.fillText(value,xPosition+36,29+36);
+
+
+            value = cluster.data.other.length;
+            if(value){
+                context.drawImage(ImageLoader.getImage('otherMapNR'),position[positionCount].imageX,position[positionCount].imageY);
+                context.fillText(value,position[positionCount].textX,position[positionCount].textY);
+                positionCount++;
+            }
+
+
 
             var url = canvas.toDataURL();
 
@@ -146,24 +175,26 @@ eventMap.service('MapService', function(ImageLoader) {
 
     this.drawMarker = function(event){
 
-        var canvas = document.createElement("canvas");
-        canvas.width = 32;
-        canvas.height = 32;
+        if(!event.marker){
+            var canvas = document.createElement("canvas");
+            canvas.width = 24;
+            canvas.height = 24;
 
-        var context = canvas.getContext("2d");
+            var context = canvas.getContext("2d");
 
-        context.drawImage(ImageLoader.getImage(event.type+'Map'),0,0);
+            context.drawImage(ImageLoader.getImage(event.type+'Map'),0,0);
 
-        var url = canvas.toDataURL();
+            var url = canvas.toDataURL();
 
-        var myLatlng = new google.maps.LatLng(event.point.lat,event.point.lng);
-        var marker = new google.maps.Marker({
-            position: myLatlng,
-            map: map,
-            title:event.point.lat+','+event.point.lng,
-            icon:url
-        });
+            var myLatlng = new google.maps.LatLng(event.point.lat,event.point.lng);
+            event.marker = new google.maps.Marker({
+                position: myLatlng,
+                icon:url
+            });
+        }
 
+        event.marker.setMap(map);
+        currentMarkers.push(event.marker);
 //        google.maps.event.addListener(marker, 'click', function toggleBounce() {alert(event.point.lat+',lng: '+event.point.lng)});
     };
 
