@@ -41,7 +41,7 @@ eventMap.service('MapData', function(Cluster,MapService) {
             if(rawMapData[k].type == 'film') rawMapData[k].showOnMap = filter.film;
             if(rawMapData[k].type == 'other') rawMapData[k].showOnMap = filter.other;
             if(timeChanged){
-
+                if(filter.start > rawMapData[k].date || filter.end < rawMapData[k].date) rawMapData[k].showOnMap = false;
             }
         }
 
@@ -65,7 +65,13 @@ eventMap.service('MapData', function(Cluster,MapService) {
             var cluster = {preCluster16 : null,
                             preCluster17 : null,
                             preCluster18 : null};
-            rawMapData.push({point : {lat:_.random(4736700, 4738000)/100000,lng:_.random(852400, 854900)/100000},type:_.random(0, 3),region:_.random(0, 4),nearPoint : nearPoints, cluster : cluster, showOnMap : true});
+            rawMapData.push({point : {lat:_.random(4736700, 4738000)/100000,lng:_.random(852400, 854900)/100000},
+                            type:_.random(0, 3),
+                            region:_.random(0, 4),
+                            date : new Date(),
+                            nearPoint : nearPoints,
+                            cluster : cluster,
+                            showOnMap : true});
 
 
             switch (rawMapData[rawMapData.length-1].type) {
@@ -106,6 +112,9 @@ eventMap.service('MapData', function(Cluster,MapService) {
                     rawMapData[rawMapData.length-1].type = 'Langstrasse';
                     break;
             }
+
+            rawMapData[rawMapData.length-1].date.setMonth(rawMapData[rawMapData.length-1].date.getMonth()+ _.random(-1,6));
+            rawMapData[rawMapData.length-1].date.setDate(rawMapData[rawMapData.length-1].date.getDate()+ _.random(0,31));
 
         };
 
