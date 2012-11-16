@@ -3,6 +3,8 @@
 eventMap.service('MapData', function(Cluster,MapService) {
     var rawMapData = null;
 
+    var currentFilter = null;
+
     var mapData = {zoom15:[],zoom16:[],zoom17:[],zoom18:[]};
 
     this.getMapData = function() {
@@ -11,13 +13,40 @@ eventMap.service('MapData', function(Cluster,MapService) {
 
 
     this.clusterData = function() {
-            Cluster.calculateDistance(rawMapData);
 
-            mapData.zoom15 = Cluster.getRegionClusters(rawMapData);
-            var preCluster = Cluster.getPreClusters(rawMapData);
-            mapData.zoom16 = preCluster.preCluster16;
-            mapData.zoom17 = preCluster.preCluster17;
-            mapData.zoom18 = preCluster.preCluster18;
+        var k = rawMapData.length;
+        while(k--){
+            rawMapData[k].cluster.preCluster16 = null;
+            rawMapData[k].cluster.preCluster17 = null;
+            rawMapData[k].cluster.preCluster18 = null;
+        }
+
+        mapData.zoom15 = Cluster.getRegionClusters(rawMapData);
+        var preCluster = Cluster.getPreClusters(rawMapData);
+        mapData.zoom16 = preCluster.preCluster16;
+        mapData.zoom17 = preCluster.preCluster17;
+        mapData.zoom18 = preCluster.preCluster18;
+
+    };
+
+    this.filterData = function(filter) {
+
+        var timeChanged = false;
+        if(!currentFilter || filter.start != currentFilter.start || filter.end != filter.currentFilter) timeChanged = true;
+
+        var k = rawMapData.length;
+        while(k--){
+            if(rawMapData[k].type == 'concert') rawMapData[k].showOnMap = filter.concert;
+            if(rawMapData[k].type == 'exhib') rawMapData[k].showOnMap = filter.exhib;
+            if(rawMapData[k].type == 'film') rawMapData[k].showOnMap = filter.film;
+            if(rawMapData[k].type == 'other') rawMapData[k].showOnMap = filter.other;
+            if(timeChanged){
+
+            }
+        }
+
+
+        currentFilter = filter;
     };
 
     this.generateTestData = function(count) {
@@ -36,7 +65,7 @@ eventMap.service('MapData', function(Cluster,MapService) {
             var cluster = {preCluster16 : null,
                             preCluster17 : null,
                             preCluster18 : null};
-            rawMapData.push({point : {lat:_.random(4736700, 4738000)/100000,lng:_.random(852400, 854900)/100000},type:_.random(0, 3),region:_.random(0, 4),nearPoint : nearPoints, cluster : cluster});
+            rawMapData.push({point : {lat:_.random(4736700, 4738000)/100000,lng:_.random(852400, 854900)/100000},type:_.random(0, 3),region:_.random(0, 4),nearPoint : nearPoints, cluster : cluster, showOnMap : true});
 
 
             switch (rawMapData[rawMapData.length-1].type) {
@@ -103,6 +132,6 @@ eventMap.service('MapData', function(Cluster,MapService) {
         }
         map.setZoom(15);
 
-
+        Cluster.calculateDistance(rawMapData);
     };
 });

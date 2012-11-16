@@ -3,11 +3,10 @@
 eventMap.service('MapService', function(ImageLoader) {
 
     var map = null;
+    var baseMap = null;
     var overlay = null;
-    var mapData = null;
-
     var currentMarkers = [];
-
+    var markerZoomChangeListener = null;
 
     this.getOverlay = function(){
         return overlay;
@@ -17,76 +16,76 @@ eventMap.service('MapService', function(ImageLoader) {
         return map;
     }
 
-    this.showMarkers = function(mapData){
-        mapData = mapData;
+    this.showMapData = function(mapData){
 
-        for(var x in mapData.zoom15){
-            this.drawCluster(mapData.zoom15[x]);
-        }
+        this.showMarkers(mapData);
 
         var that = this;
-
-        google.maps.event.addListener(map,'zoom_changed',function(e) {
-
-            while(currentMarkers[0]){
-                currentMarkers.pop().setMap(null);
-            }
-
-            if(map.getZoom() == 15){
-                for(var x in mapData.zoom15){
-                    that.drawCluster(mapData.zoom15[x]);
-                }
-            }
-            if(map.getZoom() == 16){
-                for(var x in mapData.zoom16){
-                    if(mapData.zoom16[x].hasData){
-                        if(mapData.zoom16[x].hasSingleData){
-                            if(mapData.zoom16[x].data.concert[0]) that.drawMarker(mapData.zoom16[x].data.concert[0]);
-                            if(mapData.zoom16[x].data.exhib[0]) that.drawMarker(mapData.zoom16[x].data.exhib[0]);
-                            if(mapData.zoom16[x].data.film[0]) that.drawMarker(mapData.zoom16[x].data.film[0]);
-                            if(mapData.zoom16[x].data.other[0]) that.drawMarker(mapData.zoom16[x].data.other[0]);
-                        }
-                        else{
-                            that.drawCluster(mapData.zoom16[x]);
-                        }
-                    }
-                }
-            }
-            if(map.getZoom() == 17){
-                for(var x in mapData.zoom17){
-                    if(mapData.zoom17[x].hasData){
-                        if(mapData.zoom17[x].hasSingleData){
-                            if(mapData.zoom17[x].data.concert[0]) that.drawMarker(mapData.zoom17[x].data.concert[0]);
-                            if(mapData.zoom17[x].data.exhib[0]) that.drawMarker(mapData.zoom17[x].data.exhib[0]);
-                            if(mapData.zoom17[x].data.film[0]) that.drawMarker(mapData.zoom17[x].data.film[0]);
-                            if(mapData.zoom17[x].data.other[0]) that.drawMarker(mapData.zoom17[x].data.other[0]);
-                        }
-                        else{
-                            that.drawCluster(mapData.zoom17[x]);
-                        }
-                    }
-                }
-            }
-            if(map.getZoom() == 18){
-                for(var x in mapData.zoom18){
-                    if(mapData.zoom18[x].hasData){
-                        if(mapData.zoom18[x].hasSingleData){
-                            if(mapData.zoom18[x].data.concert[0]) that.drawMarker(mapData.zoom18[x].data.concert[0]);
-                            if(mapData.zoom18[x].data.exhib[0]) that.drawMarker(mapData.zoom18[x].data.exhib[0]);
-                            if(mapData.zoom18[x].data.film[0]) that.drawMarker(mapData.zoom18[x].data.film[0]);
-                            if(mapData.zoom18[x].data.other[0]) that.drawMarker(mapData.zoom18[x].data.other[0]);
-                        }
-                        else{
-                            that.drawCluster(mapData.zoom18[x]);
-                        }
-                    }
-                }
-            }
-
-
+        var mapData = mapData;
+        google.maps.event.removeListener(markerZoomChangeListener);
+        markerZoomChangeListener = google.maps.event.addListener(map,'zoom_changed',function(e) {
+            that.showMarkers(mapData);
         });
 
     };
+
+    this.showMarkers = function(mapData){
+
+        while(currentMarkers[0]){
+            currentMarkers.pop().setMap(null);
+        }
+
+        if(map.getZoom() == 15){
+            for(var x in mapData.zoom15){
+                this.drawCluster(mapData.zoom15[x]);
+            }
+        }
+        if(map.getZoom() == 16){
+            for(var x in mapData.zoom16){
+                if(mapData.zoom16[x].hasData){
+                    if(mapData.zoom16[x].hasSingleData){
+                        if(mapData.zoom16[x].data.concert[0]) this.drawMarker(mapData.zoom16[x].data.concert[0]);
+                        if(mapData.zoom16[x].data.exhib[0]) this.drawMarker(mapData.zoom16[x].data.exhib[0]);
+                        if(mapData.zoom16[x].data.film[0]) this.drawMarker(mapData.zoom16[x].data.film[0]);
+                        if(mapData.zoom16[x].data.other[0]) this.drawMarker(mapData.zoom16[x].data.other[0]);
+                    }
+                    else{
+                        this.drawCluster(mapData.zoom16[x]);
+                    }
+                }
+            }
+        }
+        if(map.getZoom() == 17){
+            for(var x in mapData.zoom17){
+                if(mapData.zoom17[x].hasData){
+                    if(mapData.zoom17[x].hasSingleData){
+                        if(mapData.zoom17[x].data.concert[0]) this.drawMarker(mapData.zoom17[x].data.concert[0]);
+                        if(mapData.zoom17[x].data.exhib[0]) this.drawMarker(mapData.zoom17[x].data.exhib[0]);
+                        if(mapData.zoom17[x].data.film[0]) this.drawMarker(mapData.zoom17[x].data.film[0]);
+                        if(mapData.zoom17[x].data.other[0]) this.drawMarker(mapData.zoom17[x].data.other[0]);
+                    }
+                    else{
+                        this.drawCluster(mapData.zoom17[x]);
+                    }
+                }
+            }
+        }
+        if(map.getZoom() == 18){
+            for(var x in mapData.zoom18){
+                if(mapData.zoom18[x].hasData){
+                    if(mapData.zoom18[x].hasSingleData){
+                        if(mapData.zoom18[x].data.concert[0]) this.drawMarker(mapData.zoom18[x].data.concert[0]);
+                        if(mapData.zoom18[x].data.exhib[0]) this.drawMarker(mapData.zoom18[x].data.exhib[0]);
+                        if(mapData.zoom18[x].data.film[0]) this.drawMarker(mapData.zoom18[x].data.film[0]);
+                        if(mapData.zoom18[x].data.other[0]) this.drawMarker(mapData.zoom18[x].data.other[0]);
+                    }
+                    else{
+                        this.drawCluster(mapData.zoom18[x]);
+                    }
+                }
+            }
+        }
+    }
 
 
 
@@ -164,43 +163,58 @@ eventMap.service('MapService', function(ImageLoader) {
             context.fillStyle    = "#000000";
 
             var position = [{imageX : 0,
-            imageY : 0,
-            textX : 21,
-            textY : 14
-        },{imageX : 0,
+                imageY : 0,
+                textX : 21,
+                textY : 14
+            },{imageX : 0,
                 imageY : 22,
                 textX : 21,
                 textY : 36
             },{imageX : 40,
-            imageY : 0,
-            textX : 61,
-            textY : 14
-        },{imageX : 40,
-            imageY : 22,
-            textX : 61,
-            textY : 36
-        }];
+                imageY : 0,
+                textX : 61,
+                textY : 14
+            },{imageX : 40,
+                imageY : 22,
+                textX : 61,
+                textY : 36
+            }];
 
             var positionCount = 0;
 
             var value = cluster.data.concert.length;
             if(value){
                 context.drawImage(ImageLoader.getImage('concertMapNR'),position[positionCount].imageX,position[positionCount].imageY);
-                context.fillText(value,position[positionCount].textX,position[positionCount].textY);
+                if(value < 10){
+                    context.fillText(value,position[positionCount].textX+3,position[positionCount].textY);
+                }
+                else{
+                    context.fillText(value,position[positionCount].textX,position[positionCount].textY);
+                }
                 positionCount++;
             }
 
             value = cluster.data.film.length;
             if(value){
                 context.drawImage(ImageLoader.getImage('filmMapNR'),position[positionCount].imageX,position[positionCount].imageY);
-                context.fillText(value,position[positionCount].textX,position[positionCount].textY);
+                if(value < 10){
+                    context.fillText(value,position[positionCount].textX+3,position[positionCount].textY);
+                }
+                else{
+                    context.fillText(value,position[positionCount].textX,position[positionCount].textY);
+                }
                 positionCount++;
             }
 
             value = cluster.data.exhib.length;
             if(value){
                 context.drawImage(ImageLoader.getImage('exhibMapNR'),position[positionCount].imageX,position[positionCount].imageY);
-                context.fillText(value,position[positionCount].textX,position[positionCount].textY);
+                if(value < 10){
+                    context.fillText(value,position[positionCount].textX+3,position[positionCount].textY);
+                }
+                else{
+                    context.fillText(value,position[positionCount].textX,position[positionCount].textY);
+                }
                 positionCount++;
             }
 
@@ -209,7 +223,13 @@ eventMap.service('MapService', function(ImageLoader) {
             value = cluster.data.other.length;
             if(value){
                 context.drawImage(ImageLoader.getImage('otherMapNR'),position[positionCount].imageX,position[positionCount].imageY);
-                context.fillText(value,position[positionCount].textX,position[positionCount].textY);
+                if(value < 10){
+                    context.fillText(value,position[positionCount].textX+3,position[positionCount].textY);
+                }
+                else{
+                    context.fillText(value,position[positionCount].textX,position[positionCount].textY);
+                }
+
                 positionCount++;
             }
 
@@ -266,132 +286,128 @@ eventMap.service('MapService', function(ImageLoader) {
 
     this.showMap = function(){
 
+        var that = this;
+
         var imageBoundaries = new google.maps.LatLngBounds (
             new google.maps.LatLng(47.3635184326772 ,8.52219235359625), // lower left coordinate
             new google.maps.LatLng(47.3825878958978 , 8.55067793132157) // upper right coordinate
         );
 
-        var moonTypeOptions = {
-            getTileUrl: function(coord, zoom) {
-                var normalizedCoord = getNormalizedCoord(coord, zoom);
-                if (!normalizedCoord) {
-                    return null;
-                }
-                var bound = Math.pow(2, zoom);
-                return "img/tiles" +
-                    "/" + zoom + "/" + normalizedCoord.x + "/" +
-                    (bound - normalizedCoord.y - 1) + ".jpg";
-            },
-            tileSize: new google.maps.Size(256, 256),
-            maxZoom: 18,
-//            minZoom: 15,
-            name: "Moon"
-        };
-
-        var moonMapType = new google.maps.ImageMapType(moonTypeOptions);
-
-
-
         var mapOptions = {
-            center: new google.maps.LatLng(47.37295,8.53659),
+            center: new google.maps.LatLng(47.37345,8.53659),
             zoom: 15,
             draggable:false,
             streetViewControl: false,
             mapTypeControl:false
         };
 
+        var baseMapOptions = {
+            getTileUrl: function(coord, zoom) {
+                return that.getTileUrl(coord, zoom);
+            },
+            tileSize: new google.maps.Size(256, 256),
+            maxZoom: 18,
+            minZoom: 15,
+            name: "Event Map"
+        };
 
-        map = new google.maps.Map(document.getElementById("map"),
-            mapOptions);
+        map = new google.maps.Map(document.getElementById("map"),mapOptions);
+        baseMap = new google.maps.ImageMapType(baseMapOptions);
+
+        map.mapTypes.set('EventMap', baseMap);
+        map.setMapTypeId('EventMap');
 
         overlay = new google.maps.OverlayView();
         overlay.draw = function() {};
         overlay.setMap(map);
 
 
-        map.mapTypes.set('moon', moonMapType);
-        map.setMapTypeId('moon');
-
-
-        // Normalizes the coords that tiles repeat across the x axis (horizontally)
-        // like the standard Google map tiles.
-        function getNormalizedCoord(coord, zoom) {
-            var y = coord.y;
-            var x = coord.x;
-
-            // tile range in one direction range is dependent on zoom level
-            // 0 = 1 tile, 1 = 2 tiles, 2 = 4 tiles, 3 = 8 tiles, etc
-            var tileRange = 1 << zoom;
-
-            // don't repeat across y-axis (vertically)
-            if (y < 0 || y >= tileRange) {
-                return null;
-            }
-
-            // repeat across x-axis
-            if (x < 0 || x >= tileRange) {
-                x = (x % tileRange + tileRange) % tileRange;
-            }
-
-            return {
-                x: x,
-                y: y
-            };
-        }
+        var dragBoundaries = {zoom16:new google.maps.LatLngBounds (
+            new google.maps.LatLng(47.3678 ,8.5292), // lower left coordinate
+            new google.maps.LatLng(47.3783 ,8.5435) // upper right coordinate
+        ),
+            zoom17: new google.maps.LatLngBounds (
+                new google.maps.LatLng(47.3656 ,8.526), // lower left coordinate
+                new google.maps.LatLng(47.3805 ,8.5470) // upper right coordinate
+            ),
+            zoom18: new google.maps.LatLngBounds (
+                new google.maps.LatLng(47.3646 ,8.5240), // lower left coordinate
+                new google.maps.LatLng(47.3845 ,8.5485) // upper right coordinate
+         )}
 
         google.maps.event.addListener(map,'zoom_changed',function(e) {
             if(map.getZoom()>15){
                 map.setOptions({draggable:true});
-                checkBounds();
+                that.checkBounds(dragBoundaries);
             }
             else{
                 map.setOptions({draggable:false});
-                map.setCenter(new google.maps.LatLng(47.37295,8.53659));
+                map.setCenter(new google.maps.LatLng(47.37345,8.53659));
             }
 
         });
 
-        google.maps.event.addListener(map,'center_changed',function() { checkBounds(); });
+        google.maps.event.addListener(map,'center_changed',function() {
+            that.checkBounds(dragBoundaries);
+        });
+    }
 
-
-        function checkBounds() {
-            var zoom = map.getZoom();
-            if(zoom==16){
-                imageBoundaries = new google.maps.LatLngBounds (
-                    new google.maps.LatLng(47.364+0.0047 ,8.522+0.0075), // lower left coordinate
-                    new google.maps.LatLng(47.383-0.0045 ,8.551-0.0071) // upper right coordinate
-                );
-            }
-            else if(zoom==17){
-                imageBoundaries = new google.maps.LatLngBounds (
-                    new google.maps.LatLng(47.364+0.002 ,8.522+0.004), // lower left coordinate
-                    new google.maps.LatLng(47.383-0.0023 ,8.551-0.004) // upper right coordinate
-                );
-            }
-            else if(zoom==18){
-                imageBoundaries = new google.maps.LatLngBounds (
-                    new google.maps.LatLng(47.364+0.0008 ,8.522+0.002), // lower left coordinate
-                    new google.maps.LatLng(47.383-0.001 ,8.551-0.002) // upper right coordinate
-                );
-            }
-            if(! imageBoundaries.contains(map.getCenter())) {
-                var C = map.getCenter();
-                var X = C.lng();
-                var Y = C.lat();
-
-                var AmaxX = imageBoundaries.getNorthEast().lng();
-                var AmaxY = imageBoundaries.getNorthEast().lat();
-                var AminX = imageBoundaries.getSouthWest().lng();
-                var AminY = imageBoundaries.getSouthWest().lat();
-
-                if (X < AminX) {X = AminX;}
-                if (X > AmaxX) {X = AmaxX;}
-                if (Y < AminY) {Y = AminY;}
-                if (Y > AmaxY) {Y = AmaxY;}
-
-                map.setCenter(new google.maps.LatLng(Y,X));
-            }
+    this.checkBounds = function(dragBoundaries){
+        var imageBoundaries;
+        var zoom = map.getZoom();
+        if(zoom==16){
+            imageBoundaries = dragBoundaries.zoom16;
         }
+        else if(zoom==17){
+            imageBoundaries = dragBoundaries.zoom17;
+        }
+        else if(zoom==18){
+            imageBoundaries = dragBoundaries.zoom18;
+        }
+        else{
+            return;
+        }
+        if(!imageBoundaries.contains(map.getCenter())) {
+            var C = map.getCenter();
+            var X = C.lng();
+            var Y = C.lat();
+
+            var AmaxX = imageBoundaries.getNorthEast().lng();
+            var AmaxY = imageBoundaries.getNorthEast().lat();
+            var AminX = imageBoundaries.getSouthWest().lng();
+            var AminY = imageBoundaries.getSouthWest().lat();
+
+            if (X < AminX) {X = AminX;}
+            if (X > AmaxX) {X = AmaxX;}
+            if (Y < AminY) {Y = AminY;}
+            if (Y > AmaxY) {Y = AmaxY;}
+
+            map.setCenter(new google.maps.LatLng(Y,X));
+        }
+    }
+
+    this.getTileUrl = function(coord, zoom) {
+        var y = coord.y;
+        var x = coord.x;
+
+        // tile range in one direction range is dependent on zoom level
+        // 0 = 1 tile, 1 = 2 tiles, 2 = 4 tiles, 3 = 8 tiles, etc
+        var tileRange = 1 << zoom;
+
+        // don't repeat across y-axis (vertically)
+        if (y < 0 || y >= tileRange) {
+            return null;
+        }
+
+        // repeat across x-axis
+        if (x < 0 || x >= tileRange) {
+            x = (x % tileRange + tileRange) % tileRange;
+        }
+
+        var bound = Math.pow(2, zoom);
+        return "img/tiles" +
+            "/" + zoom + "/" + x + "/" +
+            (bound - y - 1) + ".jpg";
     }
 
 

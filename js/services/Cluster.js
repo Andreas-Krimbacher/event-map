@@ -36,7 +36,7 @@ eventMap.service('Cluster', function() {
         }
 
         for(x in rawMapData){
-            clusters[rawMapData[x].region].data[rawMapData[x].type].push(rawMapData[x]);
+            if(rawMapData[x].showOnMap) clusters[rawMapData[x].region].data[rawMapData[x].type].push(rawMapData[x]);
         }
 
         return clusters;
@@ -54,14 +54,14 @@ eventMap.service('Cluster', function() {
         clusterIndex = 0;
         i = rawMapData.length;
         while(i--){
-            if(rawMapData[i].cluster.preCluster16 == null){
+            if(rawMapData[i].showOnMap){
                 nearPoints = rawMapData[i].nearPoint.zoom16pre;
                 l = nearPoints.length-1;
                 j = -1;
                 clusterFound = false;
 
                 while(j++ != l){
-                    if(rawMapData[nearPoints[j]].cluster.preCluster16 != null){
+                    if(rawMapData[nearPoints[j]].cluster.preCluster16 != null && rawMapData[nearPoints[j]].showOnMap){
                         if(!clusterFound){
                             preCluster16[rawMapData[nearPoints[j]].cluster.preCluster16].data.push(rawMapData[i]);
                             rawMapData[i].cluster.preCluster16 = rawMapData[nearPoints[j]].cluster.preCluster16;
@@ -97,14 +97,14 @@ eventMap.service('Cluster', function() {
         clusterIndex = 0;
         i = rawMapData.length;
         while(i--){
-            if(rawMapData[i].cluster.preCluster17 == null){
+            if(rawMapData[i].showOnMap){
                 nearPoints = rawMapData[i].nearPoint.zoom17pre;
                 l = nearPoints.length-1;
                 j = -1;
                 clusterFound = false;
 
                 while(j++ != l){
-                    if(rawMapData[nearPoints[j]].cluster.preCluster17 != null){
+                    if(rawMapData[nearPoints[j]].cluster.preCluster17 != null && rawMapData[nearPoints[j]].showOnMap){
                         if(!clusterFound){
                             preCluster17[rawMapData[nearPoints[j]].cluster.preCluster17].data.push(rawMapData[i]);
                             rawMapData[i].cluster.preCluster17 = rawMapData[nearPoints[j]].cluster.preCluster17;
@@ -141,14 +141,14 @@ eventMap.service('Cluster', function() {
         clusterIndex = 0;
         i = rawMapData.length;
         while(i--){
-            if(rawMapData[i].cluster.preCluster18 == null){
+            if(rawMapData[i].showOnMap){
                 nearPoints = rawMapData[i].nearPoint.zoom18pre;
                 l = nearPoints.length-1;
                 j = -1;
                 clusterFound = false;
 
                 while(j++ != l){
-                    if(rawMapData[nearPoints[j]].cluster.preCluster18 != null){
+                    if(rawMapData[nearPoints[j]].cluster.preCluster18 != null && rawMapData[nearPoints[j]].showOnMap){
                         if(!clusterFound){
                             preCluster18[rawMapData[nearPoints[j]].cluster.preCluster18].data.push(rawMapData[i]);
                             rawMapData[i].cluster.preCluster18 = rawMapData[nearPoints[j]].cluster.preCluster18;
