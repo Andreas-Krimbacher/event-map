@@ -15,7 +15,7 @@ eventMap.MapController = function( $scope , MapData, MapService,ImageLoader) {
     $scope.$on('actualizeData', function(event,filter) {
         if(!$scope.mapData) MapData.generateTestData(500);
 
-        MapData.filterData(filter);
+        if(filter) MapData.filterData(filter);
         MapData.clusterData();
 
         $scope.mapData = MapData.getMapData();
@@ -34,7 +34,7 @@ eventMap.MapController = function( $scope , MapData, MapService,ImageLoader) {
     });
 };
 
-eventMap.FilterBarController = function( $scope, $rootScope, Slider) {
+eventMap.FilterBarController = function( $scope, $rootScope, Slider,MapService) {
 
     $scope.sliderTable = Slider.getSliderTable(0.45,0.7,1000);
     $scope.sliderCurrentDate = Slider.getSliderCurrentDate();
@@ -162,6 +162,10 @@ eventMap.FilterBarController = function( $scope, $rootScope, Slider) {
     $scope.actualizeData = function(){
         $rootScope.$broadcast('actualizeData',angular.copy($scope.filter));
     }
+
+    MapService.setMapIsLoadedFunction(function(){
+        $rootScope.$broadcast('actualizeData',angular.copy($scope.filter));
+    });
 
 
 };

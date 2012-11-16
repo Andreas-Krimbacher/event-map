@@ -1,12 +1,13 @@
 'use strict';
 
-eventMap.service('MapService', function(ImageLoader) {
+eventMap.service('MapService', function(ImageLoader,$rootScope) {
 
     var map = null;
     var baseMap = null;
     var overlay = null;
     var currentMarkers = [];
     var markerZoomChangeListener = null;
+    this.mapIsLoaded = function(){};
 
     this.getOverlay = function(){
         return overlay;
@@ -14,6 +15,10 @@ eventMap.service('MapService', function(ImageLoader) {
 
     this.getMap = function(){
         return map;
+    }
+
+    this.setMapIsLoadedFunction = function(func){
+        this.mapIsLoaded = func;
     }
 
     this.showMapData = function(mapData){
@@ -241,7 +246,8 @@ eventMap.service('MapService', function(ImageLoader) {
 
             cluster.marker = new google.maps.Marker({
                 position: myLatlng,
-                icon:icon
+                icon:icon,
+                url : 'http://localhost:8000'
             });
         }
 
@@ -320,6 +326,10 @@ eventMap.service('MapService', function(ImageLoader) {
         overlay = new google.maps.OverlayView();
         overlay.draw = function() {};
         overlay.setMap(map);
+
+        google.maps.event.addListenerOnce(map,'idle',function() {
+            that.mapIsLoaded();
+        });
 
 
         var dragBoundaries = {zoom16:new google.maps.LatLngBounds (

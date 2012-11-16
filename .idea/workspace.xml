@@ -3,12 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="29c6350e-a9ea-4a9e-a967-91e3f576dc5d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/main.less" afterPath="$PROJECT_DIR$/css/main.less" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/controllers.js" afterPath="$PROJECT_DIR$/js/controllers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/filters.js" afterPath="$PROJECT_DIR$/js/filters.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/services.js" afterPath="$PROJECT_DIR$/js/services.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/services/MapData.js" afterPath="$PROJECT_DIR$/js/services/MapData.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/partials/map.html" afterPath="$PROJECT_DIR$/partials/map.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/services/MapService.js" afterPath="$PROJECT_DIR$/js/services/MapService.js" />
     </list>
     <ignored path="arch-walk.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,7 +45,7 @@
       <file leaf-file-name="controllers.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="148" column="121" selection-start="5419" selection-end="5419" vertical-scroll-proportion="0.0">
+            <state line="168" column="0" selection-start="6026" selection-end="6026" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -91,19 +87,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MapService.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="MapService.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/services/MapService.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="226" column="74" selection-start="8532" selection-end="8532" vertical-scroll-proportion="0.0">
+            <state line="326" column="37" selection-start="11756" selection-end="11756" vertical-scroll-proportion="0.72953737">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.less" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="main.less" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/main.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="164" column="18" selection-start="2891" selection-end="2891" vertical-scroll-proportion="1.2831326">
+            <state line="164" column="18" selection-start="2891" selection-end="2891" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -112,7 +108,7 @@
       <file leaf-file-name="MapData.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/services/MapData.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="121" selection-start="1566" selection-end="1566" vertical-scroll-proportion="0.0">
+            <state line="44" column="13" selection-start="1580" selection-end="1580" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -139,14 +135,14 @@
         <option value="$PROJECT_DIR$/js/services/ImageLoader.js" />
         <option value="$PROJECT_DIR$/js/directives.js" />
         <option value="$PROJECT_DIR$/js/services/Cluster.js" />
-        <option value="$PROJECT_DIR$/js/services/MapService.js" />
         <option value="$PROJECT_DIR$/js/services/MapData.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/partials/map.html" />
-        <option value="$PROJECT_DIR$/js/controllers.js" />
         <option value="$PROJECT_DIR$/js/filters.js" />
         <option value="$PROJECT_DIR$/js/services.js" />
         <option value="$PROJECT_DIR$/css/main.less" />
+        <option value="$PROJECT_DIR$/js/controllers.js" />
+        <option value="$PROJECT_DIR$/js/services/MapService.js" />
       </list>
     </option>
   </component>
@@ -538,7 +534,11 @@
       <created>1353033572412</created>
       <updated>1353033572412</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="filtering 0.9">
+      <created>1353090046263</created>
+      <updated>1353090046263</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -565,6 +565,7 @@
     <frame x="-1" y="24" width="1922" height="1177" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17457305" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32890856" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
@@ -578,7 +579,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32922202" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -619,7 +619,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="pre filtering 0.3" />
+    <option name="LAST_COMMIT_MESSAGE" value="filtering 0.9" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -649,6 +649,7 @@
     <MESSAGE value="pre clustering" />
     <MESSAGE value="pre clustering 0.9" />
     <MESSAGE value="pre filtering 0.3" />
+    <MESSAGE value="filtering 0.9" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -685,23 +686,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/services/MapService.js">
+    <entry file="file://$PROJECT_DIR$/js/filters.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="226" column="74" selection-start="8532" selection-end="8532" vertical-scroll-proportion="0.0">
+        <state line="22" column="57" selection-start="743" selection-end="743" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/services/MapData.js">
+    <entry file="file://$PROJECT_DIR$/js/services.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="121" selection-start="1566" selection-end="1566" vertical-scroll-proportion="0.0">
+        <state line="79" column="71" selection-start="2771" selection-end="2771" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/services/Cluster.js">
+    <entry file="file://$PROJECT_DIR$/css/main.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="70" selection-start="1586" selection-end="1586" vertical-scroll-proportion="0.0">
+        <state line="164" column="18" selection-start="2891" selection-end="2891" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -720,6 +721,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/services/Cluster.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="70" selection-start="1586" selection-end="1586" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/partials/map.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="17" column="50" selection-start="1731" selection-end="1731" vertical-scroll-proportion="-10.625">
@@ -727,30 +735,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/services/MapData.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="13" selection-start="1580" selection-end="1580" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="148" column="121" selection-start="5419" selection-end="5419" vertical-scroll-proportion="0.0">
+        <state line="168" column="0" selection-start="6026" selection-end="6026" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/filters.js">
+    <entry file="file://$PROJECT_DIR$/js/services/MapService.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="57" selection-start="743" selection-end="743" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/services.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="71" selection-start="2771" selection-end="2771" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/main.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="164" column="18" selection-start="2891" selection-end="2891" vertical-scroll-proportion="1.2831326">
+        <state line="326" column="37" selection-start="11756" selection-end="11756" vertical-scroll-proportion="0.72953737">
           <folding />
         </state>
       </provider>
