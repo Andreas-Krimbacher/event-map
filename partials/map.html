@@ -4,6 +4,8 @@
     <div id="filter-bar-film" ng-click="onCategoryBtnClick('film')" class="filter-sym" ng-class="{true:'', false:'filter-btn-off'}[filter.film]"></div>
     <div id="filter-bar-other" ng-click="onCategoryBtnClick('other')" class="filter-sym" ng-class="{true:'', false:'filter-btn-off'}[filter.other]"></div>
     <div id="filter-time-info-start" class="filter-time-info">{{filter.start | sliderDate}}</div><div id="filter-slider"></div><div id="filter-time-info-end" class="filter-time-info">{{filter.end | sliderDate:'end'}}</div>
+    <div id="filter-slider-today1"></div>
+    <div id="filter-slider-today2"></div>
     <button class="btn btn-mini btn btn-inverse filter-button" type="button" ng-click="setFilterDates('today')">Today</button>
     <button class="btn btn-mini btn btn-inverse filter-button" type="button" ng-click="setFilterDates('tomorrow')">Tomorrow</button>
     <button class="btn btn-mini btn btn-inverse filter-button" type="button" ng-click="setFilterDates('thisWeek')">This Week</button>

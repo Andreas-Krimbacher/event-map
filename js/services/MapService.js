@@ -247,7 +247,11 @@ eventMap.service('MapService', function(ImageLoader,$rootScope) {
             cluster.marker = new google.maps.Marker({
                 position: myLatlng,
                 icon:icon,
-                url : 'http://localhost:8000'
+                url : 'http://localhost:8000event-map/sadsd'
+            });
+
+            google.maps.event.addListener(cluster.marker, 'click', function() {
+                window.location.href = cluster.marker.url;
             });
         }
 
@@ -275,13 +279,16 @@ eventMap.service('MapService', function(ImageLoader,$rootScope) {
             var icon = new google.maps.MarkerImage(canvas.toDataURL(),new google.maps.Size(24, 24),new google.maps.Point(0,0),new google.maps.Point(12,12));
 
             var myLatlng = new google.maps.LatLng(event.point.lat,event.point.lng);
+
             event.marker = new google.maps.Marker({
                 position: myLatlng,
-                icon:icon
+                icon:icon,
+                url : 'http://localhost:8000event-map/sadsd'
             });
-//                google.maps.event.addListener(event.marker, 'click', function toggleBounce() {
-//                var point = overlay.getProjection().fromLatLngToDivPixel(myLatlng);
-//                alert('lat:'+event.point.lat+' lng:'+event.point.lng+' x:'+point.x+' y:'+point.y+' width:'+ overlay.getProjection().getWorldWidth())});
+
+            google.maps.event.addListener(event.marker, 'click', function() {
+                window.location.href = event.marker.url;
+            });
         }
 
 

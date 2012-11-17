@@ -77,28 +77,46 @@ eventMap.service('Slider', function() {
         var values = {start : null, end : null};
 
         var x;
+        var valueStart = null;
         if(sliderStartDate>start || (sliderEndDate < start && start<end)){
             values.start = 0;
         }
         else{
-            var daysStart = Math.floor(( start - sliderStartDate ) / 86400000);
+            var daysStart = Math.round(( start - sliderStartDate ) / 86400000);
             for(x in sliderTable){
-                if(sliderTable[x] == daysStart){
-                    values.start = x;
-                    break;
+                if(sliderTable[x] == daysStart && !valueStart){
+                    valueStart = x;
+                }
+                if(valueStart && sliderTable[x] != daysStart){
+                    if(valueStart == x){
+                        values.start = x;
+                    }
+                    else{
+                        values.start = Math.round((parseInt(x)+parseInt(valueStart))/2);
+                        break;
+                    }
                 }
             }
         }
 
+        valueStart = null;
         if(sliderEndDate<end || (sliderStartDate>end && start<end)){
             values.end = sliderLength-1;
         }
         else{
-            var daysEnd = Math.floor(( end - sliderStartDate ) / 86400000)-1;
+            var daysEnd = Math.round(( end - sliderStartDate ) / 86400000)-1;
             for(x in sliderTable){
-                if(sliderTable[x] == daysEnd){
-                    values.end = x;
-                    break;
+                if(sliderTable[x] == daysEnd && !valueStart){
+                    valueStart = x;
+                }
+                if(valueStart && sliderTable[x] != daysEnd){
+                    if(valueStart == x){
+                        values.end = x;
+                    }
+                    else{
+                        values.end = Math.round((parseInt(x)+parseInt(valueStart))/2);
+                        break;
+                    }
                 }
             }
         }

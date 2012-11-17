@@ -42,6 +42,8 @@ eventMap.FilterBarController = function( $scope, $rootScope, Slider,MapService) 
     $scope.sliderEndDate = Slider.getSliderEndDate();
     $scope.sliderStartDate6 = new Date($scope.sliderStartDate.getTime());
     $scope.sliderStartDate6.setHours(6);
+    $scope.sliderEndDate6 = new Date($scope.sliderEndDate.getTime());
+    $scope.sliderEndDate6.setHours(6);
 
     $scope.filter = {concert: true,
         exhib: true,
@@ -57,7 +59,7 @@ eventMap.FilterBarController = function( $scope, $rootScope, Slider,MapService) 
     $scope.filter.end.setHours(6);
     $scope.filter.end.setDate($scope.filter.start.getDate()+8);
 
-    var sliderValues = Slider.getSliderValues($scope.sliderTable,$scope.sliderStartDate,$scope.sliderEndDate,$scope.filter.start,$scope.filter.end);
+    var sliderValues = Slider.getSliderValues($scope.sliderTable,$scope.sliderStartDate6,$scope.sliderEndDate6,$scope.filter.start,$scope.filter.end);
 
     jQuery("#filter-slider").slider({
         range: true,
@@ -81,6 +83,7 @@ eventMap.FilterBarController = function( $scope, $rootScope, Slider,MapService) 
                     if($scope.filter.end.getHours() != 6) $scope.filter.end.setHours(6);
                 }
                 $scope.actualizeData();
+                if($scope.datepicker) $scope.updateDatepicker();
             })
         },
         change : function( event, ui ) {
@@ -118,8 +121,10 @@ eventMap.FilterBarController = function( $scope, $rootScope, Slider,MapService) 
             $scope.filter.end.setTime(todayEnd.getTime()+86400000*7);
         }
 
-        var sliderValues = Slider.getSliderValues($scope.sliderTable,$scope.sliderStartDate,$scope.sliderEndDate,$scope.filter.start,$scope.filter.end);
+        var sliderValues = Slider.getSliderValues($scope.sliderTable,$scope.sliderStartDate6,$scope.sliderEndDate6,$scope.filter.start,$scope.filter.end);
         jQuery("#filter-slider").slider('values', [ sliderValues.start, sliderValues.end ]);
+
+        if($scope.datepicker) $scope.updateDatepicker();
     }
 
     //Datepicker
@@ -133,7 +138,7 @@ eventMap.FilterBarController = function( $scope, $rootScope, Slider,MapService) 
                 date.setHours(6);
                 $scope.$apply($scope.filter.start.setTime(date.getTime()));
                 $( "#datepicker-end" ).datepicker( "option", "minDate", selectedDate );
-                var sliderValues = Slider.getSliderValues($scope.sliderTable,$scope.sliderStartDate,$scope.sliderEndDate,$scope.filter.start,$scope.filter.end);
+                var sliderValues = Slider.getSliderValues($scope.sliderTable,$scope.sliderStartDate6,$scope.sliderEndDate6,$scope.filter.start,$scope.filter.end);
                 jQuery("#filter-slider").slider('values', [ sliderValues.start, sliderValues.end ]);
             }
         });
@@ -146,11 +151,41 @@ eventMap.FilterBarController = function( $scope, $rootScope, Slider,MapService) 
                 date.setDate(date.getDate()+1);
                 $scope.$apply($scope.filter.end.setTime(date.getTime()));
                 $( "#datepicker-start" ).datepicker( "option", "maxDate", selectedDate );
-                var sliderValues = Slider.getSliderValues($scope.sliderTable,$scope.sliderStartDate,$scope.sliderEndDate,$scope.filter.start,$scope.filter.end);
+                var sliderValues = Slider.getSliderValues($scope.sliderTable,$scope.sliderStartDate6,$scope.sliderEndDate6,$scope.filter.start,$scope.filter.end);
                 jQuery("#filter-slider").slider('values', [ sliderValues.start, sliderValues.end ]);
             }
         });
     });
+
+    $scope.$watch('datepicker',function(newValue){
+        if(newValue) $scope.updateDatepicker();
+    })
+
+    $scope.updateDatepicker = function(){
+        if($scope.filter.start.getFullYear() < 1980){
+            $( "#datepicker-start" ).datepicker( "setDate", null );
+            $( "#datepicker-end" ).datepicker( "option", "minDate", null );
+        }
+        else{
+            $( "#datepicker-start" ).datepicker( "setDate", $scope.filter.start );
+            $( "#datepicker-end" ).datepicker( "option", "minDate", $scope.filter.start );
+        }
+        if($scope.filter.end.getFullYear() > 2030){
+            $( "#datepicker-end" ).datepicker( "setDate", null );
+            $( "#datepicker-start" ).datepicker( "option", "maxDate", null );
+        }
+        else{
+            if($scope.filter.end.getHours() <= 6){
+                $( "#datepicker-end" ).datepicker( "setDate", new Date($scope.filter.end.getTime() - 86400000) );
+                $( "#datepicker-start" ).datepicker( "option", "maxDate", new Date($scope.filter.end.getTime() - 86400000) );
+            }
+            else{
+                $( "#datepicker-end" ).datepicker( "setDate", $scope.filter.end );
+                $( "#datepicker-start" ).datepicker( "option", "maxDate", $scope.filter.end );
+            }
+        }
+
+    };
 
 
 
