@@ -1,6 +1,6 @@
 'use strict';
 
-eventMap.service('MapService', function(ImageLoader,$rootScope) {
+eventMap.service('MapService', function(ImageLoader,$rootScope,$location) {
 
     var map = null;
     var baseMap = null;
@@ -247,11 +247,11 @@ eventMap.service('MapService', function(ImageLoader,$rootScope) {
             cluster.marker = new google.maps.Marker({
                 position: myLatlng,
                 icon:icon,
-                url : 'http://localhost:8000event-map/sadsd'
+                url : '/info?points=' + cluster.pointsString
             });
 
             google.maps.event.addListener(cluster.marker, 'click', function() {
-                window.location.href = cluster.marker.url;
+                $rootScope.$apply($location.url(cluster.marker.url));
             });
         }
 
@@ -283,11 +283,11 @@ eventMap.service('MapService', function(ImageLoader,$rootScope) {
             event.marker = new google.maps.Marker({
                 position: myLatlng,
                 icon:icon,
-                url : 'http://localhost:8000event-map/sadsd'
+                url : '/info/?points=' + event.id
             });
 
             google.maps.event.addListener(event.marker, 'click', function() {
-                window.location.href = event.marker.url;
+                $rootScope.$apply($location.url(event.marker.url));
             });
         }
 

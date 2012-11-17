@@ -27,8 +27,40 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
-               <h1>Zürich Event Map</h1>
-            <div ng-view></div>
+        <h1>Zürich Event Map</h1>
+        <div id="filter-bar" ng-controller="eventMap.FilterBarController">
+            <div id="filter-bar-concert" ng-click="onCategoryBtnClick('concert')" class="filter-sym" ng-class="{true:'', false:'filter-btn-off'}[filter.concert]"></div>
+            <div id="filter-bar-exhib" ng-click="onCategoryBtnClick('exhib')" class="filter-sym" ng-class="{true:'', false:'filter-btn-off'}[filter.exhib]"></div>
+            <div id="filter-bar-film" ng-click="onCategoryBtnClick('film')" class="filter-sym" ng-class="{true:'', false:'filter-btn-off'}[filter.film]"></div>
+            <div id="filter-bar-other" ng-click="onCategoryBtnClick('other')" class="filter-sym" ng-class="{true:'', false:'filter-btn-off'}[filter.other]"></div>
+            <div id="filter-time-slider">
+                <div id="filter-time-info-start" class="filter-time-info">{{filter.start | sliderDate}}</div>
+                <div id="filter-slider"></div>
+                <div id="filter-time-info-end" class="filter-time-info">{{filter.end | sliderDate:'end'}}</div>
+                <div id="filter-slider-today1"></div>
+                <div id="filter-slider-today2"></div>
+            </div>
+            <button class="btn btn-mini btn btn-inverse filter-button" type="button" ng-click="setFilterDates('today')">Today</button>
+            <button class="btn btn-mini btn btn-inverse filter-button" type="button" ng-click="setFilterDates('tomorrow')">Tomorrow</button>
+            <button class="btn btn-mini btn btn-inverse filter-button" type="button" ng-click="setFilterDates('thisWeek')">This Week</button>
+            <a class="btn btn-mini btn filter-button" href="" ng-click="datepicker = !datepicker" ng-class="{true: 'btn-success', false: 'btn-inverse'}[datepicker]"><i class="icon-time icon-white"></i></a>
+
+            <div id="datepicker" ng-show="datepicker">
+                <div id="datepicker-start"></div>
+                <div id="datepicker-end"></div>
+            </div>
+        </div>
+        <div id="map-main">
+            <map ng-controller="eventMap.MapController"></map>
+            <div id="info-view">
+                <div ng-view></div>
+            </div>
+        </div>
+        <div id="bottom-bar">
+            <div id="bottom-bar-uni">ETH Zürich - IKG</div>
+            <div id="bottom-bar-creator">Millo Pozzi - Andreas Krimbacher</div>
+        </div>
+
 
 
 

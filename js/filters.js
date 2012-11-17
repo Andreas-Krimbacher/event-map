@@ -30,4 +30,29 @@ eventMap.filter('sliderDate', function() {
     };
 });
 
+eventMap.filter('replaceTypeName', function() {
+    return function(type) {
+        var string;
+        switch (type) {
+            case 'concert':
+                string = 'Concert';
+                break;
+            case 'exhib':
+                string = 'Exhibition';
+                break;
+            case 'film':
+                string = 'Film';
+                break;
+            case 'other':
+                string = 'Other Event';
+                break;
+            default:
+                string = 'Other Event';
+                break;
+        }
+
+        return string;
+    };
+});
+
 

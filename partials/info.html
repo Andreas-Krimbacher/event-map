@@ -1,0 +1,12 @@
+<div ng-repeat="(key,val) in info">
+    <ul ng-hide="!val.data.length" class="info-list">
+        <li ng-click="val.isOpen = !val.isOpen" class="info-type-header"><div class="info-type-icon icon-{{key}}"></div><div class="info-type-header-text type-{{key}}">{{key | replaceTypeName}} ({{val.data.length}})</div></li>
+        <ul ng-show="val.isOpen" class="info-list">
+            <li ng-repeat="entry in val.data">
+                <div ng-click="entry.isOpen = !entry.isOpen" class="info-entry type-{{entry.type}}"> {{entry.title}}</div>
+                <div ng-show="entry.isOpen" class="info-entry-box type-{{entry.type}}-box">Bla Bla</div>
+            </li>
+        </ul>
+    </ul>
+</div>
+

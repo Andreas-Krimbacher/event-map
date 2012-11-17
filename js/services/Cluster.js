@@ -12,32 +12,47 @@ eventMap.service('Cluster', function() {
         clusters['Langstrasse'] = {
             point : {lat: 47.376,lng: 8.529},
             data : {concert : [],exhib: [], film: [], other: []},
-            marker : null
+            marker : null,
+            pointsString : ''
         }
         clusters['Bahnhofstrasse'] = {
             point : {lat: 47.373,lng: 8.538},
             data : {concert : [],exhib: [], film: [], other: []},
-            marker : null
+            marker : null,
+            pointsString : ''
         }
         clusters['NiederndorfUni'] = {
             point : {lat: 47.375,lng: 8.547},
             data : {concert : [],exhib: [], film: [], other: []},
-            marker : null
+            marker : null,
+            pointsString : ''
         }
         clusters['Sued'] = {
             point : {lat: 47.369,lng: 8.529},
             data : {concert : [],exhib: [], film: [], other: []},
-            marker : null
+            marker : null,
+            pointsString : ''
         }
         clusters['Bellevue'] = {
             point : {lat: 47.369,lng: 8.546},
             data : {concert : [],exhib: [], film: [], other: []},
-            marker : null
+            marker : null,
+            pointsString : ''
         }
 
         for(x in rawMapData){
-            if(rawMapData[x].showOnMap) clusters[rawMapData[x].region].data[rawMapData[x].type].push(rawMapData[x]);
+
+            if(rawMapData[x].showOnMap){
+                clusters[rawMapData[x].region].data[rawMapData[x].type].push(rawMapData[x]);
+                clusters[rawMapData[x].region].pointsString += '|'+rawMapData[x].id;
+            }
         }
+
+        clusters.Langstrasse.pointsString = clusters.Langstrasse.pointsString.substring(1,clusters.Langstrasse.pointsString.length)
+        clusters.Bahnhofstrasse.pointsString = clusters.Bahnhofstrasse.pointsString.substring(1,clusters.Bahnhofstrasse.pointsString.length);
+        clusters.NiederndorfUni.pointsString = clusters.NiederndorfUni.pointsString.substring(1,clusters.NiederndorfUni.pointsString.length);
+        clusters.Sued.pointsString = clusters.Sued.pointsString.substring(1,clusters.Sued.pointsString.length);
+        clusters.Bellevue.pointsString = clusters.Bellevue.pointsString.substring(1,clusters.Bellevue.pointsString.length);
 
         return clusters;
     }
@@ -64,6 +79,7 @@ eventMap.service('Cluster', function() {
                     if(rawMapData[nearPoints[j]].cluster.preCluster16 != null && rawMapData[nearPoints[j]].showOnMap){
                         if(!clusterFound){
                             preCluster16[rawMapData[nearPoints[j]].cluster.preCluster16].data.push(rawMapData[i]);
+                            preCluster16[rawMapData[nearPoints[j]].cluster.preCluster16].pointsString += '|'+rawMapData[i].id;
                             rawMapData[i].cluster.preCluster16 = rawMapData[nearPoints[j]].cluster.preCluster16;
                             clusterFound = true;
                         }
@@ -77,14 +93,16 @@ eventMap.service('Cluster', function() {
                                     clusterData[k].cluster.preCluster16 = newCluster;
                                     preCluster16[newCluster].data.push(clusterData[k]);
                                 }
+                                preCluster16[newCluster].pointsString += '|'+preCluster16[oldCluster].pointsString;
                                 preCluster16[oldCluster].data = [];
                                 preCluster16[oldCluster].hasData = false;
+                                preCluster16[oldCluster].pointsString = '';
                             }
                         }
                     }
                 }
                 if(!clusterFound){
-                    preCluster16.push({id:clusterIndex,point : {lat: null,lng: null},data:[rawMapData[i]],hasData : true,hasSingleData : false})
+                    preCluster16.push({id:clusterIndex,point : {lat: null,lng: null},data:[rawMapData[i]],hasData : true,hasSingleData : false, pointsString : rawMapData[i].id })
                     rawMapData[i].cluster.preCluster16 = clusterIndex;
                     clusterIndex++;
                 }
@@ -107,6 +125,7 @@ eventMap.service('Cluster', function() {
                     if(rawMapData[nearPoints[j]].cluster.preCluster17 != null && rawMapData[nearPoints[j]].showOnMap){
                         if(!clusterFound){
                             preCluster17[rawMapData[nearPoints[j]].cluster.preCluster17].data.push(rawMapData[i]);
+                            preCluster17[rawMapData[nearPoints[j]].cluster.preCluster17].pointsString += '|'+rawMapData[i].id;
                             rawMapData[i].cluster.preCluster17 = rawMapData[nearPoints[j]].cluster.preCluster17;
                             clusterFound = true;
                         }
@@ -120,14 +139,16 @@ eventMap.service('Cluster', function() {
                                     clusterData[k].cluster.preCluster17 = newCluster;
                                     preCluster17[newCluster].data.push(clusterData[k]);
                                 }
+                                preCluster17[newCluster].pointsString += '|'+preCluster17[oldCluster].pointsString;
                                 preCluster17[oldCluster].data = [];
                                 preCluster17[oldCluster].hasData = false;
+                                preCluster17[oldCluster].pointsString = '';
                             }
                         }
                     }
                 }
                 if(!clusterFound){
-                    preCluster17.push({id:clusterIndex,point : {lat: null,lng: null},data:[rawMapData[i]],hasData : true,hasSingleData : false})
+                    preCluster17.push({id:clusterIndex,point : {lat: null,lng: null},data:[rawMapData[i]],hasData : true,hasSingleData : false,pointsString : rawMapData[i].id})
                     rawMapData[i].cluster.preCluster17 = clusterIndex;
                     clusterIndex++;
                 }
@@ -151,6 +172,7 @@ eventMap.service('Cluster', function() {
                     if(rawMapData[nearPoints[j]].cluster.preCluster18 != null && rawMapData[nearPoints[j]].showOnMap){
                         if(!clusterFound){
                             preCluster18[rawMapData[nearPoints[j]].cluster.preCluster18].data.push(rawMapData[i]);
+                            preCluster18[rawMapData[nearPoints[j]].cluster.preCluster18].pointsString += '|'+rawMapData[i].id;
                             rawMapData[i].cluster.preCluster18 = rawMapData[nearPoints[j]].cluster.preCluster18;
                             clusterFound = true;
                         }
@@ -164,14 +186,16 @@ eventMap.service('Cluster', function() {
                                     clusterData[k].cluster.preCluster18 = newCluster;
                                     preCluster18[newCluster].data.push(clusterData[k]);
                                 }
+                                preCluster18[newCluster].pointsString += '|'+preCluster18[oldCluster].pointsString;
                                 preCluster18[oldCluster].data = [];
                                 preCluster18[oldCluster].hasData = false;
+                                preCluster18[oldCluster].pointsString = '';
                             }
                         }
                     }
                 }
                 if(!clusterFound){
-                    preCluster18.push({id:clusterIndex,point : {lat: null,lng: null},data:[rawMapData[i]],hasData : true,hasSingleData : false})
+                    preCluster18.push({id:clusterIndex,point : {lat: null,lng: null},data:[rawMapData[i]],hasData : true,hasSingleData : false,pointsString : rawMapData[i].id})
                     rawMapData[i].cluster.preCluster18 = clusterIndex;
                     clusterIndex++;
                 }

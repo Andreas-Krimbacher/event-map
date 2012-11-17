@@ -11,6 +11,32 @@ eventMap.service('MapData', function(Cluster,MapService) {
         return mapData;
     };
 
+    this.getRawMapDataInfoView = function(ids){
+        var rawMapDataArray = [];
+
+        var k = rawMapData.length;
+        while(k--){
+            var i = ids.length;
+            while(i--){
+                if(rawMapData[k].id == ids[i]){
+                    ids.splice(i,1);
+                    rawMapDataArray.push(rawMapData[k]);
+                    break;
+                }
+            }
+            if(!ids.length) break;
+        }
+
+
+        var rawMapDataInfo = {concert : {data: [],isOpen : false},exhib: {data: [],isOpen : false}, film: {data: [],isOpen : false}, other: {data: [],isOpen : false}};
+        var k = rawMapDataArray.length;
+        while(k--){
+            rawMapDataInfo[rawMapDataArray[k].type].data.push(rawMapDataArray[k]);
+        }
+
+        return rawMapDataInfo;
+    }
+
 
     this.clusterData = function() {
 
@@ -65,13 +91,16 @@ eventMap.service('MapData', function(Cluster,MapService) {
             var cluster = {preCluster16 : null,
                             preCluster17 : null,
                             preCluster18 : null};
-            rawMapData.push({point : {lat:_.random(4736700, 4738000)/100000,lng:_.random(852400, 854900)/100000},
+            rawMapData.push({id : x,
+                            point : {lat:_.random(4736700, 4738000)/100000,lng:_.random(852400, 854900)/100000},
                             type:_.random(0, 3),
                             region:_.random(0, 4),
                             date : new Date(),
                             nearPoint : nearPoints,
                             cluster : cluster,
-                            showOnMap : true});
+                            showOnMap : true,
+                            isOpen : false,
+                            title: 'XYZ Exhibition'});
 
 
             switch (rawMapData[rawMapData.length-1].type) {

@@ -2,7 +2,15 @@
 
 /* Controllers */
 
-eventMap.InfoViewController = function( $scope) {
+eventMap.InfoViewController = function( $scope, $location, MapData) {
+
+
+var url = $location.url();
+var values = url.substring(url.search('points')+7, url.length);
+var values = values.split('%7C');
+
+$scope.info = MapData.getRawMapDataInfoView(values);
+
 
 };
 
