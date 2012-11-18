@@ -17,13 +17,23 @@ eventMap.InfoViewController = function( $scope, $rootScope,$location, MapData, $
         currentOpenIds = [];
     }
 
-    $scope.mapUrlSetBefore = false;
-
     if(url.search('map=') != -1){
         temp = url.match('[?&]' + 'map' + '=([^&]+)');
-        var mapPoint = temp[1].split('%7C');
-        MapService.zoomToPoint({lat:mapPoint[0],lng:mapPoint[1]});
-        $scope.mapUrlSetBefore = true;
+        var currentMapPoint = temp[1].split('%7C');
+
+        var filter = MapData.getCurrentFilter();
+        var points = MapData.getPointData(currentPoints);
+
+        for(var x in points){
+            filter[points[x].type] = true;
+            if(filter.start > points[x].endDate) filter.start.setTime(points[x].endDate.getTime()-3600000);
+            if(filter.end < points[x].startDate) filter.end.setTime(points[x].startDate.getTime()+3600000);
+        }
+
+        $rootScope.$broadcast('updateFilterInView',angular.copy(filter));
+        $rootScope.$broadcast('actualizeData',filter);
+
+        MapService.zoomToPoint({lat:currentMapPoint[0],lng:currentMapPoint[1]},currentMapPoint[2]);
     }
 
 
@@ -51,13 +61,10 @@ eventMap.InfoViewController = function( $scope, $rootScope,$location, MapData, $
 
             var newUrl = '/info/?points=' + currentPoints.join('|');
             if(currentOpenIds[0]) newUrl += '&open=' + currentOpenIds.join('|');
+            if(currentMapPoint[0]) newUrl += '&map=' + currentMapPoint.join('|');
 
-            if($scope.mapUrlSetBefore){
-                $location.url(newUrl);
-            }
-            else{
-                $location.url(newUrl).replace();
-            }
+
+            $location.url(newUrl).replace();
 
         }
         else{
@@ -83,21 +90,22 @@ eventMap.InfoViewController = function( $scope, $rootScope,$location, MapData, $
     $scope.showPointOnMap = function($event,id){
         $event.stopPropagation();
         var filter = MapData.getCurrentFilter();
-        var point = MapData.getPointData(id);
+        var point = MapData.getPointData([id]);
+        point = point[0];
         if(!filter[point.type] || filter.start > point.endDate || filter.end < point.startDate){
             jQuery('#alert-filter').click(function (event) {
                 $(this).unbind(event);
-                $scope.$apply( $scope.filterDataShowPoint(angular.copy(filter),point) );
+                $scope.$apply( $scope.filterDataShowPoint(filter,point) );
                 $("#alert").modal("hide");
             });
             jQuery('#alert').modal('show');
         }
         else{
-            MapService.zoomToPoint(point.point);
+            MapService.zoomToPoint(point.point,18);
 
             var newUrl = '/info/?points=' + currentPoints.join('|');
             if(currentOpenIds[0]) newUrl += '&open=' + currentOpenIds.join('|');
-            newUrl += '&map='+ point.point.lat +'|'+point.point.lng;
+            newUrl += '&map='+ point.point.lat +'|'+point.point.lng+'|18';
             $location.url(newUrl);
         }
     }
@@ -109,11 +117,11 @@ eventMap.InfoViewController = function( $scope, $rootScope,$location, MapData, $
 
         $rootScope.$broadcast('updateFilterInView',angular.copy(filter));
         $rootScope.$broadcast('actualizeData',filter);
-        MapService.zoomToPoint(point.point);
+        MapService.zoomToPoint(point.point,18);
 
         var newUrl = '/info/?points=' + currentPoints.join('|');
         if(currentOpenIds[0]) newUrl += '&open=' + currentOpenIds.join('|');
-        newUrl += '&map='+ point.point.lat +'|'+point.point.lng;
+        newUrl += '&map='+ point.point.lat +'|'+point.point.lng+'|18';
         $location.url(newUrl);
     }
 

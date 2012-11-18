@@ -12,11 +12,15 @@ eventMap.service('MapData', function(Cluster,MapService) {
     };
 
     this.getPointData = function(id) {
-        return rawMapData[id];
+        var result = [];
+        for(var x in id){
+            result.push(rawMapData[id[x]]);
+        }
+        return result;
     };
 
     this.getCurrentFilter = function() {
-        return currentFilter;
+        return angular.copy(currentFilter);
     };
 
     this.getRawMapDataInfoView = function(ids, opens){

@@ -9,6 +9,19 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http)
     var markerZoomChangeListener = null;
     this.mapIsLoaded = function(){};
 
+    var dragBoundariesDefault = {zoom16:new google.maps.LatLngBounds (
+        new google.maps.LatLng(47.3678 ,8.5292), // lower left coordinate
+        new google.maps.LatLng(47.3783 ,8.5435) // upper right coordinate
+    ),
+        zoom17: new google.maps.LatLngBounds (
+            new google.maps.LatLng(47.3656 ,8.526), // lower left coordinate
+            new google.maps.LatLng(47.3805 ,8.5470) // upper right coordinate
+        ),
+        zoom18: new google.maps.LatLngBounds (
+            new google.maps.LatLng(47.3646 ,8.5240), // lower left coordinate
+            new google.maps.LatLng(47.3815 ,8.5485) // upper right coordinate
+        )}
+
     var eatDrinkData = [];
     var currentEatDrinkMarker = [];
     var busData = [];
@@ -156,13 +169,27 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http)
     }
 
 
-    this.zoomToPoint = function(point){
-        map.setZoom(18);
+    this.zoomToPoint = function(point,zoom){
+        if(zoom){
+            map.setZoom(parseInt(zoom));
+        }
+        else{
+            map.setZoom(18);
+        }
 
-        var imageBoundaries = new google.maps.LatLngBounds (
-            new google.maps.LatLng(47.3646 ,8.5240), // lower left coordinate
-            new google.maps.LatLng(47.3815 ,8.5485) // upper right coordinate
-        )
+        var imageBoundaries;
+        if(zoom==16){
+            imageBoundaries = dragBoundariesDefault.zoom16;
+        }
+        else if(zoom==17){
+            imageBoundaries = dragBoundariesDefault.zoom17;
+        }
+        else if(zoom==18){
+            imageBoundaries = dragBoundariesDefault.zoom18;
+        }
+        else{
+            return;
+        }
 
         var latLng = new google.maps.LatLng(point.lat,point.lng);
 
@@ -339,12 +366,12 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http)
             cluster.marker = new google.maps.Marker({
                 position: myLatlng,
                 icon:icon,
-                url : '/info?points=' + cluster.pointsString,
+                url : '/info?points=' + cluster.pointsString +'&map='+cluster.point.lat+'|'+cluster.point.lng,
                 zIndex : 1001
             });
 
             google.maps.event.addListener(cluster.marker, 'click', function() {
-                $rootScope.$apply($location.url(cluster.marker.url));
+                $rootScope.$apply($location.url(cluster.marker.url+'|'+map.getZoom()));
             });
         }
 
@@ -377,12 +404,12 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http)
                 position: myLatlng,
                 icon:icon,
                 title : event.title,
-                url : '/info/?points=' + event.id,
+                url : '/info/?points=' + event.id+'&map='+event.point.lat+'|'+event.point.lng,
                 zIndex : 1001
             });
 
             google.maps.event.addListener(event.marker, 'click', function() {
-                $rootScope.$apply($location.url(event.marker.url));
+                $rootScope.$apply($location.url(event.marker.url+'|'+map.getZoom()));
             });
         }
 
@@ -437,18 +464,7 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http)
         });
 
 
-        var dragBoundaries = {zoom16:new google.maps.LatLngBounds (
-            new google.maps.LatLng(47.3678 ,8.5292), // lower left coordinate
-            new google.maps.LatLng(47.3783 ,8.5435) // upper right coordinate
-        ),
-            zoom17: new google.maps.LatLngBounds (
-                new google.maps.LatLng(47.3656 ,8.526), // lower left coordinate
-                new google.maps.LatLng(47.3805 ,8.5470) // upper right coordinate
-            ),
-            zoom18: new google.maps.LatLngBounds (
-                new google.maps.LatLng(47.3646 ,8.5240), // lower left coordinate
-                new google.maps.LatLng(47.3815 ,8.5485) // upper right coordinate
-         )}
+        var dragBoundaries = dragBoundariesDefault;
 
         google.maps.event.addListener(map,'zoom_changed',function(e) {
             if(map.getZoom()>15){
