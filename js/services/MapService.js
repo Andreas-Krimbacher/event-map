@@ -161,7 +161,7 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http)
 
         var imageBoundaries = new google.maps.LatLngBounds (
             new google.maps.LatLng(47.3646 ,8.5240), // lower left coordinate
-            new google.maps.LatLng(47.3845 ,8.5485) // upper right coordinate
+            new google.maps.LatLng(47.3815 ,8.5485) // upper right coordinate
         )
 
         var latLng = new google.maps.LatLng(point.lat,point.lng);
@@ -447,7 +447,7 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http)
             ),
             zoom18: new google.maps.LatLngBounds (
                 new google.maps.LatLng(47.3646 ,8.5240), // lower left coordinate
-                new google.maps.LatLng(47.3845 ,8.5485) // upper right coordinate
+                new google.maps.LatLng(47.3815 ,8.5485) // upper right coordinate
          )}
 
         google.maps.event.addListener(map,'zoom_changed',function(e) {
