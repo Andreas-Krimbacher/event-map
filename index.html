@@ -25,10 +25,9 @@
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
-
         <!-- Add your site or application content here -->
         <h1>Zürich Event Map</h1>
-        <div id="filter-bar" ng-controller="eventMap.FilterBarController">
+        <div id="filter-bar" class="hide-element" ng-controller="eventMap.FilterBarController">
             <div id="filter-bar-concert" ng-click="onCategoryBtnClick('concert')" class="filter-sym" ng-class="{true:'', false:'filter-btn-off'}[filter.concert]"></div>
             <div id="filter-bar-exhib" ng-click="onCategoryBtnClick('exhib')" class="filter-sym" ng-class="{true:'', false:'filter-btn-off'}[filter.exhib]"></div>
             <div id="filter-bar-film" ng-click="onCategoryBtnClick('film')" class="filter-sym" ng-class="{true:'', false:'filter-btn-off'}[filter.film]"></div>
@@ -49,6 +48,11 @@
                 <div id="datepicker-start"></div>
                 <div id="datepicker-end"></div>
             </div>
+            <!--Map Button-->
+            <div id="map-button">
+                <button class="btn btn-mini" ng-class="{true:'btn-success',false:''}[busActive]" ng-click="setPOIOverlay('bus',!busActive);busActive = !busActive" type="button">Stops</button>
+                <button class="btn btn-mini" ng-class="{true:'btn-success',false:''}[eatDrinkActive]" ng-click="setPOIOverlay('eatDrink',!eatDrinkActive);eatDrinkActive = !eatDrinkActive" type="button">Eat & Drink</button>
+            </div>
         </div>
         <div id="map-main">
             <map ng-controller="eventMap.MapController"></map>
@@ -57,11 +61,20 @@
             </div>
         </div>
         <div id="bottom-bar">
-            <div id="bottom-bar-uni">ETH Zürich - IKG</div>
-            <div id="bottom-bar-creator">Millo Pozzi - Andreas Krimbacher</div>
+            <div id="bottom-bar-uni"><a id="bottom-bar-uni-link" href="http://www.ikg.ethz.ch/karto/"  target="_blank">ETH Zürich - IKG</a></div>
+            <div id="bottom-bar-creator"><a href="mailto:mpozzi@student.ethz.ch">Millo Pozzi</a> - <a href="mailto:andreas.krimbacher@gmail.com">Andreas Krimbacher</a></div>
         </div>
 
-
+        <!--Alert-->
+        <div id="alert" class="modal hide fade">
+            <div class="modal-body">
+                <p>To display this Point the filter must be changed.</p>
+            </div>
+            <div class="modal-footer">
+                <a href="" class="btn" id="alert-cancel">Cancel</a>
+                <a href="" class="btn btn-success" id="alert-filter">Change Filter</a>
+            </div>
+        </div>
 
 
 
@@ -75,11 +88,12 @@
         <script src="js/angular/angular-1.0.2.js"></script>
         <script src="js/angular/angular-resource.js"></script>
 
-        <script src="js/plugins.js"></script>
+
+        <script src="js/vendor/jquery-1.8.2.min.js"></script>
         <script src="js/vendor/bootstrap.js"></script>
         <script src="js/vendor/underscore.js"></script>
-        <script src="js/vendor/jquery-1.8.2.min.js"></script>
         <script src="js/vendor/jquery-ui-1.9.1.custom.js"></script>
+        <script src="js/plugins.js"></script>
 
         <script src="js/leaflet/dist/leaflet-src.js"></script>
         <script type="text/javascript"
@@ -94,6 +108,7 @@
         <script src="js/services/MapService.js"></script>
         <script src="js/services/ImageLoader.js"></script>
         <script src="js/services/Cluster.js"></script>
+        <script src="js/services/Slider.js"></script>
         <script src="js/directives.js"></script>
         <script src="js/filters.js"></script>
 

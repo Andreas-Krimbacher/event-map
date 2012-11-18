@@ -11,30 +11,76 @@ eventMap.service('MapData', function(Cluster,MapService) {
         return mapData;
     };
 
-    this.getRawMapDataInfoView = function(ids){
-        var rawMapDataArray = [];
+    this.getPointData = function(id) {
+        return rawMapData[id];
+    };
+
+    this.getCurrentFilter = function() {
+        return currentFilter;
+    };
+
+    this.getRawMapDataInfoView = function(ids, opens){
+        var rawMapDataInfo = {concert : {data: [],isOpen : false},exhib: {data: [],isOpen : false}, film: {data: [],isOpen : false}, other: {data: [],isOpen : false}};
+
+        var infoText = '20h Wettbewerbsfilme<br>20.45h Kurzfilmprogramm<br>21.30h	Preisverleihung<br><br>Filme wider die Alpenbunker-Mentalität/-Realität<br><br>Das Fabrikvideo hat zusammen mit dem Konzeptbüro der Roten Fabrik zu einem Wettbewerb aufgerufen, der an diesem Abend präsentiert wird. Den Siegerbeitrag kürt das Publikum per Abstimmung!';
 
         var k = rawMapData.length;
         while(k--){
             var i = ids.length;
             while(i--){
                 if(rawMapData[k].id == ids[i]){
+                    var data = {id : rawMapData[k].id,
+                                title : rawMapData[k].title,
+                                isOpen: false,
+                                address : {street : 'Strehlgasse 29', city : '8001 Zurich', country: 'Switzerland'},
+                                startDate : rawMapData[k].startDate,
+                                endDate : rawMapData[k].endDate,
+                                infoText:infoText};
+
+                    var l = opens.length;
+                    while(l--){
+                        if(opens[l] == ids[i]){
+                            data.isOpen = true;
+                            rawMapDataInfo[rawMapData[k].type].isOpen = true;
+                        }
+                    }
+
+                    rawMapDataInfo[rawMapData[k].type].data.push(data);
                     ids.splice(i,1);
-                    rawMapDataArray.push(rawMapData[k]);
                     break;
                 }
             }
             if(!ids.length) break;
         }
 
-
-        var rawMapDataInfo = {concert : {data: [],isOpen : false},exhib: {data: [],isOpen : false}, film: {data: [],isOpen : false}, other: {data: [],isOpen : false}};
-        var k = rawMapDataArray.length;
-        while(k--){
-            rawMapDataInfo[rawMapDataArray[k].type].data.push(rawMapDataArray[k]);
+        var l = opens.length;
+        while(l--){
+            if(opens[l] == 'concert') rawMapDataInfo.concert.isOpen = true;
+            if(opens[l] == 'exhib') rawMapDataInfo.exhib.isOpen = true;
+            if(opens[l] == 'film') rawMapDataInfo.film.isOpen = true;
+            if(opens[l] == 'other') rawMapDataInfo.other.isOpen = true;
         }
 
         return rawMapDataInfo;
+    }
+
+    this.getRawMapDataSingle = function(ids){
+
+        var infoText = '20h Wettbewerbsfilme<br>20.45h Kurzfilmprogramm<br>21.30h	Preisverleihung<br><br>Filme wider die Alpenbunker-Mentalität/-Realität<br><br>Das Fabrikvideo hat zusammen mit dem Konzeptbüro der Roten Fabrik zu einem Wettbewerb aufgerufen, der an diesem Abend präsentiert wird. Den Siegerbeitrag kürt das Publikum per Abstimmung!';
+
+        var k = rawMapData.length;
+        while(k--){
+            if(rawMapData[k].id == ids[0]){
+                return {id : rawMapData[k].id,
+                    title : rawMapData[k].title,
+                    type:rawMapData[k].type,
+                    isOpen: true,
+                    address : {street : 'Strehlgasse 29', city : '8001 Zurich', country: 'Switzerland'},
+                    startDate : rawMapData[k].startDate,
+                    endDate : rawMapData[k].endDate,
+                    infoText:infoText};
+            }
+        }
     }
 
 
@@ -67,7 +113,7 @@ eventMap.service('MapData', function(Cluster,MapService) {
             if(rawMapData[k].type == 'film') rawMapData[k].showOnMap = filter.film;
             if(rawMapData[k].type == 'other') rawMapData[k].showOnMap = filter.other;
             if(timeChanged){
-                if(filter.start > rawMapData[k].date || filter.end < rawMapData[k].date) rawMapData[k].showOnMap = false;
+                if(filter.start > rawMapData[k].endDate || filter.end < rawMapData[k].startDate) rawMapData[k].showOnMap = false;
             }
         }
 
@@ -95,11 +141,11 @@ eventMap.service('MapData', function(Cluster,MapService) {
                             point : {lat:_.random(4736700, 4738000)/100000,lng:_.random(852400, 854900)/100000},
                             type:_.random(0, 3),
                             region:_.random(0, 4),
-                            date : new Date(),
+                            startDate : new Date(),
+                            endDate : null,
                             nearPoint : nearPoints,
                             cluster : cluster,
                             showOnMap : true,
-                            isOpen : false,
                             title: 'XYZ Exhibition'});
 
 
@@ -142,8 +188,14 @@ eventMap.service('MapData', function(Cluster,MapService) {
                     break;
             }
 
-            rawMapData[rawMapData.length-1].date.setMonth(rawMapData[rawMapData.length-1].date.getMonth()+ _.random(-1,6));
-            rawMapData[rawMapData.length-1].date.setDate(rawMapData[rawMapData.length-1].date.getDate()+ _.random(0,31));
+            rawMapData[rawMapData.length-1].startDate.setMonth(rawMapData[rawMapData.length-1].startDate.getMonth()+ _.random(-1,6));
+            rawMapData[rawMapData.length-1].startDate.setDate(rawMapData[rawMapData.length-1].startDate.getDate()+ _.random(0,31));
+            rawMapData[rawMapData.length-1].startDate.setHours(rawMapData[rawMapData.length-1].startDate.getHours()+ _.random(0,24));
+            rawMapData[rawMapData.length-1].startDate.setMinutes(0);
+            rawMapData[rawMapData.length-1].startDate.setSeconds(0);
+            rawMapData[rawMapData.length-1].startDate.setMilliseconds(0);
+
+            rawMapData[rawMapData.length-1].endDate = new Date(rawMapData[rawMapData.length-1].startDate.getTime()+_.random(1,20)*1800000)
 
         };
 

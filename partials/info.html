@@ -1,10 +1,17 @@
 <div ng-repeat="(key,val) in info">
     <ul ng-hide="!val.data.length" class="info-list">
-        <li ng-click="val.isOpen = !val.isOpen" class="info-type-header"><div class="info-type-icon icon-{{key}}"></div><div class="info-type-header-text type-{{key}}">{{key | replaceTypeName}} ({{val.data.length}})</div></li>
+        <li ng-click="open(key,!val.isOpen);val.isOpen = !val.isOpen" class="info-type-header"><div class="info-type-icon icon-{{key}}"></div><div class="info-type-header-text type-{{key}}">{{key | replaceTypeName}} ({{val.data.length}})</div></li>
         <ul ng-show="val.isOpen" class="info-list">
             <li ng-repeat="entry in val.data">
-                <div ng-click="entry.isOpen = !entry.isOpen" class="info-entry type-{{entry.type}}"> {{entry.title}}</div>
-                <div ng-show="entry.isOpen" class="info-entry-box type-{{entry.type}}-box">Bla Bla</div>
+                <div ng-click="open(entry.id,!entry.isOpen);entry.isOpen = !entry.isOpen;" class="info-entry type-{{key}}"> {{entry.title}} <div class="icon-map-marker info-entry-map" ng-click="showPointOnMap($event,entry.id)"></div></div>
+                <div ng-show="entry.isOpen" class="info-entry-box type-{{key}}-box">
+                    <div ng-bind-html-unsafe="entry.infoText" class="info-text"></div>
+                    <hr class="hr-{{key}}" />
+                    <div class="info-text-bottom">
+                        <div class="info-text-address"> {{entry.address.street}}<br/>{{entry.address.city}}<br/>{{entry.address.country}}</div>
+                        <div class="info-text-time"> {{entry.startDate | date:'dd.MM.yyyy'}}<br/>{{entry.startDate | date:'HH:mm'}} until {{entry.endDate | date:'HH:mm'}}</div>
+                    </div>
+                </div>
             </li>
         </ul>
     </ul>

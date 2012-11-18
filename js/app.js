@@ -7,6 +7,6 @@
 var eventMap = angular.module('event-map', []).
   config(['$routeProvider', function($routeProvider) {
   $routeProvider.
-      when('/info', {templateUrl: 'partials/info.html', controller : eventMap.InfoViewController}).
+      when('/info', {template: '<div ng-include="templateUrl"></div>', controller : eventMap.InfoViewController}).
       otherwise({redirectTo: '/'});
 }]);

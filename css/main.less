@@ -106,6 +106,10 @@ small {
   font-size: 80%;
 }
 
+.hide-element{
+  visibility : hidden;
+}
+
 #filter-bar{
   height: 30px;
   width: 1000px;
@@ -113,6 +117,7 @@ small {
   border-top: solid 1.5px grey;
   margin-left: 100px;
 }
+
 
 #bottom-bar{
   height: 15px;
@@ -122,6 +127,14 @@ small {
   font-family: Georgia;
   font-size: 12px;
   color: gray;
+}
+
+#bottom-bar a:link {
+  color:gray;
+}
+
+#bottom-bar-uni-link{
+  color:gray;
 }
 
 #bottom-bar-creator{
@@ -257,11 +270,12 @@ small {
 }
 
 #info-view{
-  width: 330px;
+  width: 310px;
   float: right;
   height: 560px;
   border-left: solid 2.5px grey;
   padding-top: 10px;
+  padding-left: 10px;
   overflow: auto;
 }
 
@@ -270,7 +284,7 @@ small {
   height: 24px;
   display: inline-block;
   background-position: 0px 0px;
-  margin-top: -1px;
+  margin-top: -3px;
 }
 
 .icon-concert{
@@ -288,7 +302,7 @@ small {
 
 .info-list{
   list-style: none;
-  margin-left: 10px;
+  margin-left: 0px;
 }
 
 .info-type-header{
@@ -310,6 +324,7 @@ small {
   -khtml-border-radius: 3px;
   border-radius: 3px;
   padding-left: 10px;
+  line-height: 24px;
 }
 
 .type-concert{
@@ -325,11 +340,13 @@ small {
   background-color: #8EBD99;
 }
 .info-entry{
-  ont-family: Georgia;
+  display: inline-block;
+  font-family: Georgia;
   font-size: 13px;
   width: 274px;
   height: 20px;
   margin-top: 5px;
+  margin-left: 10px;
   padding-left: 10px;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
@@ -351,36 +368,123 @@ small {
   background-color: rgba(142, 189, 153, 0.5);
 }
 
+.info-entry-single{
+  display: inline-block;
+  height: 24px;
+  font-family: Georgia;
+  font-size: 15px;
+  width: 250px;
+  margin-left: 6px;
+  padding-left: 10px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  border-radius: 2px;
+  line-height: 24px;
+}
+
 .info-entry-box{
   width: 280px;
-  height: 150px;
+  max-height: 250px;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
   -khtml-border-radius: 2px;
   border-radius: 2px;
+  margin-left: 10px;
 }
 
-.info-entry-box.type-concert-box{
+.info-entry-box-single{
+  width: 256px;
+  max-height: 520px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -khtml-border-radius: 2px;
+  border-radius: 2px;
+  margin-left: 34px;
+  margin-top: -2px;
+  overflow: auto;
+}
+
+.type-concert-box{
   border: solid 2px rgba(125, 194, 75, 0.5);
 }
-.info-entry-box.type-exhib-box{
+.type-exhib-box{
   border: solid 2px rgba(221, 194, 63, 0.5);
 }
-.info-entry-box.type-film-box{
+.type-film-box{
   border: solid 2px rgba(200, 77, 95, 0.5);
 }
-.info-entry-box.type-other-box{
+.type-other-box{
   border: solid 2px rgba(142, 189, 153, 0.5);
 }
 
+.info-text{
+  font-size: 12px;
+  line-height: 13px;
+  padding: 5px;
+}
 
+.info-text-bottom{
+  height: 35px;
+}
 
+.info-text-address{
+  float: left;
+  font-size: 10px;
+  line-height: 11px;
+  margin-left: 5px;
+  font-weight: 700;
+}
+.info-text-time{
+  float: right;
+  font-size: 12px;
+  line-height: 11px;
+  font-weight: 800;
+  margin-top: 5px;
+  margin-right: 10px;
+  text-align: right;
+}
 
+.info-entry-box hr{
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
 
+.info-entry-box-single hr{
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
 
+.hr-concert{
+  border-top: solid 2px rgba(125, 194, 75, 0.5);
+}
+.hr-exhib{
+  border-top: solid 2px rgba(221, 194, 63, 0.5);
+}
+.hr-film{
+  border-top: solid 2px rgba(200, 77, 95, 0.5);
+}
+.hr-other{
+  border-top: solid 2px rgba(142, 189, 153, 0.5);
+}
 
+.info-entry-map{
+  float: right;
+  margin-right: 7px;
+  margin-top: 2px;
+  background-position: -23px -71px;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
 
+.info-entry-single .info-entry-map{
+  margin-top: 4px;
+}
 
+.info-entry-map:hover{
+  box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.53);
+}
 
 
 
@@ -422,9 +526,17 @@ width: 650px;
   float: left;
   }
 
+#map-button{
+  position: absolute;
+  top: 90px;
+  left: 625px;
+  z-index: 1030;
+}
+
 #map img {
   max-width: none;
 }
+
 
 label {
   color: gray;

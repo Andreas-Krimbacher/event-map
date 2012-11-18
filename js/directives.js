@@ -6,13 +6,9 @@ eventMap.directive('map', function(MapService) {
     return {
         restrict: 'E',
         replace: false,
-        template: '<div id="map"></div>',
+        templateUrl: 'partials/map.html',
         link: function($scope, element, attrs) {
-                MapService.showMap();
-
-
-
-
+            MapService.showMap();
         }
     };
 });

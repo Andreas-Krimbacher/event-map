@@ -1,6 +1,6 @@
 'use strict';
 
-eventMap.service('MapService', function(ImageLoader,$rootScope,$location) {
+eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http) {
 
     var map = null;
     var baseMap = null;
@@ -8,6 +8,11 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location) {
     var currentMarkers = [];
     var markerZoomChangeListener = null;
     this.mapIsLoaded = function(){};
+
+    var eatDrinkData = [];
+    var currentEatDrinkMarker = [];
+    var busData = [];
+    var currentBusMarker = [];
 
     this.getOverlay = function(){
         return overlay;
@@ -19,6 +24,64 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location) {
 
     this.setMapIsLoadedFunction = function(func){
         this.mapIsLoaded = func;
+    }
+
+    this.getEatDrinkData = function(){
+        $http.get('data/RestaurantList.json').success(function(data) {
+            eatDrinkData = data;
+        });
+    }
+
+    this.setEatDrinkOverlay = function(mode){
+        if(mode){
+            var k = eatDrinkData.length;
+            while(k--){
+                if(!eatDrinkData[k].marker){
+                    eatDrinkData[k].marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(eatDrinkData[k].y,eatDrinkData[k].x),
+                        title : eatDrinkData[k].Name,
+                        icon : 'img/rest.png',
+                        zIndex : 101
+                    });
+                }
+                currentEatDrinkMarker.push(eatDrinkData[k].marker);
+                eatDrinkData[k].marker.setMap(map);
+            }
+        }
+        else{
+            while(currentEatDrinkMarker[0]){
+                currentEatDrinkMarker.pop().setMap(null);
+            }
+        }
+    }
+
+    this.getBusData = function(){
+        $http.get('data/BusList.json').success(function(data) {
+            busData = data;
+        });
+    }
+
+    this.setBusOverlay = function(mode){
+        if(mode){
+            var k = busData.length;
+            while(k--){
+                if(!busData[k].marker){
+                    busData[k].marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(busData[k].y,busData[k].x),
+                        title : busData[k].Name,
+                        icon : 'img/bus.png',
+                        zIndex : 101
+                    });
+                }
+                currentBusMarker.push(busData[k].marker);
+                busData[k].marker.setMap(map);
+            }
+        }
+        else{
+            while(currentBusMarker[0]){
+                currentBusMarker.pop().setMap(null);
+            }
+        }
     }
 
     this.showMapData = function(mapData){
@@ -93,6 +156,10 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location) {
     }
 
 
+    this.zoomToPoint = function(point){
+        map.setZoom(18);
+        map.setCenter(new google.maps.LatLng(point.lat,point.lng));
+    }
 
     this.drawCluster = function(cluster){
 
@@ -247,7 +314,8 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location) {
             cluster.marker = new google.maps.Marker({
                 position: myLatlng,
                 icon:icon,
-                url : '/info?points=' + cluster.pointsString
+                url : '/info?points=' + cluster.pointsString,
+                zIndex : 1001
             });
 
             google.maps.event.addListener(cluster.marker, 'click', function() {
@@ -283,7 +351,9 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location) {
             event.marker = new google.maps.Marker({
                 position: myLatlng,
                 icon:icon,
-                url : '/info/?points=' + event.id
+                title : event.title,
+                url : '/info/?points=' + event.id,
+                zIndex : 1001
             });
 
             google.maps.event.addListener(event.marker, 'click', function() {
@@ -300,6 +370,9 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location) {
     this.showMap = function(){
 
         var that = this;
+
+        this.getEatDrinkData();
+        this.getBusData();
 
         var imageBoundaries = new google.maps.LatLngBounds (
             new google.maps.LatLng(47.3635184326772 ,8.52219235359625), // lower left coordinate

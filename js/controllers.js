@@ -2,15 +2,90 @@
 
 /* Controllers */
 
-eventMap.InfoViewController = function( $scope, $location, MapData) {
+eventMap.InfoViewController = function( $scope, $rootScope,$location, MapData, $route, MapService) {
+
+    var url = $location.url();
+
+    var temp = url.match('[?&]' + 'points' + '=([^&]+)');
+    var currentPoints = temp[1].split('%7C');
+
+    if(url.search('open=') != -1){
+        temp = url.match('[?&]' + 'open' + '=([^&]+)');
+        var currentOpenIds = temp[1].split('%7C');
+    }
+    else{
+        currentOpenIds = [];
+    }
 
 
-var url = $location.url();
-var values = url.substring(url.search('points')+7, url.length);
-var values = values.split('%7C');
+    if(currentPoints.length > 1){
+        $scope.templateUrl = "partials/info.html";
+        var info = MapData.getRawMapDataInfoView(angular.copy(currentPoints),currentOpenIds);
+        $scope.info = info;
+    }
+    else{
+        $scope.templateUrl = "partials/info-single.html";
+        var info = MapData.getRawMapDataSingle(currentPoints);
+        $scope.info = info;
+    }
 
-$scope.info = MapData.getRawMapDataInfoView(values);
+    $scope.open = function(id,open){
+        if(open){
+            currentOpenIds.push(id);
+        }
+        else{
+            var pos
+            if(id == 'concert' || id == 'exhib' || id == 'film' || id == 'other'){
+                var typePoints = [];
+                var x,i;
+                for(x in  $scope.info[id].data){
+                    typePoints.push($scope.info[id].data[x].id);
+                }
+                for(x in  typePoints){
+                    pos = currentOpenIds.indexOf(typePoints[x]+'');
+                    if(pos != -1) currentOpenIds.splice(pos,1);
+                }
+            }
+            pos = currentOpenIds.indexOf(id+'');
+            if(pos != -1) currentOpenIds.splice(pos,1);
+        }
 
+        var newUrl = '/info/?points=' + currentPoints.join('|');
+        if(currentOpenIds[0]) newUrl += '&open=' + currentOpenIds.join('|');
+
+        $location.url(newUrl).replace();
+    }
+
+    $scope.showPointOnMap = function($event,id){
+        $event.stopPropagation();
+        var filter = MapData.getCurrentFilter();
+        var point = MapData.getPointData(id);
+        if(!filter[point.type] || filter.start > point.endDate || filter.end < point.startDate){
+            jQuery('#alert-filter').click(function () {
+                $(this).unbind(event);
+                $scope.$apply( $scope.filterDataShowPoint(angular.copy(filter),point) );
+                $("#alert").modal("hide");
+            });
+            jQuery('#alert').modal('show');
+        }
+        else{
+            MapService.zoomToPoint(point.point);
+        }
+    }
+
+    $scope.filterDataShowPoint = function(filter,point){
+        filter[point.type] = true;
+        if(filter.start > point.endDate) filter.start.setTime(point.endDate.getTime()-3600000);
+        if(filter.end < point.startDate) filter.end.setTime(point.startDate.getTime()+3600000);
+
+        $rootScope.$broadcast('updateFilterInView',angular.copy(filter));
+        $rootScope.$broadcast('actualizeData',filter);
+        MapService.zoomToPoint(point.point);
+    }
+
+    jQuery('#alert-cancel').click(function () {
+        $("#alert").modal("hide");
+    });
 
 };
 
@@ -31,11 +106,13 @@ eventMap.MapController = function( $scope , MapData, MapService,ImageLoader) {
         if(!imagesLoaded){
             ImageLoader.setOnLoad(function(){
                 imagesLoaded = true;
+                jQuery('#filter-bar').removeClass('hide-element');
                 MapService.showMapData($scope.mapData);
             });
             ImageLoader.loadImages();
         }
         else{
+            jQuery('#filter-bar').removeClass('hide-element');
             MapService.showMapData($scope.mapData);
         }
 
@@ -97,6 +174,12 @@ eventMap.FilterBarController = function( $scope, $rootScope, Slider,MapService) 
         change : function( event, ui ) {
             $scope.actualizeData();
         }
+    });
+
+    $scope.$on('updateFilterInView', function(event,filter) {
+        var sliderValues = Slider.getSliderValues($scope.sliderTable,$scope.sliderStartDate6,$scope.sliderEndDate6,filter.start,filter.end);
+        jQuery("#filter-slider").slider('values', [ sliderValues.start, sliderValues.end ]);
+        $scope.filter = filter;
     });
 
     $scope.setFilterDates = function(string){
@@ -211,4 +294,8 @@ eventMap.FilterBarController = function( $scope, $rootScope, Slider,MapService) 
     });
 
 
+    $scope.setPOIOverlay = function(type,mode){
+        if(type == 'bus') MapService.setBusOverlay(mode);
+        if(type == 'eatDrink') MapService.setEatDrinkOverlay(mode);
+    }
 };
