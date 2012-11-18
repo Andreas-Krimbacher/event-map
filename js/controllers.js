@@ -17,6 +17,12 @@ eventMap.InfoViewController = function( $scope, $rootScope,$location, MapData, $
         currentOpenIds = [];
     }
 
+    if(url.search('map=') != -1){
+        temp = url.match('[?&]' + 'map' + '=([^&]+)');
+        var mapPoint = temp[1].split('%7C');
+        MapService.zoomToPoint({lat:mapPoint[0],lng:mapPoint[1]});
+    }
+
 
     if(currentPoints.length > 1){
         $scope.templateUrl = "partials/info.html";
@@ -32,6 +38,18 @@ eventMap.InfoViewController = function( $scope, $rootScope,$location, MapData, $
     $scope.open = function(id,open){
         if(open){
             currentOpenIds.push(id);
+
+            if(id == 'concert' || id == 'exhib' || id == 'film' || id == 'other'){
+                if($scope.info[id].data.length == 1){
+                    currentOpenIds.push($scope.info[id].data[0].id);
+                    $scope.info[id].data[0].isOpen = true;
+                }
+            }
+
+            var newUrl = '/info/?points=' + currentPoints.join('|');
+            if(currentOpenIds[0]) newUrl += '&open=' + currentOpenIds.join('|');
+
+            $location.url(newUrl).replace();
         }
         else{
             var pos
@@ -50,10 +68,7 @@ eventMap.InfoViewController = function( $scope, $rootScope,$location, MapData, $
             if(pos != -1) currentOpenIds.splice(pos,1);
         }
 
-        var newUrl = '/info/?points=' + currentPoints.join('|');
-        if(currentOpenIds[0]) newUrl += '&open=' + currentOpenIds.join('|');
 
-        $location.url(newUrl).replace();
     }
 
     $scope.showPointOnMap = function($event,id){
@@ -70,6 +85,11 @@ eventMap.InfoViewController = function( $scope, $rootScope,$location, MapData, $
         }
         else{
             MapService.zoomToPoint(point.point);
+
+            var newUrl = '/info/?points=' + currentPoints.join('|');
+            if(currentOpenIds[0]) newUrl += '&open=' + currentOpenIds.join('|');
+            newUrl += '&map='+ point.point.lat +'|'+point.point.lng;
+            $location.url(newUrl);
         }
     }
 
@@ -81,6 +101,11 @@ eventMap.InfoViewController = function( $scope, $rootScope,$location, MapData, $
         $rootScope.$broadcast('updateFilterInView',angular.copy(filter));
         $rootScope.$broadcast('actualizeData',filter);
         MapService.zoomToPoint(point.point);
+
+        var newUrl = '/info/?points=' + currentPoints.join('|');
+        if(currentOpenIds[0]) newUrl += '&open=' + currentOpenIds.join('|');
+        newUrl += '&map='+ point.point.lat +'|'+point.point.lng;
+        $location.url(newUrl);
     }
 
     jQuery('#alert-cancel').click(function () {

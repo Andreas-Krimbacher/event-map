@@ -2,19 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="29c6350e-a9ea-4a9e-a967-91e3f576dc5d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/services/Slider.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/partials/info-single.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/partials/map.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/main.less" afterPath="$PROJECT_DIR$/css/main.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/app.js" afterPath="$PROJECT_DIR$/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/controllers.js" afterPath="$PROJECT_DIR$/js/controllers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/directives.js" afterPath="$PROJECT_DIR$/js/directives.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/services.js" afterPath="$PROJECT_DIR$/js/services.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/services/MapData.js" afterPath="$PROJECT_DIR$/js/services/MapData.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/services/MapService.js" afterPath="$PROJECT_DIR$/js/services/MapService.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/partials/info.html" afterPath="$PROJECT_DIR$/partials/info.html" />
     </list>
     <ignored path="arch-walk.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,7 +27,7 @@
       <file leaf-file-name="info.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/partials/info.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="233" selection-start="578" selection-end="671" vertical-scroll-proportion="-3.125">
+            <state line="5" column="233" selection-start="578" selection-end="671" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -52,10 +42,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MapService.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="MapService.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/services/MapService.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="410" column="12" selection-start="14225" selection-end="14225" vertical-scroll-proportion="0.0">
+            <state line="182" column="48" selection-start="6446" selection-end="6446" vertical-scroll-proportion="0.62323946">
               <folding />
             </state>
           </provider>
@@ -73,16 +63,16 @@
       <file leaf-file-name="controllers.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="114" column="59" selection-start="3737" selection-end="3737" vertical-scroll-proportion="0.0">
+            <state line="39" column="36" selection-start="1146" selection-end="1146" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="info-single.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="info-single.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/partials/info-single.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="35" selection-start="406" selection-end="406" vertical-scroll-proportion="0.072463766">
+            <state line="4" column="35" selection-start="406" selection-end="406" vertical-scroll-proportion="-2.5">
               <folding />
             </state>
           </provider>
@@ -91,7 +81,7 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="56" selection-start="1871" selection-end="1871" vertical-scroll-proportion="-12.083333">
+            <state line="31" column="56" selection-start="1871" selection-end="1871" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -109,7 +99,7 @@
       <file leaf-file-name="map.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/partials/map.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="0" selection-start="21" selection-end="21" vertical-scroll-proportion="-0.625">
+            <state line="1" column="0" selection-start="21" selection-end="21" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -149,10 +139,10 @@
         <option value="$PROJECT_DIR$/partials/map.html" />
         <option value="$PROJECT_DIR$/js/directives.js" />
         <option value="$PROJECT_DIR$/js/services/MapData.js" />
-        <option value="$PROJECT_DIR$/js/services/MapService.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/css/main.less" />
         <option value="$PROJECT_DIR$/js/controllers.js" />
+        <option value="$PROJECT_DIR$/js/services/MapService.js" />
       </list>
     </option>
   </component>
@@ -203,6 +193,37 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Problems" />
+        <subPane subId="Tests">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="event-map">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+        <subPane subId="All">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -301,47 +322,16 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane subId="Problems" />
-        <subPane subId="Tests">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="event-map">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-        <subPane subId="All">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="editing.templates" />
+    <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PublishConfig" serverName="node" serverId="20a01574-d36e-4239-81d2-494739ab6c04">
     <servers>
@@ -559,7 +549,11 @@
       <created>1353174294458</created>
       <updated>1353174294458</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="0.9">
+      <created>1353225727120</created>
+      <updated>1353225727120</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -640,7 +634,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="list 0.5" />
+    <option name="LAST_COMMIT_MESSAGE" value="0.9" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -674,6 +668,7 @@
     <MESSAGE value="automatic map load" />
     <MESSAGE value="godd night" />
     <MESSAGE value="list 0.5" />
+    <MESSAGE value="0.9" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -705,16 +700,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/services.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="29" selection-end="29" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="3" column="0" selection-start="29" selection-end="29" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/filters.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="0" selection-start="1446" selection-end="1446" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="56" column="0" selection-start="1446" selection-end="1446" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/services/Cluster.js">
@@ -731,30 +722,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/services/MapService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="410" column="12" selection-start="14225" selection-end="14225" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/partials/info.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="233" selection-start="578" selection-end="671" vertical-scroll-proportion="-3.125">
+        <state line="5" column="233" selection-start="578" selection-end="671" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="56" selection-start="1871" selection-end="1871" vertical-scroll-proportion="-12.083333">
+        <state line="31" column="56" selection-start="1871" selection-end="1871" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/partials/map.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="21" selection-end="21" vertical-scroll-proportion="-0.625">
+        <state line="1" column="0" selection-start="21" selection-end="21" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -773,16 +757,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers.js">
+    <entry file="file://$PROJECT_DIR$/partials/info-single.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="114" column="59" selection-start="3737" selection-end="3737" vertical-scroll-proportion="0.0">
+        <state line="4" column="35" selection-start="406" selection-end="406" vertical-scroll-proportion="-2.5">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/partials/info-single.html">
+    <entry file="file://$PROJECT_DIR$/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="35" selection-start="406" selection-end="406" vertical-scroll-proportion="0.072463766">
+        <state line="39" column="36" selection-start="1146" selection-end="1146" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/services/MapService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="182" column="48" selection-start="6446" selection-end="6446" vertical-scroll-proportion="0.62323946">
           <folding />
         </state>
       </provider>

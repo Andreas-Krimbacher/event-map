@@ -158,7 +158,32 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http)
 
     this.zoomToPoint = function(point){
         map.setZoom(18);
-        map.setCenter(new google.maps.LatLng(point.lat,point.lng));
+
+        var imageBoundaries = new google.maps.LatLngBounds (
+            new google.maps.LatLng(47.3646 ,8.5240), // lower left coordinate
+            new google.maps.LatLng(47.3845 ,8.5485) // upper right coordinate
+        )
+
+        var latLng = new google.maps.LatLng(point.lat,point.lng);
+
+        if(!imageBoundaries.contains(latLng)) {
+            var X = latLng.lng();
+            var Y = latLng.lat();
+
+            var AmaxX = imageBoundaries.getNorthEast().lng();
+            var AmaxY = imageBoundaries.getNorthEast().lat();
+            var AminX = imageBoundaries.getSouthWest().lng();
+            var AminY = imageBoundaries.getSouthWest().lat();
+
+            if (X < AminX) {X = AminX;}
+            if (X > AmaxX) {X = AmaxX;}
+            if (Y < AminY) {Y = AminY;}
+            if (Y > AmaxY) {Y = AmaxY;}
+
+            latLng = new google.maps.LatLng(Y,X);
+        }
+
+        map.setCenter(latLng);
     }
 
     this.drawCluster = function(cluster){
