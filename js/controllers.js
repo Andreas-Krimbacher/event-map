@@ -137,8 +137,11 @@ eventMap.MapController = function( $scope , MapData, MapService,ImageLoader) {
 
     var imagesLoaded = false;
 
+    $scope.$on('mapIsLoaded', function() {
+        MapData.loadInfoData();
+    });
+
     $scope.$on('actualizeData', function(event,filter) {
-        if(!$scope.mapData) MapData.generateTestData(500);
 
         if(filter) MapData.filterData(filter);
         MapData.clusterData();
@@ -332,6 +335,10 @@ eventMap.FilterBarController = function( $scope, $rootScope, Slider,MapService) 
     }
 
     MapService.setMapIsLoadedFunction(function(){
+        $rootScope.$broadcast('mapIsLoaded',angular.copy($scope.filter));
+    });
+
+    $scope.$on('infoIsLoaded', function() {
         $rootScope.$broadcast('actualizeData',angular.copy($scope.filter));
     });
 

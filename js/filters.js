@@ -55,4 +55,26 @@ eventMap.filter('replaceTypeName', function() {
     };
 });
 
+eventMap.filter('infoDate', function($filter) {
+    var standardDateFilterFn = $filter('date');
+    return function(date) {
+
+
+
+        var string = '';
+
+        if(date.endDate.getTime() ==  date.startDate.getTime()){
+            string = standardDateFilterFn(date.startDate, 'dd.MM.yyyy') + '<br>' + standardDateFilterFn(date.startDate, 'HH:mm');
+        }
+        else if((date.endDate - date.startDate)>86400000){
+            string = standardDateFilterFn(date.startDate, 'dd.MM.yyyy') + ' until<br>' + standardDateFilterFn(date.endDate, 'dd.MM.yyyy');
+        }
+        else{
+            string = standardDateFilterFn(date.startDate, 'dd.MM.yyyy') + '<br>' + standardDateFilterFn(date.startDate, 'HH:mm')+ ' until ' + standardDateFilterFn(date.endDate, 'HH:mm');
+        }
+
+        return string;
+    };
+});
+
 

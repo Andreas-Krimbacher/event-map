@@ -1,6 +1,6 @@
 'use strict';
 
-eventMap.service('MapData', function(Cluster,MapService) {
+eventMap.service('MapData', function(Cluster,MapService, $http, $rootScope) {
     var rawMapData = null;
 
     var currentFilter = null;
@@ -26,7 +26,6 @@ eventMap.service('MapData', function(Cluster,MapService) {
     this.getRawMapDataInfoView = function(ids, opens){
         var rawMapDataInfo = {concert : {data: [],isOpen : false},exhib: {data: [],isOpen : false}, film: {data: [],isOpen : false}, other: {data: [],isOpen : false}};
 
-        var infoText = '20h Wettbewerbsfilme<br>20.45h Kurzfilmprogramm<br>21.30h	Preisverleihung<br><br>Filme wider die Alpenbunker-Mentalität/-Realität<br><br>Das Fabrikvideo hat zusammen mit dem Konzeptbüro der Roten Fabrik zu einem Wettbewerb aufgerufen, der an diesem Abend präsentiert wird. Den Siegerbeitrag kürt das Publikum per Abstimmung!';
 
         var k = rawMapData.length;
         while(k--){
@@ -36,10 +35,9 @@ eventMap.service('MapData', function(Cluster,MapService) {
                     var data = {id : rawMapData[k].id,
                                 title : rawMapData[k].title,
                                 isOpen: false,
-                                address : {street : 'Strehlgasse 29', city : '8001 Zurich', country: 'Switzerland'},
-                                startDate : rawMapData[k].startDate,
-                                endDate : rawMapData[k].endDate,
-                                infoText:infoText};
+                                address : {street : rawMapData[k].address.street, city : rawMapData[k].address.city, place: rawMapData[k].address.place},
+                                date : {startDate : rawMapData[k].startDate,endDate : rawMapData[k].endDate},
+                                infoText:this.generateInfoView(rawMapData[k].info)};
 
                     var l = opens.length;
                     while(l--){
@@ -70,7 +68,6 @@ eventMap.service('MapData', function(Cluster,MapService) {
 
     this.getRawMapDataSingle = function(ids){
 
-        var infoText = '20h Wettbewerbsfilme<br>20.45h Kurzfilmprogramm<br>21.30h	Preisverleihung<br><br>Filme wider die Alpenbunker-Mentalität/-Realität<br><br>Das Fabrikvideo hat zusammen mit dem Konzeptbüro der Roten Fabrik zu einem Wettbewerb aufgerufen, der an diesem Abend präsentiert wird. Den Siegerbeitrag kürt das Publikum per Abstimmung!';
 
         var k = rawMapData.length;
         while(k--){
@@ -79,12 +76,34 @@ eventMap.service('MapData', function(Cluster,MapService) {
                     title : rawMapData[k].title,
                     type:rawMapData[k].type,
                     isOpen: true,
-                    address : {street : 'Strehlgasse 29', city : '8001 Zurich', country: 'Switzerland'},
-                    startDate : rawMapData[k].startDate,
-                    endDate : rawMapData[k].endDate,
-                    infoText:infoText};
+                    address : {street : rawMapData[k].address.street, city : rawMapData[k].address.city, place: rawMapData[k].address.place},
+                    date : {startDate : rawMapData[k].startDate,endDate : rawMapData[k].endDate},
+                    infoText:this.generateInfoView(rawMapData[k].info)};
             }
         }
+    }
+
+    this.generateInfoView = function(info){
+        var html = '';
+
+        for(var x in info){
+            if(info[x].type == 'summary'){
+                if(info[x].text != ''){
+                    html += info[x].text + '<br><br>';
+                }
+
+            }
+            else{
+                html += '<b>'+info[x].type+':</b><br>';
+                html += info[x].text + '<br><br>';
+            }
+
+
+        }
+
+
+
+        return html;
     }
 
 
@@ -92,13 +111,15 @@ eventMap.service('MapData', function(Cluster,MapService) {
 
         var k = rawMapData.length;
         while(k--){
+            rawMapData[k].cluster.preCluster15 = null;
             rawMapData[k].cluster.preCluster16 = null;
             rawMapData[k].cluster.preCluster17 = null;
             rawMapData[k].cluster.preCluster18 = null;
         }
 
-        mapData.zoom15 = Cluster.getRegionClusters(rawMapData);
+        //mapData.zoom15 = Cluster.getRegionClusters(rawMapData);
         var preCluster = Cluster.getPreClusters(rawMapData);
+        mapData.zoom15 = preCluster.preCluster15;
         mapData.zoom16 = preCluster.preCluster16;
         mapData.zoom17 = preCluster.preCluster17;
         mapData.zoom18 = preCluster.preCluster18;
@@ -132,13 +153,16 @@ eventMap.service('MapData', function(Cluster,MapService) {
 
 
         for(x=0;x<count;x++){
-            var nearPoints = {zoom16pre:[],
+            var nearPoints = {zoom15pre:[],
+                            zoom15post:[],
+                            zoom16pre:[],
                             zoom16post:[],
                             zoom17pre:[],
                             zoom17post:[],
                             zoom18pre: [],
                             zoom18post: []};
-            var cluster = {preCluster16 : null,
+            var cluster = {preCluster15 : null,
+                            preCluster16 : null,
                             preCluster17 : null,
                             preCluster18 : null};
             rawMapData.push({id : x,
@@ -207,6 +231,11 @@ eventMap.service('MapData', function(Cluster,MapService) {
         var map = MapService.getMap();
         var overlay = MapService.getOverlay();
 
+        map.setZoom(15);
+        for(x=0;x<count;x++){
+            pixel_temp = overlay.getProjection().fromLatLngToDivPixel(new google.maps.LatLng(rawMapData[x].point.lat,rawMapData[x].point.lng),15);
+            rawMapData[x].pixel = {zoom15 : {x : pixel_temp.x, y : pixel_temp.y}};
+        }
         map.setZoom(16);
         for(x=0;x<count;x++){
             pixel_temp = overlay.getProjection().fromLatLngToDivPixel(new google.maps.LatLng(rawMapData[x].point.lat,rawMapData[x].point.lng),16);
@@ -227,5 +256,147 @@ eventMap.service('MapData', function(Cluster,MapService) {
         map.setZoom(15);
 
         Cluster.calculateDistance(rawMapData);
+    };
+
+    this.loadInfoData = function() {
+        var x;
+
+        $http.get('data/infoAll.json').success(function(data) {
+
+
+
+            var dataFromFile = data;
+
+
+            rawMapData = [];
+            var types = [];
+
+            var imageBoundaries = new google.maps.LatLngBounds (
+                new google.maps.LatLng(47.3635184326772 ,8.52219235359625), // lower left coordinate
+                new google.maps.LatLng(47.3825878958978 , 8.55067793132157) // upper right coordinate
+            );
+
+
+
+            for(var x in dataFromFile){
+                if(imageBoundaries.contains(new google.maps.LatLng(dataFromFile[x].lat,dataFromFile[x].lng))){
+                    continue;
+                }
+                var cont = false;
+                for(var k in rawMapData){
+                    if(dataFromFile[x].title == rawMapData[k].title && (new Date(dataFromFile[x].startDate).getTime() == rawMapData[k].startDate.getTime()) && (new Date(dataFromFile[x].endDate).getTime() == rawMapData[k].endDate.getTime())) cont=true;
+                }
+                if(cont) continue;
+
+
+                var endDate = dataFromFile[x].endDate ? new Date(dataFromFile[x].endDate) : new Date(dataFromFile[x].startDate);
+
+                var nearPoints = {zoom15pre:[],
+                    zoom15post:[],
+                    zoom16pre:[],
+                    zoom16post:[],
+                    zoom17pre:[],
+                    zoom17post:[],
+                    zoom18pre: [],
+                    zoom18post: []};
+                var cluster = {preCluster15 : null,
+                    preCluster16 : null,
+                    preCluster17 : null,
+                    preCluster18 : null};
+                rawMapData.push({id : x,
+                    point : {lat:dataFromFile[x].point.lat,lng:dataFromFile[x].point.lng},
+                    address : dataFromFile[x].address,
+                    address_components : dataFromFile[x].address_components,
+                    formatted_address : dataFromFile[x].formatted_address,
+                    type:'other',
+                    region:_.random(0, 4),
+                    startDate : new Date(dataFromFile[x].startDate),
+                    endDate : endDate,
+                    nearPoint : nearPoints,
+                    cluster : cluster,
+                    showOnMap : true,
+                    title: dataFromFile[x].title,
+                    info : dataFromFile[x].info});
+
+
+                if(types.indexOf(dataFromFile[x].type) == -1) types.push(dataFromFile[x].type);
+
+                switch (dataFromFile[x].type) {
+                    case "Party"||"Tanz"||"Konzert"||"Unerhört - Ein Zürcher Jazzfestival"||"Lucerne Festival - Am Piano":
+                        rawMapData[rawMapData.length-1].type = 'concert';
+                        break;
+                    case "Ausstellung"||"Mix"||"Vortrag"||"Messe"||"Diskussion"||"CulturEscapes":
+                        rawMapData[rawMapData.length-1].type = 'exhib';
+                        break;
+                    case "Musical"||"Theater"||"Oper"||"Lesung"||"Film":
+                        rawMapData[rawMapData.length-1].type = 'film';
+                        break;
+                    case  "Führung"||"Swiss Christmas"||"Sport"||"Freischwimmer"||"Markt"||"Comedy"||"Zirkus"||"Spektakuli":
+                        rawMapData[rawMapData.length-1].type = 'other';
+                        break;
+                    default:
+                        rawMapData[rawMapData.length-1].type = 'other';
+                        break;
+                }
+
+                switch (rawMapData[rawMapData.length-1].region) {
+                    case 0:
+                        rawMapData[rawMapData.length-1].region = 'Langstrasse';
+                        break;
+                    case 1:
+                        rawMapData[rawMapData.length-1].region = 'Bahnhofstrasse';
+                        break;
+                    case 2:
+                        rawMapData[rawMapData.length-1].region = 'NiederndorfUni';
+                        break;
+                    case 3:
+                        rawMapData[rawMapData.length-1].region = 'Sued';
+                        break;
+                    case 4:
+                        rawMapData[rawMapData.length-1].region = 'Bellevue';
+                        break;
+                    default:
+                        rawMapData[rawMapData.length-1].type = 'Langstrasse';
+                        break;
+                }
+
+            }
+
+
+            var pixel_temp;
+            var map = MapService.getMap();
+            var overlay = MapService.getOverlay();
+
+            map.setZoom(15);
+            for(x=0;x<rawMapData.length;x++){
+                pixel_temp = overlay.getProjection().fromLatLngToDivPixel(new google.maps.LatLng(rawMapData[x].point.lat,rawMapData[x].point.lng),15);
+                rawMapData[x].pixel = {zoom15 : {x : pixel_temp.x, y : pixel_temp.y},zoom16 : {x : null, y : null},zoom17 : {x : null, y : null},zoom18 : {x : null, y : null}};
+            }
+            
+            map.setZoom(16);
+            for(x=0;x<rawMapData.length;x++){
+                pixel_temp = overlay.getProjection().fromLatLngToDivPixel(new google.maps.LatLng(rawMapData[x].point.lat,rawMapData[x].point.lng),16);
+                rawMapData[x].pixel.zoom16.x = pixel_temp.x;
+                rawMapData[x].pixel.zoom16.y = pixel_temp.y;
+            }
+            map.setZoom(17);
+            for(x=0;x<rawMapData.length;x++){
+                pixel_temp = overlay.getProjection().fromLatLngToDivPixel(new google.maps.LatLng(rawMapData[x].point.lat,rawMapData[x].point.lng),17);
+                rawMapData[x].pixel.zoom17.x = pixel_temp.x;
+                rawMapData[x].pixel.zoom17.y = pixel_temp.y;
+            }
+            map.setZoom(18);
+            for(x=0;x<rawMapData.length;x++){
+                pixel_temp = overlay.getProjection().fromLatLngToDivPixel(new google.maps.LatLng(rawMapData[x].point.lat,rawMapData[x].point.lng),18);
+                rawMapData[x].pixel.zoom18.x = pixel_temp.x;
+                rawMapData[x].pixel.zoom18.y = pixel_temp.y;
+            }
+            map.setZoom(15);
+
+            Cluster.calculateDistance(rawMapData);
+
+            $rootScope.$broadcast('infoIsLoaded');
+
+        });
     };
 });
