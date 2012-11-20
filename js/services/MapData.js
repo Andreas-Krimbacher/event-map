@@ -117,9 +117,9 @@ eventMap.service('MapData', function(Cluster,MapService, $http, $rootScope) {
             rawMapData[k].cluster.preCluster18 = null;
         }
 
-        //mapData.zoom15 = Cluster.getRegionClusters(rawMapData);
+        mapData.zoom15 = Cluster.getRegionClusters(rawMapData);
         var preCluster = Cluster.getPreClusters(rawMapData);
-        mapData.zoom15 = preCluster.preCluster15;
+        //mapData.zoom15 = preCluster.preCluster15;
         mapData.zoom16 = preCluster.preCluster16;
         mapData.zoom17 = preCluster.preCluster17;
         mapData.zoom18 = preCluster.preCluster18;
@@ -277,9 +277,9 @@ eventMap.service('MapData', function(Cluster,MapService, $http, $rootScope) {
             );
 
 
-
+               var id = 0;
             for(var x in dataFromFile){
-                if(imageBoundaries.contains(new google.maps.LatLng(dataFromFile[x].lat,dataFromFile[x].lng))){
+                if(!imageBoundaries.contains(new google.maps.LatLng(dataFromFile[x].point.lat,dataFromFile[x].point.lng))){
                     continue;
                 }
                 var cont = false;
@@ -303,7 +303,7 @@ eventMap.service('MapData', function(Cluster,MapService, $http, $rootScope) {
                     preCluster16 : null,
                     preCluster17 : null,
                     preCluster18 : null};
-                rawMapData.push({id : x,
+                rawMapData.push({id : id,
                     point : {lat:dataFromFile[x].point.lat,lng:dataFromFile[x].point.lng},
                     address : dataFromFile[x].address,
                     address_components : dataFromFile[x].address_components,
@@ -320,6 +320,8 @@ eventMap.service('MapData', function(Cluster,MapService, $http, $rootScope) {
 
 
                 if(types.indexOf(dataFromFile[x].type) == -1) types.push(dataFromFile[x].type);
+
+                id++;
 
                 switch (dataFromFile[x].type) {
                     case "Party"||"Tanz"||"Konzert"||"Unerhört - Ein Zürcher Jazzfestival"||"Lucerne Festival - Am Piano":

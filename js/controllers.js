@@ -4,88 +4,91 @@
 
 eventMap.InfoViewController = function( $scope, $rootScope,$location, MapData, $route, MapService) {
 
-    var url = $location.url();
+    $scope.pointsParts = [];
+    $scope.mapParts = [];
+    $scope.openParts = [];
 
-    var temp = url.match('[?&]' + 'points' + '=([^&]+)');
-    var currentPoints = temp[1].split('%7C');
+    $scope.noRefresh = false;
 
-    if(url.search('open=') != -1){
-        temp = url.match('[?&]' + 'open' + '=([^&]+)');
-        var currentOpenIds = temp[1].split('%7C');
-    }
-    else{
-        currentOpenIds = [];
-    }
+    $rootScope.$on('$routeUpdate', function() {
 
-    if(url.search('map=') != -1){
-        temp = url.match('[?&]' + 'map' + '=([^&]+)');
-        var currentMapPoint = temp[1].split('%7C');
-
-        var filter = MapData.getCurrentFilter();
-        var points = MapData.getPointData(currentPoints);
-
-        for(var x in points){
-            filter[points[x].type] = true;
-            if(filter.start > points[x].endDate) filter.start.setTime(points[x].endDate.getTime()-3600000);
-            if(filter.end < points[x].startDate) filter.end.setTime(points[x].startDate.getTime()+3600000);
+        if($scope.noRefresh){
+            $scope.noRefresh = false;
+            return;
         }
 
-        $rootScope.$broadcast('updateFilterInView',angular.copy(filter));
-        $rootScope.$broadcast('actualizeData',filter);
-
-        MapService.zoomToPoint({lat:currentMapPoint[0],lng:currentMapPoint[1]},currentMapPoint[2]);
-    }
+        var urlParts = $location.search()
 
 
-    if(currentPoints.length > 1){
-        $scope.templateUrl = "partials/info.html";
-        var info = MapData.getRawMapDataInfoView(angular.copy(currentPoints),currentOpenIds);
-        $scope.info = info;
-    }
-    else{
-        $scope.templateUrl = "partials/info-single.html";
-        var info = MapData.getRawMapDataSingle(currentPoints);
-        $scope.info = info;
-    }
+        if(urlParts.open){
+            var openParts = urlParts.open+'';
+            openParts = openParts.split('|');
+        }
+        else{
+            var openParts = [];
+        }
 
-    $scope.open = function(id,open){
-        if(open){
-            currentOpenIds.push(id);
 
-            if(id == 'concert' || id == 'exhib' || id == 'film' || id == 'other'){
-                if($scope.info[id].data.length == 1){
-                    currentOpenIds.push($scope.info[id].data[0].id);
-                    $scope.info[id].data[0].isOpen = true;
-                }
+        if(urlParts.points){
+            var pointsParts = urlParts.points+'';
+            pointsParts = pointsParts.split('|');
+
+            if(pointsParts.length > 1){
+                $scope.templateUrl = "partials/info.html";
+                var info = MapData.getRawMapDataInfoView(angular.copy(pointsParts),openParts);
+                $scope.info = info;
             }
+            else{
+                $scope.templateUrl = "partials/info-single.html";
+                var info = MapData.getRawMapDataSingle(pointsParts[0]);
+                $scope.info = info;
+            }
+        }
+        else{
+            var pointsParts = [];
+        }
 
-            var newUrl = '/info/?points=' + currentPoints.join('|');
-            if(currentOpenIds[0]) newUrl += '&open=' + currentOpenIds.join('|');
-            if(currentMapPoint[0]) newUrl += '&map=' + currentMapPoint.join('|');
+        if(urlParts.map){
+            var mapParts = urlParts.map+'';
+            mapParts = mapParts.split('|');
 
+            if(!urlParts.noMove){
 
-            $location.url(newUrl).replace();
+                if(!urlParts.noMoveFilter){
+                    var filter = MapData.getCurrentFilter();
+                    var points = MapData.getPointData($scope.pointsParts);
+
+                    for(var x in points){
+                        filter[points[x].type] = true;
+                        if(filter.start > points[x].endDate) filter.start.setTime(points[x].endDate.getTime()-3600000);
+                        if(filter.end < points[x].startDate) filter.end.setTime(points[x].startDate.getTime()+3600000);
+                    }
+
+                    $rootScope.$broadcast('updateFilterInView',angular.copy(filter));
+                    $rootScope.$broadcast('actualizeData',filter);
+                }
+                else{
+                    $scope.noRefresh = true;
+                    $location.search('noMoveFilter',null).replace();
+                }
+
+                MapService.zoomToPoint({lat:mapParts[0],lng:mapParts[1]},mapParts[2]);
+            }
+            else{
+                $scope.noRefresh = true;
+                $location.search('noMove',null).replace();
+            }
 
         }
         else{
-            var pos
-            if(id == 'concert' || id == 'exhib' || id == 'film' || id == 'other'){
-                var typePoints = [];
-                var x,i;
-                for(x in  $scope.info[id].data){
-                    typePoints.push($scope.info[id].data[x].id);
-                }
-                for(x in  typePoints){
-                    pos = currentOpenIds.indexOf(typePoints[x]+'');
-                    if(pos != -1) currentOpenIds.splice(pos,1);
-                }
-            }
-            pos = currentOpenIds.indexOf(id+'');
-            if(pos != -1) currentOpenIds.splice(pos,1);
+            var mapParts = [];
         }
 
+        $scope.pointsParts = pointsParts;
+        $scope.openParts = openParts;
+        $scope.mapParts = mapParts;
 
-    }
+    });
 
     $scope.showPointOnMap = function($event,id){
         $event.stopPropagation();
@@ -95,43 +98,82 @@ eventMap.InfoViewController = function( $scope, $rootScope,$location, MapData, $
         if(!filter[point.type] || filter.start > point.endDate || filter.end < point.startDate){
             jQuery('#alert-filter').click(function (event) {
                 $(this).unbind(event);
-                $scope.$apply( $scope.filterDataShowPoint(filter,point) );
+                $scope.$apply( function(){
+                    filter[point.type] = true;
+                    if(filter.start > point.endDate) filter.start.setTime(point.endDate.getTime()-3600000);
+                    if(filter.end < point.startDate) filter.end.setTime(point.startDate.getTime()+3600000);
+
+                    $rootScope.$broadcast('updateFilterInView',angular.copy(filter));
+                    $rootScope.$broadcast('actualizeData',filter);
+
+                    $scope.zoomToPoint(point);
+                });
                 $("#alert").modal("hide");
             });
             jQuery('#alert').modal('show');
         }
         else{
-            MapService.zoomToPoint(point.point,18);
-
-            var newUrl = '/info/?points=' + currentPoints.join('|');
-            if(currentOpenIds[0]) newUrl += '&open=' + currentOpenIds.join('|');
-            newUrl += '&map='+ point.point.lat +'|'+point.point.lng+'|18';
-            $location.url(newUrl);
+            $scope.zoomToPoint(point);
         }
-    }
-
-    $scope.filterDataShowPoint = function(filter,point){
-        filter[point.type] = true;
-        if(filter.start > point.endDate) filter.start.setTime(point.endDate.getTime()-3600000);
-        if(filter.end < point.startDate) filter.end.setTime(point.startDate.getTime()+3600000);
-
-        $rootScope.$broadcast('updateFilterInView',angular.copy(filter));
-        $rootScope.$broadcast('actualizeData',filter);
-        MapService.zoomToPoint(point.point,18);
-
-        var newUrl = '/info/?points=' + currentPoints.join('|');
-        if(currentOpenIds[0]) newUrl += '&open=' + currentOpenIds.join('|');
-        newUrl += '&map='+ point.point.lat +'|'+point.point.lng+'|18';
-        $location.url(newUrl);
     }
 
     jQuery('#alert-cancel').click(function () {
         $("#alert").modal("hide");
     });
 
+    $scope.zoomToPoint = function(point){
+        var url = {};
+
+        if($scope.pointsParts) url.points = $scope.pointsParts.join('|');
+        if($scope.openParts) url.open = $scope.openParts.join('|');
+        url.map = point.point.lat +'|'+point.point.lng+'|18';
+        url.noMoveFilter = true;
+
+        $location.search(url);
+        $rootScope.$broadcast('$routeUpdate');
+    }
+
+
+    $scope.open = function(id,open){
+        if(open){
+            $scope.openParts.push(id);
+
+            if(id == 'concert' || id == 'exhib' || id == 'film' || id == 'other'){
+                if($scope.info[id].data.length == 1){
+                    $scope.openParts.push($scope.info[id].data[0].id);
+                    $scope.info[id].data[0].isOpen = true;
+                }
+            }
+
+            var url = {};
+
+            if($scope.mapParts) url.map = $scope.mapParts.join('|');
+            if($scope.openParts) url.open = $scope.openParts.join('|');
+            url.points = $scope.pointsParts.join('|');
+            url.noMove = true;
+
+            $location.search(url).replace();
+        }
+        else{
+            var pos;
+            if(id == 'concert' || id == 'exhib' || id == 'film' || id == 'other'){
+                var typePoints = [];
+                var x,i;
+                for(x in  $scope.info[id].data){
+                    typePoints.push($scope.info[id].data[x].id);
+                }
+                for(x in  typePoints){
+                    pos = $scope.openParts.indexOf(typePoints[x]+'');
+                    if(pos != -1) $scope.openParts.splice(pos,1);
+                }
+            }
+            pos = $scope.openParts.indexOf(id+'');
+            if(pos != -1) $scope.openParts.splice(pos,1);
+        }
+    }
 };
 
-eventMap.MapController = function( $scope , MapData, MapService,ImageLoader) {
+eventMap.MapController = function( $scope ,$rootScope, MapData, MapService,ImageLoader) {
 
     $scope.mapData = null;
 
@@ -153,6 +195,7 @@ eventMap.MapController = function( $scope , MapData, MapService,ImageLoader) {
                 imagesLoaded = true;
                 jQuery('#filter-bar').removeClass('hide-element');
                 MapService.showMapData($scope.mapData);
+                $scope.$apply($rootScope.$broadcast('$routeUpdate'));
             });
             ImageLoader.loadImages();
         }

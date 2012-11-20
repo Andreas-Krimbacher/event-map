@@ -1,6 +1,6 @@
 'use strict';
 
-eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http) {
+eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,$route) {
 
     var map = null;
     var baseMap = null;
@@ -118,7 +118,17 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http)
 
         if(map.getZoom() == 15){
             for(var x in mapData.zoom15){
-                this.drawCluster(mapData.zoom15[x]);
+                if(mapData.zoom15[x].hasData){
+                    if(mapData.zoom15[x].hasSingleData){
+                        if(mapData.zoom15[x].data.concert[0]) this.drawMarker(mapData.zoom15[x].data.concert[0]);
+                        if(mapData.zoom15[x].data.exhib[0]) this.drawMarker(mapData.zoom15[x].data.exhib[0]);
+                        if(mapData.zoom15[x].data.film[0]) this.drawMarker(mapData.zoom15[x].data.film[0]);
+                        if(mapData.zoom15[x].data.other[0]) this.drawMarker(mapData.zoom15[x].data.other[0]);
+                    }
+                    else{
+                        this.drawCluster(mapData.zoom15[x]);
+                    }
+                }
             }
         }
         if(map.getZoom() == 16){
@@ -174,7 +184,7 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http)
             map.setZoom(parseInt(zoom));
         }
         else{
-            map.setZoom(18);
+            zoom = map.getZoom();
         }
 
         var imageBoundaries;
@@ -218,46 +228,6 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http)
         if(!cluster.marker){
 
         var canvas = document.createElement("canvas");
-//            canvas.width = 68;
-//            canvas.height = 68;
-//
-//            var context = canvas.getContext("2d");
-//
-//            context.shadowColor ="#707070";
-//            context.shadowOffsetX = 2;
-//            context.shadowOffsetY = 2;
-//            context.shadowBlur = 2;
-//            context.font =  "normal bold 12px sans-serif";
-//            context.fillStyle    = "#000000";
-//
-//            context.drawImage(ImageLoader.getImage('concertMap'),0,0);
-//            context.drawImage(ImageLoader.getImage('exhibMap'),36,0);
-//            context.drawImage(ImageLoader.getImage('filmMap'),0,36);
-//            context.drawImage(ImageLoader.getImage('otherMap'),36,36);
-//
-//            var value = cluster.data.concert.length;
-//            var metrics = context.measureText(value);
-//            var textWidth = metrics.width;
-//            var xPosition = 16 - (textWidth/2);
-//            context.fillText(value,xPosition,29);
-//
-//            var value = cluster.data.exhib.length;
-//            var metrics = context.measureText(value);
-//            var textWidth = metrics.width;
-//            var xPosition = 16 - (textWidth/2);
-//            context.fillText(value,xPosition+36,29);
-//
-//            var value = cluster.data.film.length;
-//            var metrics = context.measureText(value);
-//            var textWidth = metrics.width;
-//            var xPosition = 16 - (textWidth/2);
-//            context.fillText(value,xPosition,29+36);
-//
-//            var value = cluster.data.other.length;
-//            var metrics = context.measureText(value);
-//            var textWidth = metrics.width;
-//            var xPosition = 16 - (textWidth/2);
-//            context.fillText(value,xPosition+36,29+36);
 
             var symbolCount = 0;
             for(var x in cluster.data){
@@ -366,12 +336,13 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http)
             cluster.marker = new google.maps.Marker({
                 position: myLatlng,
                 icon:icon,
-                url : '/info?points=' + cluster.pointsString +'&map='+cluster.point.lat+'|'+cluster.point.lng,
+                urlPoints : cluster.pointsString,
+                urlMap : cluster.point.lat+'|'+cluster.point.lng+'|'+map.getZoom(),
                 zIndex : 1001
             });
 
             google.maps.event.addListener(cluster.marker, 'click', function() {
-                $rootScope.$apply($location.url(cluster.marker.url+'|'+map.getZoom()));
+                $rootScope.$apply($location.search({points : cluster.marker.urlPoints,map:cluster.marker.urlMap,noMove:true}));
             });
         }
 
@@ -404,12 +375,13 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http)
                 position: myLatlng,
                 icon:icon,
                 title : event.title,
-                url : '/info/?points=' + event.id+'&map='+event.point.lat+'|'+event.point.lng,
+                urlPoints : event.id,
+                urlMap : event.point.lat+'|'+event.point.lng+'|'+map.getZoom(),
                 zIndex : 1001
             });
 
             google.maps.event.addListener(event.marker, 'click', function() {
-                $rootScope.$apply($location.url(event.marker.url+'|'+map.getZoom()));
+                $rootScope.$apply($location.search({points : event.marker.urlPoints,map:event.marker.urlMap,noMove:true}));
             });
         }
 

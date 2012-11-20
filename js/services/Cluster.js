@@ -13,31 +13,41 @@ eventMap.service('Cluster', function() {
             point : {lat: 47.376,lng: 8.529},
             data : {concert : [],exhib: [], film: [], other: []},
             marker : null,
-            pointsString : ''
+            pointsString : '',
+            hasData: true,
+            hasSingleData: false
         }
         clusters['Bahnhofstrasse'] = {
             point : {lat: 47.373,lng: 8.538},
             data : {concert : [],exhib: [], film: [], other: []},
             marker : null,
-            pointsString : ''
+            pointsString : '',
+            hasData: true,
+            hasSingleData: false
         }
         clusters['NiederndorfUni'] = {
             point : {lat: 47.375,lng: 8.547},
             data : {concert : [],exhib: [], film: [], other: []},
             marker : null,
-            pointsString : ''
+            pointsString : '',
+            hasData: true,
+            hasSingleData: false
         }
         clusters['Sued'] = {
             point : {lat: 47.369,lng: 8.529},
             data : {concert : [],exhib: [], film: [], other: []},
             marker : null,
-            pointsString : ''
+            pointsString : '',
+            hasData: true,
+            hasSingleData: false
         }
         clusters['Bellevue'] = {
             point : {lat: 47.369,lng: 8.546},
             data : {concert : [],exhib: [], film: [], other: []},
             marker : null,
-            pointsString : ''
+            pointsString : '',
+            hasData: true,
+            hasSingleData: false
         }
 
         for(x in rawMapData){
@@ -54,7 +64,12 @@ eventMap.service('Cluster', function() {
         clusters.Sued.pointsString = clusters.Sued.pointsString.substring(1,clusters.Sued.pointsString.length);
         clusters.Bellevue.pointsString = clusters.Bellevue.pointsString.substring(1,clusters.Bellevue.pointsString.length);
 
-        return clusters;
+        var returnCluster = [];
+        for(x in clusters){
+            returnCluster.push(clusters[x]);
+        }
+
+        return returnCluster;
     }
 
     this.getPreClusters = function(rawMapData){
