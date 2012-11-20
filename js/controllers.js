@@ -7,10 +7,14 @@ eventMap.InfoViewController = function( $scope, $rootScope,$location, MapData, $
     $scope.pointsParts = [];
     $scope.mapParts = [];
     $scope.openParts = [];
+    $scope.borderParts = [];
 
     $scope.noRefresh = false;
+    $scope.filterChanged = false;
 
     $rootScope.$on('$routeUpdate', function() {
+
+        $scope.filterChanged = false;
 
         if($scope.noRefresh){
             $scope.noRefresh = false;
@@ -19,34 +23,51 @@ eventMap.InfoViewController = function( $scope, $rootScope,$location, MapData, $
 
         var urlParts = $location.search()
 
+        if(urlParts.points){
+            var pointsParts = urlParts.points+'';
+            pointsParts = pointsParts.split('|');
+        }
 
         if(urlParts.open){
             var openParts = urlParts.open+'';
             openParts = openParts.split('|');
         }
         else{
-            var openParts = [];
+
+            var points = MapData.getPointData(pointsParts);
+            var types = [];
+            for(var x in points){
+                if(types.indexOf(points[x].type) == -1) types.push(points[x].type);
+            }
+            if(types.length<3){
+                var openParts = types;
+            }
+            else{
+                var openParts = [];
+            }
         }
 
 
+
         if(urlParts.points){
-            var pointsParts = urlParts.points+'';
-            pointsParts = pointsParts.split('|');
 
             if(pointsParts.length > 1){
                 $scope.templateUrl = "partials/info.html";
-                var info = MapData.getRawMapDataInfoView(angular.copy(pointsParts),openParts);
+                var info = MapData.getRawMapDataInfoView(angular.copy(pointsParts),angular.copy(openParts));
                 $scope.info = info;
             }
             else{
                 $scope.templateUrl = "partials/info-single.html";
-                var info = MapData.getRawMapDataSingle(pointsParts[0]);
+                var info = MapData.getRawMapDataSingle(pointsParts);
                 $scope.info = info;
             }
         }
         else{
             var pointsParts = [];
         }
+
+
+
 
         if(urlParts.map){
             var mapParts = urlParts.map+'';
@@ -59,20 +80,37 @@ eventMap.InfoViewController = function( $scope, $rootScope,$location, MapData, $
                     var points = MapData.getPointData($scope.pointsParts);
 
                     for(var x in points){
-                        filter[points[x].type] = true;
-                        if(filter.start > points[x].endDate) filter.start.setTime(points[x].endDate.getTime()-3600000);
-                        if(filter.end < points[x].startDate) filter.end.setTime(points[x].startDate.getTime()+3600000);
+                        if(filter[points[x].type] != true){
+                            filter[points[x].type] = true;
+                            $scope.filterChanged = true;
+                        }
+
+                        if(filter.start > points[x].endDate){
+                            filter.start.setTime(points[x].endDate.getTime()-3600000);
+                            $scope.filterChanged = true;
+                        }
+                        if(filter.end < points[x].startDate){
+                            filter.end.setTime(points[x].startDate.getTime()+3600000);
+                            $scope.filterChanged = true;
+                        }
                     }
 
-                    $rootScope.$broadcast('updateFilterInView',angular.copy(filter));
-                    $rootScope.$broadcast('actualizeData',filter);
+                    if($scope.filterChanged){
+                        $rootScope.$broadcast('updateFilterInView',angular.copy(filter));
+                        $rootScope.$broadcast('actualizeData',filter);
+                    }
+
+
                 }
                 else{
                     $scope.noRefresh = true;
                     $location.search('noMoveFilter',null).replace();
                 }
 
+
+
                 MapService.zoomToPoint({lat:mapParts[0],lng:mapParts[1]},mapParts[2]);
+
             }
             else{
                 $scope.noRefresh = true;
@@ -84,9 +122,20 @@ eventMap.InfoViewController = function( $scope, $rootScope,$location, MapData, $
             var mapParts = [];
         }
 
+        MapService.clearBorder();
+        if(urlParts.border && !$scope.filterChanged){
+            var borderParts = urlParts.border+'';
+            borderParts = borderParts.split('|');
+
+            MapService.drawBorder({lat:borderParts[0],lng:borderParts[1]},borderParts[2]);
+        }
+
+
+
         $scope.pointsParts = pointsParts;
         $scope.openParts = openParts;
         $scope.mapParts = mapParts;
+        $scope.borderParts = borderParts;
 
     });
 
@@ -129,8 +178,17 @@ eventMap.InfoViewController = function( $scope, $rootScope,$location, MapData, $
         url.map = point.point.lat +'|'+point.point.lng+'|18';
         url.noMoveFilter = true;
 
+        var clusterPoints = MapData.getCluster18OfPoint(point.id);
+        var count = 0;
+        for(var x in clusterPoints.data){
+            if(clusterPoints.data[x].length>0) count++;
+        }
+        if(clusterPoints.hasSingleData) count=0;
+        url.border =  point.point.lat +'|'+point.point.lng+'|'+count;
+
+
         $location.search(url);
-        $rootScope.$broadcast('$routeUpdate');
+
     }
 
 
@@ -143,12 +201,14 @@ eventMap.InfoViewController = function( $scope, $rootScope,$location, MapData, $
                     $scope.openParts.push($scope.info[id].data[0].id);
                     $scope.info[id].data[0].isOpen = true;
                 }
+
             }
 
             var url = {};
 
             if($scope.mapParts) url.map = $scope.mapParts.join('|');
             if($scope.openParts) url.open = $scope.openParts.join('|');
+            if($scope.borderParts) url.border = $scope.borderParts.join('|');
             url.points = $scope.pointsParts.join('|');
             url.noMove = true;
 
@@ -184,7 +244,7 @@ eventMap.MapController = function( $scope ,$rootScope, MapData, MapService,Image
     });
 
     $scope.$on('actualizeData', function(event,filter) {
-
+        MapService.clearBorder();
         if(filter) MapData.filterData(filter);
         MapData.clusterData();
 

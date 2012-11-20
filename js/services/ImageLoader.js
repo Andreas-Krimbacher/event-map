@@ -16,7 +16,12 @@ eventMap.service('ImageLoader', function() {
         concertMap: 'img/concert1.png',
         exhibMap: 'img/exhib1.png',
         filmMap: 'img/film1.png',
-        otherMap: 'img/other1.png'
+        otherMap: 'img/other1.png',
+        singleBorder:'img/single.png',
+        multi1:'img/multi1.png',
+        multi2:'img/multi2.png',
+        multi3:'img/multi3.png',
+        multi4:'img/multi4.png'
     };
 
     var images = {};

@@ -3,10 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="29c6350e-a9ea-4a9e-a967-91e3f576dc5d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/app.js" afterPath="$PROJECT_DIR$/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/controllers.js" afterPath="$PROJECT_DIR$/js/controllers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/filters.js" afterPath="$PROJECT_DIR$/js/filters.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/services/Cluster.js" afterPath="$PROJECT_DIR$/js/services/Cluster.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/services/ImageLoader.js" afterPath="$PROJECT_DIR$/js/services/ImageLoader.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/services/MapData.js" afterPath="$PROJECT_DIR$/js/services/MapData.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/services/MapService.js" afterPath="$PROJECT_DIR$/js/services/MapService.js" />
     </list>
@@ -49,16 +47,16 @@
       <file leaf-file-name="MapData.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/services/MapData.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="119" column="8" selection-start="3793" selection-end="3793" vertical-scroll-proportion="0.0">
+            <state line="58" column="54" selection-start="2040" selection-end="2040" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Slider.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Slider.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/services/Slider.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="39" selection-start="800" selection-end="800" vertical-scroll-proportion="0.69402987">
+            <state line="32" column="40" selection-start="841" selection-end="841" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -73,10 +71,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="controllers.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="controllers.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="192" column="26" selection-start="6114" selection-end="6114" vertical-scroll-proportion="-11.384615">
+            <state line="45" column="35" selection-start="1185" selection-end="1185" vertical-scroll-proportion="0.62668467">
               <folding />
             </state>
           </provider>
@@ -94,7 +92,7 @@
       <file leaf-file-name="MapService.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/services/MapService.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="362" column="30" selection-start="12761" selection-end="12761" vertical-scroll-proportion="0.0">
+            <state line="348" column="146" selection-start="12731" selection-end="12731" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -103,7 +101,7 @@
       <file leaf-file-name="ImageLoader.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/services/ImageLoader.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="8" selection-start="643" selection-end="691" vertical-scroll-proportion="0.0">
+            <state line="21" column="26" selection-start="670" selection-end="670" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -131,7 +129,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/js/directives.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/data/allsitesshort.html" />
         <option value="$PROJECT_DIR$/data/sites getdata/search.js" />
@@ -142,11 +139,12 @@
         <option value="$PROJECT_DIR$/css/main.less" />
         <option value="$PROJECT_DIR$/data/sites getdata/geocoder.js" />
         <option value="$PROJECT_DIR$/js/app.js" />
-        <option value="$PROJECT_DIR$/js/services/MapService.js" />
         <option value="$PROJECT_DIR$/js/filters.js" />
-        <option value="$PROJECT_DIR$/js/controllers.js" />
-        <option value="$PROJECT_DIR$/js/services/MapData.js" />
         <option value="$PROJECT_DIR$/js/services/Cluster.js" />
+        <option value="$PROJECT_DIR$/js/services/ImageLoader.js" />
+        <option value="$PROJECT_DIR$/js/services/MapService.js" />
+        <option value="$PROJECT_DIR$/js/services/MapData.js" />
+        <option value="$PROJECT_DIR$/js/controllers.js" />
       </list>
     </option>
   </component>
@@ -610,7 +608,11 @@
       <created>1353388683979</created>
       <updated>1353388683979</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="new routing">
+      <created>1353422565123</created>
+      <updated>1353422565123</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -635,12 +637,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="24" width="1922" height="1177" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33870968" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27039847" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32890856" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21033211" sideWeight="0.66129035" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21033211" sideWeight="0.7296015" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14800759" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -650,7 +653,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32922202" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -691,7 +693,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="todo: debug" />
+    <option name="LAST_COMMIT_MESSAGE" value="new routing" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -704,7 +706,6 @@
     <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="first map" />
     <MESSAGE value="map directive" />
     <MESSAGE value="index clean up" />
     <MESSAGE value="map and add marker" />
@@ -729,6 +730,7 @@
     <MESSAGE value="0.97" />
     <MESSAGE value="0.99" />
     <MESSAGE value="todo: debug" />
+    <MESSAGE value="new routing" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -767,16 +769,11 @@
         <state line="158" column="57" selection-start="5896" selection-end="5910" vertical-scroll-proportion="0.29660022" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/services/ImageLoader.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="8" selection-start="643" selection-end="691" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/sites getdata/geocoder.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="0" selection-start="1776" selection-end="1776" vertical-scroll-proportion="0.939759" />
+        <state line="67" column="0" selection-start="1776" selection-end="1776" vertical-scroll-proportion="0.939759">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/app.js">
@@ -800,13 +797,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/services/MapService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="362" column="30" selection-start="12761" selection-end="12761" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/filters.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="54" column="6" selection-start="1441" selection-end="1441" vertical-scroll-proportion="0.0">
@@ -814,9 +804,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers.js">
+    <entry file="file://$PROJECT_DIR$/js/services/Slider.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="192" column="26" selection-start="6114" selection-end="6114" vertical-scroll-proportion="-11.384615">
+        <state line="32" column="40" selection-start="841" selection-end="841" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -828,16 +818,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/services/MapData.js">
+    <entry file="file://$PROJECT_DIR$/js/services/ImageLoader.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="119" column="8" selection-start="3793" selection-end="3793" vertical-scroll-proportion="0.0">
+        <state line="21" column="26" selection-start="670" selection-end="670" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/services/Slider.js">
+    <entry file="file://$PROJECT_DIR$/js/services/MapService.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="39" selection-start="800" selection-end="800" vertical-scroll-proportion="0.69402987">
+        <state line="348" column="146" selection-start="12731" selection-end="12731" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/services/MapData.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="54" selection-start="2040" selection-end="2040" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="35" selection-start="1185" selection-end="1185" vertical-scroll-proportion="0.62668467">
           <folding />
         </state>
       </provider>

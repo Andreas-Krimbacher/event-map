@@ -55,12 +55,8 @@ eventMap.service('MapData', function(Cluster,MapService, $http, $rootScope) {
             if(!ids.length) break;
         }
 
-        var l = opens.length;
-        while(l--){
-            if(opens[l] == 'concert') rawMapDataInfo.concert.isOpen = true;
-            if(opens[l] == 'exhib') rawMapDataInfo.exhib.isOpen = true;
-            if(opens[l] == 'film') rawMapDataInfo.film.isOpen = true;
-            if(opens[l] == 'other') rawMapDataInfo.other.isOpen = true;
+        for(var x in opens){
+            if(rawMapDataInfo[opens[x]])rawMapDataInfo[opens[x]].isOpen = true;
         }
 
         return rawMapDataInfo;
@@ -106,6 +102,11 @@ eventMap.service('MapData', function(Cluster,MapService, $http, $rootScope) {
         return html;
     }
 
+    this.getCluster18OfPoint = function(id){
+
+        return mapData.zoom18[rawMapData[id].cluster.preCluster18]
+    }
+
 
     this.clusterData = function() {
 
@@ -115,6 +116,7 @@ eventMap.service('MapData', function(Cluster,MapService, $http, $rootScope) {
             rawMapData[k].cluster.preCluster16 = null;
             rawMapData[k].cluster.preCluster17 = null;
             rawMapData[k].cluster.preCluster18 = null;
+            rawMapData[k].marker = null;
         }
 
         mapData.zoom15 = Cluster.getRegionClusters(rawMapData);

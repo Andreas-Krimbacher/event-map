@@ -26,6 +26,7 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,
     var currentEatDrinkMarker = [];
     var busData = [];
     var currentBusMarker = [];
+    var border = [];
 
     this.getOverlay = function(){
         return overlay;
@@ -181,7 +182,7 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,
 
     this.zoomToPoint = function(point,zoom){
         if(zoom){
-            map.setZoom(parseInt(zoom));
+            if(parseInt(zoom) != map.getZoom()) map.setZoom(parseInt(zoom));
         }
         else{
             zoom = map.getZoom();
@@ -338,11 +339,14 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,
                 icon:icon,
                 urlPoints : cluster.pointsString,
                 urlMap : cluster.point.lat+'|'+cluster.point.lng+'|'+map.getZoom(),
-                zIndex : 1001
+                urlBorder : cluster.point.lat+'|'+cluster.point.lng+'|'+positionCount,
+                zIndex : 1002,
+                positionCount : positionCount,
+                point : cluster.point
             });
 
             google.maps.event.addListener(cluster.marker, 'click', function() {
-                $rootScope.$apply($location.search({points : cluster.marker.urlPoints,map:cluster.marker.urlMap,noMove:true}));
+                $rootScope.$apply($location.search({points : cluster.marker.urlPoints,map:cluster.marker.urlMap,noMove:true,border:cluster.marker.urlBorder}));
             });
         }
 
@@ -352,6 +356,42 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,
 
     };
 
+    this.drawBorder = function(point,mode){
+
+        if(mode == 0){
+            var icon = new google.maps.MarkerImage('img/single.png',new google.maps.Size(30, 30),new google.maps.Point(0,0),new google.maps.Point(15,15));
+        }
+        if(mode == 1){
+            var icon = new google.maps.MarkerImage('img/multi1.png',new google.maps.Size(44, 26),new google.maps.Point(0,0),new google.maps.Point(22,13));
+        }
+        if(mode == 2){
+            var icon = new google.maps.MarkerImage('img/multi2.png',new google.maps.Size(44, 48),new google.maps.Point(0,0),new google.maps.Point(22,24));
+        }
+        if(mode == 3){
+            var icon = new google.maps.MarkerImage('img/multi3.png',new google.maps.Size(84, 48),new google.maps.Point(0,0),new google.maps.Point(42,24));
+        }
+        if(mode == 4){
+            var icon = new google.maps.MarkerImage('img/multi4.png',new google.maps.Size(84, 48),new google.maps.Point(0,0),new google.maps.Point(42,24));
+        }
+
+        var myLatlng = new google.maps.LatLng(point.lat,point.lng);
+
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            icon:icon,
+            zIndex : 1001
+        });
+
+        marker.setMap(map);
+        border.push(marker);
+
+    }
+
+    this.clearBorder = function(){
+        while(border[0]){
+            border.pop().setMap(null);
+        }
+    }
 
 
 
@@ -377,11 +417,16 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,
                 title : event.title,
                 urlPoints : event.id,
                 urlMap : event.point.lat+'|'+event.point.lng+'|'+map.getZoom(),
-                zIndex : 1001
+                urlBorder : event.point.lat+'|'+event.point.lng+'|0',
+                zIndex : 1002,
+                point : event.point
             });
 
+            var that = this;
             google.maps.event.addListener(event.marker, 'click', function() {
-                $rootScope.$apply($location.search({points : event.marker.urlPoints,map:event.marker.urlMap,noMove:true}));
+                that.clearBorder();
+                that.drawBorder(event.marker.point,0);
+                $rootScope.$apply($location.search({points : event.marker.urlPoints,map:event.marker.urlMap,noMove:true,border:event.marker.urlBorder}));
             });
         }
 
@@ -438,7 +483,9 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,
 
         var dragBoundaries = dragBoundariesDefault;
 
+        var that = this;
         google.maps.event.addListener(map,'zoom_changed',function(e) {
+            that.clearBorder();
             if(map.getZoom()>15){
                 map.setOptions({draggable:true});
                 that.checkBounds(dragBoundaries);
