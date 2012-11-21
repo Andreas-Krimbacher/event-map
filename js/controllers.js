@@ -33,18 +33,8 @@ eventMap.InfoViewController = function( $scope, $rootScope,$location, MapData, $
             openParts = openParts.split('|');
         }
         else{
-
-            var points = MapData.getPointData(pointsParts);
-            var types = [];
-            for(var x in points){
-                if(types.indexOf(points[x].type) == -1) types.push(points[x].type);
-            }
-            if(types.length<3){
-                var openParts = types;
-            }
-            else{
-                var openParts = [];
-            }
+            var openParts = [];
+            if(pointsParts && pointsParts.length < 5)  var openParts = angular.copy(pointsParts);
         }
 
 
