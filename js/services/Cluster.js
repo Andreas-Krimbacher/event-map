@@ -65,8 +65,15 @@ eventMap.service('Cluster', function() {
         clusters.Bellevue.pointsString = clusters.Bellevue.pointsString.substring(1,clusters.Bellevue.pointsString.length);
 
         var returnCluster = [];
+        var count = 0;
         for(x in clusters){
             returnCluster.push(clusters[x]);
+            for(var type in clusters[x].data){
+                for(var id in clusters[x].data[type]){
+                    clusters[x].data[type][id].cluster.preCluster15 = count;
+                }
+            }
+            count++;
         }
 
         return returnCluster;

@@ -36,12 +36,16 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,
         return map;
     }
 
+    this.getZoom = function(){
+        return parseInt(map.getZoom());
+    }
+
     this.setMapIsLoadedFunction = function(func){
         this.mapIsLoaded = func;
     }
 
     this.getEatDrinkData = function(){
-        $http.get('data/RestaurantList.json').success(function(data) {
+        $http.get('data/eatanddrink.json').success(function(data) {
             eatDrinkData = data;
         });
     }
@@ -53,9 +57,10 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,
                 if(!eatDrinkData[k].marker){
                     eatDrinkData[k].marker = new google.maps.Marker({
                         position: new google.maps.LatLng(eatDrinkData[k].y,eatDrinkData[k].x),
-                        title : eatDrinkData[k].Name,
-                        icon : 'img/rest.png',
-                        zIndex : 101
+                        title : eatDrinkData[k].name,
+                        icon : ImageLoader.getImage(eatDrinkData[k].type).src,
+                        zIndex : 101,
+                        cursor: 'default'
                     });
                 }
                 currentEatDrinkMarker.push(eatDrinkData[k].marker);
@@ -83,8 +88,9 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,
                     busData[k].marker = new google.maps.Marker({
                         position: new google.maps.LatLng(busData[k].y,busData[k].x),
                         title : busData[k].Name,
-                        icon : 'img/bus.png',
-                        zIndex : 101
+                        icon : ImageLoader.getImage('bus').src,
+                        zIndex : 102,
+                        cursor: 'default'
                     });
                 }
                 currentBusMarker.push(busData[k].marker);
@@ -339,7 +345,7 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,
                 icon:icon,
                 urlPoints : cluster.pointsString,
                 urlMap : cluster.point.lat+'|'+cluster.point.lng+'|'+map.getZoom(),
-                urlBorder : cluster.point.lat+'|'+cluster.point.lng+'|'+positionCount,
+                urlBorder : cluster.pointsString.split('|')[0],
                 zIndex : 1002,
                 positionCount : positionCount,
                 point : cluster.point
@@ -356,22 +362,62 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,
 
     };
 
+    this.drawMarker = function(event){
+
+        if(!event.marker){
+            var canvas = document.createElement("canvas");
+            canvas.width = 24;
+            canvas.height = 24;
+
+            var context = canvas.getContext("2d");
+
+            context.drawImage(ImageLoader.getImage(event.type+'Map'),0,0);
+
+            var icon = new google.maps.MarkerImage(canvas.toDataURL(),new google.maps.Size(24, 24),new google.maps.Point(0,0),new google.maps.Point(12,12));
+
+            var myLatlng = new google.maps.LatLng(event.point.lat,event.point.lng);
+
+            event.marker = new google.maps.Marker({
+                position: myLatlng,
+                icon:icon,
+                title : event.title,
+                urlPoints : event.id,
+                urlMap : event.point.lat+'|'+event.point.lng+'|'+map.getZoom(),
+                urlBorder : event.id,
+                zIndex : 1002,
+                point : event.point
+            });
+
+            var that = this;
+            google.maps.event.addListener(event.marker, 'click', function() {
+                that.clearBorder();
+                that.drawBorder(event.marker.point,0);
+                $rootScope.$apply($location.search({points : event.marker.urlPoints,map:event.marker.urlMap,noMove:true,border:event.marker.urlBorder}));
+            });
+        }
+
+
+
+        event.marker.setMap(map);
+        currentMarkers.push(event.marker);
+    };
+
     this.drawBorder = function(point,mode){
 
         if(mode == 0){
-            var icon = new google.maps.MarkerImage('img/single.png',new google.maps.Size(30, 30),new google.maps.Point(0,0),new google.maps.Point(15,15));
+            var icon = new google.maps.MarkerImage(ImageLoader.getImage('singleBorder').src,new google.maps.Size(30, 30),new google.maps.Point(0,0),new google.maps.Point(15,15));
         }
         if(mode == 1){
-            var icon = new google.maps.MarkerImage('img/multi1.png',new google.maps.Size(44, 26),new google.maps.Point(0,0),new google.maps.Point(22,13));
+            var icon = new google.maps.MarkerImage(ImageLoader.getImage('multiBorder1').src,new google.maps.Size(44, 26),new google.maps.Point(0,0),new google.maps.Point(22,13));
         }
         if(mode == 2){
-            var icon = new google.maps.MarkerImage('img/multi2.png',new google.maps.Size(44, 48),new google.maps.Point(0,0),new google.maps.Point(22,24));
+            var icon = new google.maps.MarkerImage(ImageLoader.getImage('multiBorder2').src,new google.maps.Size(44, 48),new google.maps.Point(0,0),new google.maps.Point(22,24));
         }
         if(mode == 3){
-            var icon = new google.maps.MarkerImage('img/multi3.png',new google.maps.Size(84, 48),new google.maps.Point(0,0),new google.maps.Point(42,24));
+            var icon = new google.maps.MarkerImage(ImageLoader.getImage('multiBorder3').src,new google.maps.Size(84, 48),new google.maps.Point(0,0),new google.maps.Point(42,24));
         }
         if(mode == 4){
-            var icon = new google.maps.MarkerImage('img/multi4.png',new google.maps.Size(84, 48),new google.maps.Point(0,0),new google.maps.Point(42,24));
+            var icon = new google.maps.MarkerImage(ImageLoader.getImage('multiBorder4').src,new google.maps.Size(84, 48),new google.maps.Point(0,0),new google.maps.Point(42,24));
         }
 
         var myLatlng = new google.maps.LatLng(point.lat,point.lng);
@@ -396,45 +442,7 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,
 
 
 
-    this.drawMarker = function(event){
 
-        if(!event.marker){
-            var canvas = document.createElement("canvas");
-            canvas.width = 24;
-            canvas.height = 24;
-
-            var context = canvas.getContext("2d");
-
-            context.drawImage(ImageLoader.getImage(event.type+'Map'),0,0);
-
-            var icon = new google.maps.MarkerImage(canvas.toDataURL(),new google.maps.Size(24, 24),new google.maps.Point(0,0),new google.maps.Point(12,12));
-
-            var myLatlng = new google.maps.LatLng(event.point.lat,event.point.lng);
-
-            event.marker = new google.maps.Marker({
-                position: myLatlng,
-                icon:icon,
-                title : event.title,
-                urlPoints : event.id,
-                urlMap : event.point.lat+'|'+event.point.lng+'|'+map.getZoom(),
-                urlBorder : event.point.lat+'|'+event.point.lng+'|0',
-                zIndex : 1002,
-                point : event.point
-            });
-
-            var that = this;
-            google.maps.event.addListener(event.marker, 'click', function() {
-                that.clearBorder();
-                that.drawBorder(event.marker.point,0);
-                $rootScope.$apply($location.search({points : event.marker.urlPoints,map:event.marker.urlMap,noMove:true,border:event.marker.urlBorder}));
-            });
-        }
-
-
-
-        event.marker.setMap(map);
-        currentMarkers.push(event.marker);
-    };
 
     this.showMap = function(){
 

@@ -102,9 +102,9 @@ eventMap.service('MapData', function(Cluster,MapService, $http, $rootScope) {
         return html;
     }
 
-    this.getCluster18OfPoint = function(id){
+    this.getClusterOfPoint = function(id,zoom){
 
-        return mapData.zoom18[rawMapData[id].cluster.preCluster18]
+        return mapData['zoom'+zoom][rawMapData[id].cluster['preCluster'+zoom]];
     }
 
 
@@ -119,12 +119,13 @@ eventMap.service('MapData', function(Cluster,MapService, $http, $rootScope) {
             rawMapData[k].marker = null;
         }
 
-        mapData.zoom15 = Cluster.getRegionClusters(rawMapData);
+
         var preCluster = Cluster.getPreClusters(rawMapData);
         //mapData.zoom15 = preCluster.preCluster15;
         mapData.zoom16 = preCluster.preCluster16;
         mapData.zoom17 = preCluster.preCluster17;
         mapData.zoom18 = preCluster.preCluster18;
+        mapData.zoom15 = Cluster.getRegionClusters(rawMapData);
 
     };
 

@@ -27,37 +27,49 @@
         <![endif]-->
         <!-- Add your site or application content here -->
         <h1>Zürich Event Map</h1>
-        <div id="filter-bar" class="hide-element" ng-controller="eventMap.FilterBarController">
-            <div id="filter-bar-concert" ng-click="onCategoryBtnClick('concert')" class="filter-sym" ng-class="{true:'', false:'filter-btn-off'}[filter.concert]"></div>
-            <div id="filter-bar-exhib" ng-click="onCategoryBtnClick('exhib')" class="filter-sym" ng-class="{true:'', false:'filter-btn-off'}[filter.exhib]"></div>
-            <div id="filter-bar-film" ng-click="onCategoryBtnClick('film')" class="filter-sym" ng-class="{true:'', false:'filter-btn-off'}[filter.film]"></div>
-            <div id="filter-bar-other" ng-click="onCategoryBtnClick('other')" class="filter-sym" ng-class="{true:'', false:'filter-btn-off'}[filter.other]"></div>
-            <div id="filter-time-slider">
-                <div id="filter-time-info-start" class="filter-time-info">{{filter.start | sliderDate}}</div>
-                <div id="filter-slider"></div>
-                <div id="filter-time-info-end" class="filter-time-info">{{filter.end | sliderDate:'end'}}</div>
-                <div id="filter-slider-today1"></div>
-                <div id="filter-slider-today2"></div>
-            </div>
-            <button class="btn btn-mini btn btn-inverse filter-button" type="button" ng-click="setFilterDates('today')">Today</button>
-            <button class="btn btn-mini btn btn-inverse filter-button" type="button" ng-click="setFilterDates('tomorrow')">Tomorrow</button>
-            <button class="btn btn-mini btn btn-inverse filter-button" type="button" ng-click="setFilterDates('thisWeek')">This Week</button>
-            <a class="btn btn-mini btn filter-button" href="" ng-click="datepicker = !datepicker" ng-class="{true: 'btn-success', false: 'btn-inverse'}[datepicker]"><i class="icon-time icon-white"></i></a>
+        <div id="container" class="hide-element">
+            <div id="filter-bar" ng-controller="eventMap.FilterBarController">
+                <div id="filter-bar-concert" ng-click="onCategoryBtnClick('concert')" class="filter-sym" ng-class="{true:'', false:'filter-btn-off'}[filter.concert]"></div>
+                <div id="filter-bar-exhib" ng-click="onCategoryBtnClick('exhib')" class="filter-sym" ng-class="{true:'', false:'filter-btn-off'}[filter.exhib]"></div>
+                <div id="filter-bar-film" ng-click="onCategoryBtnClick('film')" class="filter-sym" ng-class="{true:'', false:'filter-btn-off'}[filter.film]"></div>
+                <div id="filter-bar-other" ng-click="onCategoryBtnClick('other')" class="filter-sym" ng-class="{true:'', false:'filter-btn-off'}[filter.other]"></div>
+                <div id="filter-time-slider">
+                    <div id="filter-time-info-start" class="filter-time-info">{{filter.start | sliderDate}}</div>
+                    <div id="filter-slider"></div>
+                    <div id="filter-time-info-end" class="filter-time-info">{{filter.end | sliderDate:'end'}}</div>
+                    <div id="filter-slider-today1"></div>
+                    <div id="filter-slider-today2"></div>
+                </div>
+                <button class="btn btn-mini btn btn-inverse filter-button" type="button" ng-click="setFilterDates('today')">Today</button>
+                <button class="btn btn-mini btn btn-inverse filter-button" type="button" ng-click="setFilterDates('tomorrow')">Tomorrow</button>
+                <button class="btn btn-mini btn btn-inverse filter-button" type="button" ng-click="setFilterDates('thisWeek')">This Week</button>
+                <a class="btn btn-mini btn filter-button" href="" ng-click="datepicker = !datepicker" ng-class="{true: 'btn-success', false: 'btn-inverse'}[datepicker]"><i class="icon-time icon-white"></i></a>
 
-            <div id="datepicker" ng-show="datepicker">
-                <div id="datepicker-start"></div>
-                <div id="datepicker-end"></div>
+                <div id="datepicker" ng-show="datepicker">
+                    <div id="datepicker-start"></div>
+                    <div id="datepicker-end"></div>
+                </div>
+                <!--Map Button-->
+                <div id="map-button">
+                    <button class="btn btn-mini" ng-class="{true:'btn-success',false:''}[busActive]" ng-click="setPOIOverlay('bus',!busActive);busActive = !busActive" type="button">Stops</button>
+                    <button class="btn btn-mini" ng-class="{true:'btn-success',false:''}[eatDrinkActive]" ng-click="setPOIOverlay('eatanddrink',!eatDrinkActive);eatDrinkActive = !eatDrinkActive" type="button">Eat & Drink</button>
+                </div>
             </div>
-            <!--Map Button-->
-            <div id="map-button">
-                <button class="btn btn-mini" ng-class="{true:'btn-success',false:''}[busActive]" ng-click="setPOIOverlay('bus',!busActive);busActive = !busActive" type="button">Stops</button>
-                <button class="btn btn-mini" ng-class="{true:'btn-success',false:''}[eatDrinkActive]" ng-click="setPOIOverlay('eatDrink',!eatDrinkActive);eatDrinkActive = !eatDrinkActive" type="button">Eat & Drink</button>
-            </div>
-        </div>
-        <div id="map-main">
-            <map ng-controller="eventMap.MapController"></map>
-            <div id="info-view">
-                <div ng-view></div>
+            <div id="map-main">
+                <map ng-controller="eventMap.MapController"></map>
+                <div id="info-view" ng-controller="eventMap.InfoViewController">
+                    <div id="info-text" ng-view class="info-text-legend-{{legend}}"></div>
+                    <div id="legend">
+                        <div ng-show="legend == 'bus' ||legend == 'both'"><img class="legend-img" ng-src="{{imgLegend.busLegend}}"/><span class="legend-text">Bus / Tram</span></div>
+                        <div ng-show="legend == 'eatanddrink' ||legend == 'both'">
+                            <img ng-src="{{imgLegend.cafeLegend}}"/><span class="legend-text">Cafe</span>
+                            <img ng-src="{{imgLegend.barLegend}}"/><span class="legend-text">Bar</span>
+                            <img ng-src="{{imgLegend.pubLegend}}"/><span class="legend-text">Pub</span>
+                            <img ng-src="{{imgLegend.hotelLegend}}"/><span class="legend-text">Hotel</span>
+                            <img ng-src="{{imgLegend.restLegend}}"/><span class="legend-text">Restaurant</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div id="bottom-bar">
@@ -103,6 +115,10 @@
         <!-- Own Js -->
         <script src="js/app.js"></script>
         <script src="js/controllers.js"></script>
+        <script src="js/controllers/FilterBarController.js"></script>
+        <script src="js/controllers/InfoViewController.js"></script>
+        <script src="js/controllers/InfoViewTextController.js"></script>
+        <script src="js/controllers/MapController.js"></script>
         <script src="js/services.js"></script>
         <script src="js/services/MapData.js"></script>
         <script src="js/services/MapService.js"></script>
