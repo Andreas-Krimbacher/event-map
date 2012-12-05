@@ -4,6 +4,10 @@ eventMap.MapController = function( $scope ,$rootScope, MapData, MapService,Image
 
     var imagesLoaded = false;
 
+    jQuery('#impressum-close').click(function (event) {
+        $("#impressum").modal("hide");
+    });
+
     $scope.$on('mapIsLoaded', function() {
         MapData.loadInfoData();
     });

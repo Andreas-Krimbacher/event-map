@@ -439,11 +439,6 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,
         }
     }
 
-
-
-
-
-
     this.showMap = function(){
 
         var that = this;
@@ -478,7 +473,7 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,
         baseMap = new google.maps.ImageMapType(baseMapOptions);
 
         map.mapTypes.set('EventMap', baseMap);
-        map.setMapTypeId('EventMap');
+         map.setMapTypeId('EventMap');
 
         overlay = new google.maps.OverlayView();
         overlay.draw = function() {};
@@ -487,7 +482,6 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,
         google.maps.event.addListenerOnce(map,'idle',function() {
             that.mapIsLoaded();
         });
-
 
         var dragBoundaries = dragBoundariesDefault;
 
@@ -501,6 +495,13 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,
             else{
                 map.setOptions({draggable:false});
                 map.setCenter(new google.maps.LatLng(47.37345,8.53659));
+            }
+
+            if(map.getZoom()>16){
+                $rootScope.$broadcast('setPoiButtonsActive',true);
+            }
+            else{
+                $rootScope.$broadcast('setPoiButtonsActive',false);
             }
 
         });

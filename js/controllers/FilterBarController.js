@@ -23,6 +23,10 @@ eventMap.FilterBarController = function( $scope, $rootScope, Slider,MapService) 
     $scope.filter.end.setHours(6);
     $scope.filter.end.setDate($scope.filter.start.getDate()+8);
 
+    $scope.poiButtonsActive = true;
+    $scope.eatDrinkActive = false;
+    $scope.busActive = false;
+
     var sliderValues = Slider.getSliderValues($scope.sliderTable,$scope.sliderStartDate6,$scope.sliderEndDate6,$scope.filter.start,$scope.filter.end);
 
     jQuery("#filter-slider").slider({
@@ -176,10 +180,35 @@ eventMap.FilterBarController = function( $scope, $rootScope, Slider,MapService) 
         $rootScope.$broadcast('actualizeData',angular.copy($scope.filter));
     });
 
+    $scope.$on('setPoiButtonsActive', function(event,mode) {
+        if(!$scope.$$phase) {
+            $scope.$apply(function(){
+                if(!mode){
+                    $scope.setPOIOverlay('bus',false);
+                    $scope.setPOIOverlay('eatanddrink',false);
+                }
+                $scope.poiButtonsActive = mode;
+            });
+        }
+        else{
+            $scope.setPOIOverlay('bus',false);
+            $scope.setPOIOverlay('eatanddrink',false);
+            $scope.poiButtonsActive = mode;
+        }
+    });
+
 
     $scope.setPOIOverlay = function(type,mode){
-        if(type == 'bus') MapService.setBusOverlay(mode);
-        if(type == 'eatanddrink') MapService.setEatDrinkOverlay(mode);
-        $rootScope.$broadcast('switchLegend',{type:type,mode:mode});
+        if($scope.poiButtonsActive){
+            if(type == 'bus'){
+                $scope.busActive = mode;
+                MapService.setBusOverlay(mode);
+            }
+            if(type == 'eatanddrink'){
+                $scope.eatDrinkActive = mode;
+                MapService.setEatDrinkOverlay(mode);
+            }
+            $rootScope.$broadcast('switchLegend',{type:type,mode:mode});
+        }
     }
 };

@@ -280,7 +280,81 @@ eventMap.service('MapData', function(Cluster,MapService, $http, $rootScope) {
             );
 
 
-               var id = 0;
+            var langstrassePoly = new google.maps.Polygon({
+                paths: [
+                    new google.maps.LatLng(47.3812193972646,8.54006087880933),
+                    new google.maps.LatLng(47.3748573179181,8.53316252919359),
+                    new google.maps.LatLng(47.3716533469557,8.53119869020753),
+                    new google.maps.LatLng(47.3716399765898,8.53119049498789),
+                    new google.maps.LatLng(47.3716120455889,8.51951890406045),
+                    new google.maps.LatLng(47.3847205843375,8.51949274663138),
+                    new google.maps.LatLng(47.3847205843375,8.53707091610793),
+                    new google.maps.LatLng(47.3812193972646,8.54006087880933)
+                ]
+            });
+
+            var bahnhofstrassePoly = new google.maps.Polygon({
+                paths: [
+                    new google.maps.LatLng(47.3663130655671,8.54295495732909),
+                    new google.maps.LatLng(47.3663886111224,8.5395716403621),
+                    new google.maps.LatLng(47.3686652788497,8.5373755113603),
+                    new google.maps.LatLng(47.3716533469557,8.53119869020753),
+                    new google.maps.LatLng(47.3748573179181,8.53316252919359),
+                    new google.maps.LatLng(47.3812193972646,8.54006087880933),
+                    new google.maps.LatLng(47.380532715077,8.54064729538339),
+                    new google.maps.LatLng(47.3780744629607,8.54257451062987),
+                    new google.maps.LatLng(47.3761320592439,8.54315715709973),
+                    new google.maps.LatLng(47.3731576148812,8.54235041583376),
+                    new google.maps.LatLng(47.3709722019058,8.54252969167064),
+                    new google.maps.LatLng(47.3690495055512,8.54267910844341),
+                    new google.maps.LatLng(47.3686652788497,8.54270896750753),
+                    new google.maps.LatLng(47.3663130655671,8.54295495732909)
+                ]
+            });
+
+            var niederndorfuniPoly = new google.maps.Polygon({
+                paths: [
+                    new google.maps.LatLng(47.3739324594181,8.55431274158747),
+                    new google.maps.LatLng(47.3690495055512,8.54267910844341),
+                    new google.maps.LatLng(47.3709722019058,8.54252969167064),
+                    new google.maps.LatLng(47.3731576148812,8.54235041583376),
+                    new google.maps.LatLng(47.3761320592439,8.54315715709973),
+                    new google.maps.LatLng(47.3780744629607,8.54257451062987),
+                    new google.maps.LatLng(47.380532715077,8.54064729538339),
+                    new google.maps.LatLng(47.3812193972646,8.54006087880934),
+                    new google.maps.LatLng(47.3847205843375,8.53707091610793),
+                    new google.maps.LatLng(47.3847205843375,8.55422744002716),
+                    new google.maps.LatLng(47.3739324594181,8.55431274158747)
+                ]
+            });
+
+            var suedPoly = new google.maps.Polygon({
+                paths: [
+                    new google.maps.LatLng(47.3716533469557,8.53119869020753),
+                    new google.maps.LatLng(47.3686652788497,8.5373755113603),
+                    new google.maps.LatLng(47.3663886111224,8.5395716403621),
+                    new google.maps.LatLng(47.3663130655671,8.54295495732909),
+                    new google.maps.LatLng(47.362114609395,8.54339402358738),
+                    new google.maps.LatLng(47.3622600029865,8.5195375655906),
+                    new google.maps.LatLng(47.3716120455889,8.51951890406045),
+                    new google.maps.LatLng(47.3716399765898,8.53119049498789),
+                    new google.maps.LatLng(47.3716533469557,8.53119869020753)
+                ]
+            });
+
+            var bellevuePoly = new google.maps.Polygon({
+                paths: [
+                    new google.maps.LatLng(47.3690495055512,8.54267910844341),
+                    new google.maps.LatLng(47.3739324594181,8.55431274158747),
+                    new google.maps.LatLng(47.3620474923534,8.55440671586404),
+                    new google.maps.LatLng(47.362114609395,8.54339402358738),
+                    new google.maps.LatLng(47.3663130655671,8.54295495732909),
+                    new google.maps.LatLng(47.3686652788497,8.54270896750753),
+                    new google.maps.LatLng(47.3690495055512,8.54267910844341)
+                ]
+            });
+
+            var id = 0;
             for(var x in dataFromFile){
                 if(!imageBoundaries.contains(new google.maps.LatLng(dataFromFile[x].point.lat,dataFromFile[x].point.lng))){
                     continue;
@@ -312,7 +386,7 @@ eventMap.service('MapData', function(Cluster,MapService, $http, $rootScope) {
                     address_components : dataFromFile[x].address_components,
                     formatted_address : dataFromFile[x].formatted_address,
                     type:'other',
-                    region:_.random(0, 4),
+                    region: null,
                     startDate : new Date(dataFromFile[x].startDate),
                     endDate : endDate,
                     nearPoint : nearPoints,
@@ -344,25 +418,27 @@ eventMap.service('MapData', function(Cluster,MapService, $http, $rootScope) {
                         break;
                 }
 
-                switch (rawMapData[rawMapData.length-1].region) {
-                    case 0:
-                        rawMapData[rawMapData.length-1].region = 'Langstrasse';
-                        break;
-                    case 1:
-                        rawMapData[rawMapData.length-1].region = 'Bahnhofstrasse';
-                        break;
-                    case 2:
-                        rawMapData[rawMapData.length-1].region = 'NiederndorfUni';
-                        break;
-                    case 3:
-                        rawMapData[rawMapData.length-1].region = 'Sued';
-                        break;
-                    case 4:
-                        rawMapData[rawMapData.length-1].region = 'Bellevue';
-                        break;
-                    default:
-                        rawMapData[rawMapData.length-1].type = 'Langstrasse';
-                        break;
+
+
+
+                if(google.maps.geometry.poly.containsLocation(new google.maps.LatLng(rawMapData[rawMapData.length-1].point.lat,rawMapData[rawMapData.length-1].point.lng),langstrassePoly)){
+                    rawMapData[rawMapData.length-1].region = "Langstrasse";
+                }
+                else if(google.maps.geometry.poly.containsLocation(new google.maps.LatLng(rawMapData[rawMapData.length-1].point.lat,rawMapData[rawMapData.length-1].point.lng),bahnhofstrassePoly)){
+                    rawMapData[rawMapData.length-1].region = "Bahnhofstrasse";
+                }
+                else if(google.maps.geometry.poly.containsLocation(new google.maps.LatLng(rawMapData[rawMapData.length-1].point.lat,rawMapData[rawMapData.length-1].point.lng),niederndorfuniPoly)){
+                    rawMapData[rawMapData.length-1].region = "NiederndorfUni";
+                }
+                else if(google.maps.geometry.poly.containsLocation(new google.maps.LatLng(rawMapData[rawMapData.length-1].point.lat,rawMapData[rawMapData.length-1].point.lng),suedPoly)){
+                    rawMapData[rawMapData.length-1].region = "Sued";
+                }
+                else if(google.maps.geometry.poly.containsLocation(new google.maps.LatLng(rawMapData[rawMapData.length-1].point.lat,rawMapData[rawMapData.length-1].point.lng),bellevuePoly)){
+                    rawMapData[rawMapData.length-1].region = "Bellevue";
+                }
+                else{
+                    rawMapData[rawMapData.length-1].region = "Langstrasse";
+
                 }
 
             }
