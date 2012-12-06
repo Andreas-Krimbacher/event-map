@@ -1,3 +1,4 @@
+<!-- Html partial to display a multiple information -->
 <div ng-repeat="(key,val) in info">
     <ul ng-hide="!val.data.length" class="info-list">
         <li ng-click="open(key,!val.isOpen);val.isOpen = !val.isOpen" class="info-type-header"><div class="info-type-icon icon-{{key}}"></div><div class="info-type-header-text type-{{key}}">{{key | replaceTypeName}} ({{val.data.length}})</div></li>

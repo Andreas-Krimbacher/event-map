@@ -1,9 +1,12 @@
 'use strict';
 
+//service to load all images
+
 eventMap.service('ImageLoader', function($rootScope) {
 
     var imageLoaded = function(){};
 
+    //image definition
     var sources = {
         concertMapNR: 'img/concert3.png',
         exhibMapNR: 'img/exhib3.png',
@@ -40,6 +43,7 @@ eventMap.service('ImageLoader', function($rootScope) {
 
     var images = {};
 
+    //function to load the images
     this.loadImages = function(){
         var loadedImages = 0;
         var numImages = 0;
@@ -62,10 +66,12 @@ eventMap.service('ImageLoader', function($rootScope) {
         }
     };
 
+    //function to set a onload callback
     this.setOnLoad = function(callback){
         imageLoaded = callback;
     };
 
+    //function to get an image
     this.getImage = function(name){
         return images[name];
     }

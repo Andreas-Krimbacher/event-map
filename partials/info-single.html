@@ -1,4 +1,4 @@
-
+<!-- Html partial to display a single information -->
 <div class="info-type-icon icon-{{info.type}}"></div> <div class="info-entry-single type-{{info.type}}"><div class="info-entry-title-single">{{info.title}}</div><div class="icon-map-marker info-entry-map" ng-click="showPointOnMap($event,info.id)"></div></div>
 <div ng-show="info.isOpen" class="info-entry-box-single type-{{info.type}}-box">
     <div ng-bind-html-unsafe="info.infoText" class="info-text"></div>

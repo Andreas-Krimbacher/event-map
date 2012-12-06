@@ -1,15 +1,19 @@
+'use strict';
+
+//controller for the info view (for the text information)
+
 eventMap.InfoViewTextController = function( $scope, $rootScope,$location, MapData, $route, MapService) {
 
+    //init
     $scope.initCall = true;
-
     $scope.pointsParts = [];
     $scope.mapParts = [];
     $scope.openParts = [];
     $scope.borderParts = [];
-
     $scope.noRefresh = false;
     $scope.filterChanged = false;
 
+    //listener for a route change
     $rootScope.$on('$routeUpdate', function() {
 
         $scope.filterChanged = false;
@@ -19,13 +23,16 @@ eventMap.InfoViewTextController = function( $scope, $rootScope,$location, MapDat
             return;
         }
 
+        // get parameters from url
         var urlParts = $location.search()
 
+        //get points from parameter
         if(urlParts.points){
             var pointsParts = urlParts.points+'';
             pointsParts = pointsParts.split('|');
         }
 
+        //get open information from parameters
         if(urlParts.open){
             var openParts = urlParts.open+'';
             openParts = openParts.split('|');
@@ -36,7 +43,7 @@ eventMap.InfoViewTextController = function( $scope, $rootScope,$location, MapDat
         }
 
 
-
+        //load the html partial for the information
         if(urlParts.points){
 
             if(pointsParts.length > 1){
@@ -54,9 +61,7 @@ eventMap.InfoViewTextController = function( $scope, $rootScope,$location, MapDat
             var pointsParts = [];
         }
 
-
-
-
+        //get map parameters from parameter and apply
         if(urlParts.map){
             var mapParts = urlParts.map+'';
             mapParts = mapParts.split('|');
@@ -67,7 +72,7 @@ eventMap.InfoViewTextController = function( $scope, $rootScope,$location, MapDat
                     var filter = MapData.getCurrentFilter();
                     var points = MapData.getPointData(pointsParts);
 
-
+                    //adjust filter
                     for(var x in points){
                         if(filter[points[x].type] != true){
                             filter[points[x].type] = true;
@@ -97,7 +102,7 @@ eventMap.InfoViewTextController = function( $scope, $rootScope,$location, MapDat
                 }
 
 
-
+                // zoom to point
                 MapService.zoomToPoint({lat:mapParts[0],lng:mapParts[1]},mapParts[2]);
 
             }
@@ -111,6 +116,7 @@ eventMap.InfoViewTextController = function( $scope, $rootScope,$location, MapDat
             var mapParts = [];
         }
 
+        //get border properties from parameter and draw border
         MapService.clearBorder();
         if(urlParts.border){
             var borderParts = urlParts.border+'';
@@ -118,6 +124,7 @@ eventMap.InfoViewTextController = function( $scope, $rootScope,$location, MapDat
 
             var zoom = MapService.getZoom();
 
+            //determine the marker size
             var cluster = MapData.getClusterOfPoint(borderParts[0],zoom);
             if(cluster.hasSingleData && zoom != 15){
                 var count = 0;
@@ -129,10 +136,9 @@ eventMap.InfoViewTextController = function( $scope, $rootScope,$location, MapDat
                 }
             }
 
+            // draw border
             MapService.drawBorder({lat:cluster.point.lat,lng:cluster.point.lng},count);
         }
-
-
 
         $scope.pointsParts = pointsParts;
         $scope.openParts = openParts;
@@ -142,12 +148,15 @@ eventMap.InfoViewTextController = function( $scope, $rootScope,$location, MapDat
         $scope.initCall = false;
     });
 
+
+    //onclick function to show a single point
     $scope.showPointOnMap = function($event,id){
         $event.stopPropagation();
         var filter = MapData.getCurrentFilter();
         var point = MapData.getPointData([id]);
         point = point[0];
         if(!filter[point.type] || filter.start > point.endDate || filter.end < point.startDate){
+            //adjust filter
             jQuery('#alert-filter').click(function (event) {
                 $(this).unbind(event);
                 $scope.$apply( function(){
@@ -173,6 +182,7 @@ eventMap.InfoViewTextController = function( $scope, $rootScope,$location, MapDat
         $("#alert").modal("hide");
     });
 
+    //onclick listener to zoom to a point
     $scope.zoomToPoint = function(point){
         var url = {};
 
@@ -188,7 +198,7 @@ eventMap.InfoViewTextController = function( $scope, $rootScope,$location, MapDat
 
     }
 
-
+    // onclick listener to open information in the info view
     $scope.open = function(id,open){
         if(open){
             $scope.openParts.push(id);

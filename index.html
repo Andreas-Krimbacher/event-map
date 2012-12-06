@@ -11,8 +11,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-
+        <!-- Stylesheets -->
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/jquery-ui-1.9.1.custom.css">
         <link rel="stylesheet" href="css/bootstrap.css">
@@ -26,11 +25,14 @@
         <!-- Add your site or application content here -->
         <h1>Zürich Event Map</h1>
         <div id="container" class="hide-element">
+            <!-- Filter Bar -->
             <div id="filter-bar" ng-controller="eventMap.FilterBarController">
+                <!-- Filter Category Icons -->
                 <div id="filter-bar-concert" ng-click="onCategoryBtnClick('concert')" class="filter-sym" ng-class="{true:'', false:'filter-btn-off'}[filter.concert]"></div>
                 <div id="filter-bar-exhib" ng-click="onCategoryBtnClick('exhib')" class="filter-sym" ng-class="{true:'', false:'filter-btn-off'}[filter.exhib]"></div>
                 <div id="filter-bar-film" ng-click="onCategoryBtnClick('film')" class="filter-sym" ng-class="{true:'', false:'filter-btn-off'}[filter.film]"></div>
                 <div id="filter-bar-other" ng-click="onCategoryBtnClick('other')" class="filter-sym" ng-class="{true:'', false:'filter-btn-off'}[filter.other]"></div>
+                <!-- Filter Slider -->
                 <div id="filter-time-slider">
                     <div id="filter-time-info-start" class="filter-time-info">{{filter.start | sliderDate}}</div>
                     <div id="filter-slider"></div>
@@ -38,25 +40,33 @@
                     <div id="filter-slider-today1"></div>
                     <div id="filter-slider-today2"></div>
                 </div>
+                <!-- Filter time buttons -->
                 <button class="btn btn-mini btn btn-inverse filter-button" type="button" ng-click="setFilterDates('today')">Today</button>
                 <button class="btn btn-mini btn btn-inverse filter-button" type="button" ng-click="setFilterDates('tomorrow')">Tomorrow</button>
                 <button class="btn btn-mini btn btn-inverse filter-button" type="button" ng-click="setFilterDates('thisWeek')">This Week</button>
+                <!-- Filter datepicker button -->
                 <a class="btn btn-mini btn filter-button" href="" ng-click="datepicker = !datepicker" ng-class="{true: 'btn-success', false: 'btn-inverse'}[datepicker]"><i class="icon-time icon-white"></i></a>
-
+                <!-- Filter datepicker -->
                 <div id="datepicker" ng-show="datepicker">
                     <div id="datepicker-start"></div>
                     <div id="datepicker-end"></div>
                 </div>
-                <!--Map Button-->
+                <!--Map POI Button-->
                 <div id="map-button">
                     <button class="btn btn-mini" ng-class="{'btn-success':busActive,disabled:!poiButtonsActive}" ng-click="setPOIOverlay('bus',!busActive);" type="button">Stops</button>
                     <button class="btn btn-mini" ng-class="{'btn-success':eatDrinkActive,disabled:!poiButtonsActive}" ng-click="setPOIOverlay('eatanddrink',!eatDrinkActive);" type="button">Eat & Drink</button>
                 </div>
             </div>
+            <!-- Map and Info View -->
             <div id="map-main">
-                <map ng-controller="eventMap.MapController"></map>
+                <!-- Map -->
+                <div ng-controller="eventMap.MapController">
+                    <div id="map"></div>
+                </div>
+                <!-- Info View -->
                 <div id="info-view" ng-controller="eventMap.InfoViewController">
                     <div id="info-text" ng-view class="info-text-legend-{{legend}}"></div>
+                    <!-- Legend -->
                     <div id="legend">
                         <div ng-show="legend == 'bus' ||legend == 'both'"><img class="legend-img" ng-src="{{imgLegend.busLegend}}"/><span class="legend-text">Bus / Tram</span></div>
                         <div ng-show="legend == 'eatanddrink' ||legend == 'both'">
@@ -70,13 +80,14 @@
                 </div>
             </div>
         </div>
+        <!-- Bottom Bar -->
         <div id="bottom-bar">
             <div id="bottom-bar-uni"><a id="bottom-bar-uni-link" href="http://www.ikg.ethz.ch/karto/"  target="_blank">ETH Zürich - IKG</a></div>
             <div id="bottom-bar-impressum"><a id="bottom-bar-impressum-link" onclick="jQuery('#impressum').modal('show');" href="">Impressum</a></div>
             <div id="bottom-bar-creator"><a href="mailto:mpozzi@student.ethz.ch">Millo Pozzi</a> - <a href="mailto:andreas.krimbacher@gmail.com">Andreas Krimbacher</a></div>
         </div>
 
-        <!--Alert-->
+        <!-- Filter Alert-->
         <div id="alert" class="modal hide fade">
             <div class="modal-body">
                 <p>To display this Point the filter must be changed.</p>
@@ -90,7 +101,48 @@
         <!--Impressum-->
         <div id="impressum" class="modal hide fade">
             <div class="modal-body">
-                <p>Milo und Andreas.</p>
+                <table>
+                    <tr>
+                        <td colspan = "2"><span class="impressum-heading">Imprint</span></td>
+                    </tr>
+                    <tr>
+                        <td colspan = "2">Digital Cartography, Autumn Semester 2012<br>Institute of Cartography and Geoinformation</span></td>
+                    </tr>
+                    <tr>
+                        <td class="first-colum"><span class="impressum-title">Lead:</span></td>
+                        <td>Prof. Dr. Lorenz Hurni<br>Juliane Cron, Thomas Koblet</td>
+                    </tr>
+                    <tr>
+                        <td><span class="impressum-title">Authors:</span></td>
+                        <td>Andreas Krimbacher, Milo Pozzi</td>
+                    </tr>
+                    <tr>
+                        <td><span class="impressum-title">Preparation:</span></td>
+                        <td>December 2012</td>
+                    </tr>
+                    <tr class="seperator">
+                        <td colspan = "2"><span class="impressum-heading">Base Data</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="impressum-title">OpenStreetMap<br>Switzerland:</span></td>
+                        <td>© OpenStreetMapcontributors,CCBY-SA<br>Coordinate Reference System: WGS84<br>Data format: osm</td>
+                    </tr>
+                    <tr>
+                        <td><span class="impressum-title">Relief:</span></td>
+                        <td>© 2009 Bundesamt für Landestopografie swisstopo,Wabern<br>Coordinate Reference System: CH1903 LV03<br>Data format: tiff</td>
+                    </tr>
+                    <tr>
+                        <td><span class="impressum-title">GeoVITe Data:</span></td>
+                        <td>© 2011 swisstopo (JD100042)<br>Source: Bundesamt für Landestopografie swisstopo<br>(Art. 30GeoIV): 5704 000 000</td>
+                    </tr>
+                    <tr class="seperator">
+                        <td colspan = "2"><span class="impressum-heading">Info Data</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="impressum-title">Event Information:</span></td>
+                        <td>© www.events.ch</td>
+                    </tr>
+                </table>
             </div>
             <div class="modal-footer">
                 <a href="" class="btn btn-success" id="impressum-close">Close</a>
@@ -100,17 +152,15 @@
 
 
 
-        <!-- External Js -->
+        <!-- Third-party Js -->
         <script src="js/angular/angular-1.0.2.js"></script>
         <script src="js/angular/angular-resource.js"></script>
-
-
         <script src="js/vendor/jquery-1.8.2.min.js"></script>
         <script src="js/vendor/bootstrap.js"></script>
         <script src="js/vendor/underscore.js"></script>
         <script src="js/vendor/jquery-ui-1.9.1.custom.js"></script>
         <script src="js/plugins.js"></script>
-
+        <!-- Google Maps Api Js-->
         <script type="text/javascript"
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXCjjeeR2Nn5TAVS2fjI31NJzJQVwvcU0&sensor=false&libraries=drawing,geometry">
         </script>
@@ -126,7 +176,6 @@
         <script src="js/services/ImageLoader.js"></script>
         <script src="js/services/Cluster.js"></script>
         <script src="js/services/Slider.js"></script>
-        <script src="js/directives.js"></script>
         <script src="js/filters.js"></script>
 
     </body>

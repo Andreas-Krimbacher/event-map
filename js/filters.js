@@ -1,7 +1,8 @@
 'use strict';
 
-/* Filters */
+//methods to filter and manipulate data
 
+//filter returns a date strind (DD.MM)
 eventMap.filter('sliderDate', function() {
     return function(date,type) {
         if(date.getFullYear() > 2030 || date.getFullYear() < 1980) return '∞';
@@ -30,6 +31,7 @@ eventMap.filter('sliderDate', function() {
     };
 });
 
+//filter returns the long name for a type
 eventMap.filter('replaceTypeName', function() {
     return function(type) {
         var string;
@@ -55,6 +57,7 @@ eventMap.filter('replaceTypeName', function() {
     };
 });
 
+//filter returns a date strind for the info view
 eventMap.filter('infoDate', function($filter) {
     var standardDateFilterFn = $filter('date');
     return function(date) {

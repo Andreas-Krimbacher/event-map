@@ -1,6 +1,6 @@
 'use strict';
 
-/* Service */
+//service for slider functions
 
 eventMap.service('Slider', function() {
 
@@ -9,18 +9,22 @@ eventMap.service('Slider', function() {
     var sliderEndDate = null;
     var sliderLength = 1000;
 
+    //returns current date of the slider
     this.getSliderCurrentDate = function(){
         return sliderCurrentDate;
     }
 
+    //returns start date
     this.getSliderStartDate = function(){
         return sliderStartDate;
     }
 
+    //returns end date
     this.getSliderEndDate = function(){
         return sliderEndDate;
     }
 
+    //returns the slider table which connects the slider values to date values
     this.getSliderTable = function(firstChange, secondChange, newSliderLength){
 
         sliderLength = newSliderLength ? newSliderLength : sliderLength;
@@ -73,6 +77,7 @@ eventMap.service('Slider', function() {
 
     }
 
+    //returns the slider value for a specific date
     this.getSliderValues = function(sliderTable,sliderStartDate,sliderEndDate,start,end){
         var values = {start : null, end : null};
 

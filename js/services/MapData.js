@@ -1,16 +1,23 @@
 'use strict';
 
+//service to provide the mapdata
+
 eventMap.service('MapData', function(Cluster,MapService, $http, $rootScope) {
+    //all data
     var rawMapData = null;
 
+    //current filter that is applied to the mapdata
     var currentFilter = null;
 
+    //filtered data
     var mapData = {zoom15:[],zoom16:[],zoom17:[],zoom18:[]};
 
+    //function to get the mapdata
     this.getMapData = function() {
         return mapData;
     };
 
+    //function to get the map data for a specific id
     this.getPointData = function(id) {
         var result = [];
         for(var x in id){
@@ -19,10 +26,12 @@ eventMap.service('MapData', function(Cluster,MapService, $http, $rootScope) {
         return result;
     };
 
+    //function to get the current filter
     this.getCurrentFilter = function() {
         return angular.copy(currentFilter);
     };
 
+    //function to get the info view data for specific ids
     this.getRawMapDataInfoView = function(ids, opens){
         var rawMapDataInfo = {concert : {data: [],isOpen : false},exhib: {data: [],isOpen : false}, film: {data: [],isOpen : false}, other: {data: [],isOpen : false}};
 
@@ -62,9 +71,8 @@ eventMap.service('MapData', function(Cluster,MapService, $http, $rootScope) {
         return rawMapDataInfo;
     }
 
+    //function to get the info view data for a specific id
     this.getRawMapDataSingle = function(ids){
-
-
         var k = rawMapData.length;
         while(k--){
             if(rawMapData[k].id == ids[0]){
@@ -79,6 +87,7 @@ eventMap.service('MapData', function(Cluster,MapService, $http, $rootScope) {
         }
     }
 
+    //generate the text for the info view
     this.generateInfoView = function(info){
         var html = '';
 
@@ -93,21 +102,16 @@ eventMap.service('MapData', function(Cluster,MapService, $http, $rootScope) {
                 html += '<b>'+info[x].type+':</b><br>';
                 html += info[x].text + '<br><br>';
             }
-
-
         }
-
-
-
         return html;
     }
 
+    //get the cluster of a point with specific id
     this.getClusterOfPoint = function(id,zoom){
-
         return mapData['zoom'+zoom][rawMapData[id].cluster['preCluster'+zoom]];
     }
 
-
+    //cluster the data
     this.clusterData = function() {
 
         var k = rawMapData.length;
@@ -121,7 +125,6 @@ eventMap.service('MapData', function(Cluster,MapService, $http, $rootScope) {
 
 
         var preCluster = Cluster.getPreClusters(rawMapData);
-        //mapData.zoom15 = preCluster.preCluster15;
         mapData.zoom16 = preCluster.preCluster16;
         mapData.zoom17 = preCluster.preCluster17;
         mapData.zoom18 = preCluster.preCluster18;
@@ -129,6 +132,7 @@ eventMap.service('MapData', function(Cluster,MapService, $http, $rootScope) {
 
     };
 
+    //filter the data
     this.filterData = function(filter) {
 
         var timeChanged = false;
@@ -144,142 +148,27 @@ eventMap.service('MapData', function(Cluster,MapService, $http, $rootScope) {
                 if(filter.start > rawMapData[k].endDate || filter.end < rawMapData[k].startDate) rawMapData[k].showOnMap = false;
             }
         }
-
-
         currentFilter = filter;
     };
 
-    this.generateTestData = function(count) {
-        var x;
-        rawMapData = [];
-
-
-
-        for(x=0;x<count;x++){
-            var nearPoints = {zoom15pre:[],
-                            zoom15post:[],
-                            zoom16pre:[],
-                            zoom16post:[],
-                            zoom17pre:[],
-                            zoom17post:[],
-                            zoom18pre: [],
-                            zoom18post: []};
-            var cluster = {preCluster15 : null,
-                            preCluster16 : null,
-                            preCluster17 : null,
-                            preCluster18 : null};
-            rawMapData.push({id : x,
-                            point : {lat:_.random(4736700, 4738000)/100000,lng:_.random(852400, 854900)/100000},
-                            type:_.random(0, 3),
-                            region:_.random(0, 4),
-                            startDate : new Date(),
-                            endDate : null,
-                            nearPoint : nearPoints,
-                            cluster : cluster,
-                            showOnMap : true,
-                            title: 'XYZ Exhibition'});
-
-
-            switch (rawMapData[rawMapData.length-1].type) {
-                case 0:
-                    rawMapData[rawMapData.length-1].type = 'concert';
-                    break;
-                case 1:
-                    rawMapData[rawMapData.length-1].type = 'exhib';
-                    break;
-                case 2:
-                    rawMapData[rawMapData.length-1].type = 'film';
-                    break;
-                case 3:
-                    rawMapData[rawMapData.length-1].type = 'other';
-                    break;
-                default:
-                    rawMapData[rawMapData.length-1].type = 'concert';
-                    break;
-            }
-
-            switch (rawMapData[rawMapData.length-1].region) {
-                case 0:
-                    rawMapData[rawMapData.length-1].region = 'Langstrasse';
-                    break;
-                case 1:
-                    rawMapData[rawMapData.length-1].region = 'Bahnhofstrasse';
-                    break;
-                case 2:
-                    rawMapData[rawMapData.length-1].region = 'NiederndorfUni';
-                    break;
-                case 3:
-                    rawMapData[rawMapData.length-1].region = 'Sued';
-                    break;
-                case 4:
-                    rawMapData[rawMapData.length-1].region = 'Bellevue';
-                    break;
-                default:
-                    rawMapData[rawMapData.length-1].type = 'Langstrasse';
-                    break;
-            }
-
-            rawMapData[rawMapData.length-1].startDate.setMonth(rawMapData[rawMapData.length-1].startDate.getMonth()+ _.random(-1,6));
-            rawMapData[rawMapData.length-1].startDate.setDate(rawMapData[rawMapData.length-1].startDate.getDate()+ _.random(0,31));
-            rawMapData[rawMapData.length-1].startDate.setHours(rawMapData[rawMapData.length-1].startDate.getHours()+ _.random(0,24));
-            rawMapData[rawMapData.length-1].startDate.setMinutes(0);
-            rawMapData[rawMapData.length-1].startDate.setSeconds(0);
-            rawMapData[rawMapData.length-1].startDate.setMilliseconds(0);
-
-            rawMapData[rawMapData.length-1].endDate = new Date(rawMapData[rawMapData.length-1].startDate.getTime()+_.random(1,20)*1800000)
-
-        };
-
-        var pixel_temp;
-        var map = MapService.getMap();
-        var overlay = MapService.getOverlay();
-
-        map.setZoom(15);
-        for(x=0;x<count;x++){
-            pixel_temp = overlay.getProjection().fromLatLngToDivPixel(new google.maps.LatLng(rawMapData[x].point.lat,rawMapData[x].point.lng),15);
-            rawMapData[x].pixel = {zoom15 : {x : pixel_temp.x, y : pixel_temp.y}};
-        }
-        map.setZoom(16);
-        for(x=0;x<count;x++){
-            pixel_temp = overlay.getProjection().fromLatLngToDivPixel(new google.maps.LatLng(rawMapData[x].point.lat,rawMapData[x].point.lng),16);
-            rawMapData[x].pixel = {zoom16 : {x : pixel_temp.x, y : pixel_temp.y},zoom17 : {x : null, y : null},zoom18 : {x : null, y : null}};
-        }
-        map.setZoom(17);
-        for(x=0;x<count;x++){
-            pixel_temp = overlay.getProjection().fromLatLngToDivPixel(new google.maps.LatLng(rawMapData[x].point.lat,rawMapData[x].point.lng),17);
-            rawMapData[x].pixel.zoom17.x = pixel_temp.x;
-            rawMapData[x].pixel.zoom17.y = pixel_temp.y;
-        }
-        map.setZoom(18);
-        for(x=0;x<count;x++){
-            pixel_temp = overlay.getProjection().fromLatLngToDivPixel(new google.maps.LatLng(rawMapData[x].point.lat,rawMapData[x].point.lng),18);
-            rawMapData[x].pixel.zoom18.x = pixel_temp.x;
-            rawMapData[x].pixel.zoom18.y = pixel_temp.y;
-        }
-        map.setZoom(15);
-
-        Cluster.calculateDistance(rawMapData);
-    };
-
+    //load the data from the json "infoAll.json" to rawmapdata
     this.loadInfoData = function() {
         var x;
 
         $http.get('data/infoAll.json').success(function(data) {
 
-
-
             var dataFromFile = data;
-
 
             rawMapData = [];
             var types = [];
 
+            //image boundaries
             var imageBoundaries = new google.maps.LatLngBounds (
                 new google.maps.LatLng(47.3635184326772 ,8.52219235359625), // lower left coordinate
                 new google.maps.LatLng(47.3825878958978 , 8.55067793132157) // upper right coordinate
             );
 
-
+            //polygons of the regions
             var langstrassePoly = new google.maps.Polygon({
                 paths: [
                     new google.maps.LatLng(47.3812193972646,8.54006087880933),
@@ -292,7 +181,6 @@ eventMap.service('MapData', function(Cluster,MapService, $http, $rootScope) {
                     new google.maps.LatLng(47.3812193972646,8.54006087880933)
                 ]
             });
-
             var bahnhofstrassePoly = new google.maps.Polygon({
                 paths: [
                     new google.maps.LatLng(47.3663130655671,8.54295495732909),
@@ -311,7 +199,6 @@ eventMap.service('MapData', function(Cluster,MapService, $http, $rootScope) {
                     new google.maps.LatLng(47.3663130655671,8.54295495732909)
                 ]
             });
-
             var niederndorfuniPoly = new google.maps.Polygon({
                 paths: [
                     new google.maps.LatLng(47.3739324594181,8.55431274158747),
@@ -327,7 +214,6 @@ eventMap.service('MapData', function(Cluster,MapService, $http, $rootScope) {
                     new google.maps.LatLng(47.3739324594181,8.55431274158747)
                 ]
             });
-
             var suedPoly = new google.maps.Polygon({
                 paths: [
                     new google.maps.LatLng(47.3716533469557,8.53119869020753),
@@ -341,7 +227,6 @@ eventMap.service('MapData', function(Cluster,MapService, $http, $rootScope) {
                     new google.maps.LatLng(47.3716533469557,8.53119869020753)
                 ]
             });
-
             var bellevuePoly = new google.maps.Polygon({
                 paths: [
                     new google.maps.LatLng(47.3690495055512,8.54267910844341),
@@ -354,6 +239,7 @@ eventMap.service('MapData', function(Cluster,MapService, $http, $rootScope) {
                 ]
             });
 
+            //generate rawmapdata
             var id = 0;
             for(var x in dataFromFile){
                 if(!imageBoundaries.contains(new google.maps.LatLng(dataFromFile[x].point.lat,dataFromFile[x].point.lng))){
@@ -400,6 +286,7 @@ eventMap.service('MapData', function(Cluster,MapService, $http, $rootScope) {
 
                 id++;
 
+                //determine category
                 switch (dataFromFile[x].type) {
                     case "Party"||"Tanz"||"Konzert"||"Unerhört - Ein Zürcher Jazzfestival"||"Lucerne Festival - Am Piano":
                         rawMapData[rawMapData.length-1].type = 'concert';
@@ -418,9 +305,7 @@ eventMap.service('MapData', function(Cluster,MapService, $http, $rootScope) {
                         break;
                 }
 
-
-
-
+                //determine region
                 if(google.maps.geometry.poly.containsLocation(new google.maps.LatLng(rawMapData[rawMapData.length-1].point.lat,rawMapData[rawMapData.length-1].point.lng),langstrassePoly)){
                     rawMapData[rawMapData.length-1].region = "Langstrasse";
                 }
@@ -444,6 +329,7 @@ eventMap.service('MapData', function(Cluster,MapService, $http, $rootScope) {
             }
 
 
+            //calculate the pixel values for each data entry
             var pixel_temp;
             var map = MapService.getMap();
             var overlay = MapService.getOverlay();
@@ -474,6 +360,7 @@ eventMap.service('MapData', function(Cluster,MapService, $http, $rootScope) {
             }
             map.setZoom(15);
 
+            //calculate the distance between each point and generate the nearpoint array
             Cluster.calculateDistance(rawMapData);
 
             $rootScope.$broadcast('infoIsLoaded');

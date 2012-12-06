@@ -1,5 +1,7 @@
 'use strict';
 
+//service for map functions
+
 eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,$route) {
 
     var map = null;
@@ -9,6 +11,7 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,
     var markerZoomChangeListener = null;
     this.mapIsLoaded = function(){};
 
+    //define the boundries to bound the map drag
     var dragBoundariesDefault = {zoom16:new google.maps.LatLngBounds (
         new google.maps.LatLng(47.3678 ,8.5292), // lower left coordinate
         new google.maps.LatLng(47.3783 ,8.5435) // upper right coordinate
@@ -28,28 +31,34 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,
     var currentBusMarker = [];
     var border = [];
 
+    //returns the overlay layer
     this.getOverlay = function(){
         return overlay;
     }
 
+    //returns the map
     this.getMap = function(){
         return map;
     }
 
+    //returns the zoom
     this.getZoom = function(){
         return parseInt(map.getZoom());
     }
 
+    //function to set a function when the map is loaded
     this.setMapIsLoadedFunction = function(func){
         this.mapIsLoaded = func;
     }
 
+    //function to get the POI eat and drink data from the json file "eatanddrink.json"
     this.getEatDrinkData = function(){
         $http.get('data/eatanddrink.json').success(function(data) {
             eatDrinkData = data;
         });
     }
 
+    //show and hide the eat and drink POI
     this.setEatDrinkOverlay = function(mode){
         if(mode){
             var k = eatDrinkData.length;
@@ -74,12 +83,14 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,
         }
     }
 
+    //function to get the POI bus data from the json file "BusList.json"
     this.getBusData = function(){
         $http.get('data/BusList.json').success(function(data) {
             busData = data;
         });
     }
 
+    //show and hide the bus POI
     this.setBusOverlay = function(mode){
         if(mode){
             var k = busData.length;
@@ -104,6 +115,7 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,
         }
     }
 
+    //show the events in the map
     this.showMapData = function(mapData){
 
         this.showMarkers(mapData);
@@ -117,12 +129,15 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,
 
     };
 
+    //show the event markers in the map
     this.showMarkers = function(mapData){
 
+        //delete all markers
         while(currentMarkers[0]){
             currentMarkers.pop().setMap(null);
         }
 
+        //zomm 15
         if(map.getZoom() == 15){
             for(var x in mapData.zoom15){
                 if(mapData.zoom15[x].hasData){
@@ -138,6 +153,7 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,
                 }
             }
         }
+        //zomm 16
         if(map.getZoom() == 16){
             for(var x in mapData.zoom16){
                 if(mapData.zoom16[x].hasData){
@@ -153,6 +169,7 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,
                 }
             }
         }
+        //zomm 17
         if(map.getZoom() == 17){
             for(var x in mapData.zoom17){
                 if(mapData.zoom17[x].hasData){
@@ -168,6 +185,7 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,
                 }
             }
         }
+        //zomm 18
         if(map.getZoom() == 18){
             for(var x in mapData.zoom18){
                 if(mapData.zoom18[x].hasData){
@@ -185,7 +203,7 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,
         }
     }
 
-
+    //  zoom to point
     this.zoomToPoint = function(point,zoom){
         if(zoom){
             if(parseInt(zoom) != map.getZoom()) map.setZoom(parseInt(zoom));
@@ -210,6 +228,7 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,
 
         var latLng = new google.maps.LatLng(point.lat,point.lng);
 
+        //readjust imageboundaries if center is out of bounds
         if(!imageBoundaries.contains(latLng)) {
             var X = latLng.lng();
             var Y = latLng.lat();
@@ -230,10 +249,12 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,
         map.setCenter(latLng);
     }
 
+    //draw a cluster point
     this.drawCluster = function(cluster){
 
         if(!cluster.marker){
 
+        //create marker with html5 canvas
         var canvas = document.createElement("canvas");
 
             var symbolCount = 0;
@@ -356,12 +377,14 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,
             });
         }
 
+        //draw marker on map
         cluster.marker.setMap(map);
         currentMarkers.push(cluster.marker);
 
 
     };
 
+    //draw a single point
     this.drawMarker = function(event){
 
         if(!event.marker){
@@ -396,12 +419,12 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,
             });
         }
 
-
-
+        //draw marker on map
         event.marker.setMap(map);
         currentMarkers.push(event.marker);
     };
 
+    //draw a border
     this.drawBorder = function(point,mode){
 
         if(mode == 0){
@@ -433,24 +456,29 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,
 
     }
 
+    //delete all borders
     this.clearBorder = function(){
         while(border[0]){
             border.pop().setMap(null);
         }
     }
 
+    //create the map
     this.showMap = function(){
 
         var that = this;
 
+        //get POI
         this.getEatDrinkData();
         this.getBusData();
 
+        //image extend
         var imageBoundaries = new google.maps.LatLngBounds (
             new google.maps.LatLng(47.3635184326772 ,8.52219235359625), // lower left coordinate
             new google.maps.LatLng(47.3825878958978 , 8.55067793132157) // upper right coordinate
         );
 
+        //map options
         var mapOptions = {
             center: new google.maps.LatLng(47.37345,8.53659),
             zoom: 15,
@@ -459,6 +487,7 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,
             mapTypeControl:false
         };
 
+        //base map options
         var baseMapOptions = {
             getTileUrl: function(coord, zoom) {
                 return that.getTileUrl(coord, zoom);
@@ -469,22 +498,26 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,
             name: "Event Map"
         };
 
+        //create map
         map = new google.maps.Map(document.getElementById("map"),mapOptions);
+        //create basemap
         baseMap = new google.maps.ImageMapType(baseMapOptions);
-
         map.mapTypes.set('EventMap', baseMap);
-         map.setMapTypeId('EventMap');
+        map.setMapTypeId('EventMap');
 
+        //create overlay (is used to calculate the pixel values of each point)
         overlay = new google.maps.OverlayView();
         overlay.draw = function() {};
         overlay.setMap(map);
 
+        //listener map loaded
         google.maps.event.addListenerOnce(map,'idle',function() {
             that.mapIsLoaded();
         });
 
         var dragBoundaries = dragBoundariesDefault;
 
+        //listener zoom changed
         var that = this;
         google.maps.event.addListener(map,'zoom_changed',function(e) {
             that.clearBorder();
@@ -506,11 +539,13 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,
 
         });
 
+        //listener center changed
         google.maps.event.addListener(map,'center_changed',function() {
             that.checkBounds(dragBoundaries);
         });
     }
 
+    //readjust the center if the center is out of bounds
     this.checkBounds = function(dragBoundaries){
         var imageBoundaries;
         var zoom = map.getZoom();
@@ -545,6 +580,7 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,
         }
     }
 
+    //generate the url for the tiles
     this.getTileUrl = function(coord, zoom) {
         var y = coord.y;
         var x = coord.x;

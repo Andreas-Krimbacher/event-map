@@ -1,14 +1,14 @@
 'use strict';
 
-/* Service */
+//service to cluster the data
 
 eventMap.service('Cluster', function() {
-
+    // region clustering for the zoom level 15
     this.getRegionClusters = function(rawMapData){
         var x;
 
+        //cluster definition
         var clusters = {};
-
         clusters['Langstrasse'] = {
             point : {lat: 47.376,lng: 8.529},
             data : {concert : [],exhib: [], film: [], other: []},
@@ -50,6 +50,7 @@ eventMap.service('Cluster', function() {
             hasSingleData: false
         }
 
+        //clustering
         for(x in rawMapData){
 
             if(rawMapData[x].showOnMap){
@@ -79,58 +80,13 @@ eventMap.service('Cluster', function() {
         return returnCluster;
     }
 
+
+    //lustering for zoom levels 16-18
     this.getPreClusters = function(rawMapData){
         var i, j, k,l ,dist,nearPoints,clusterData,clusterFound,oldCluster,newCluster,clusterIndex;
-        var preCluster15 = [];
         var preCluster16 = [];
         var preCluster17 = [];
         var preCluster18 = [];
-
-        //--------------------------------------------------------------------------------------------------------------
-        //------------------------------------------------preCluster15--------------------------------------------------
-
-        clusterIndex = 0;
-        i = rawMapData.length;
-        while(i--){
-            if(rawMapData[i].showOnMap){
-                nearPoints = rawMapData[i].nearPoint.zoom15pre;
-                l = nearPoints.length-1;
-                j = -1;
-                clusterFound = false;
-
-                while(j++ != l){
-                    if(rawMapData[nearPoints[j]].cluster.preCluster15 != null && rawMapData[nearPoints[j]].showOnMap){
-                        if(!clusterFound){
-                            preCluster15[rawMapData[nearPoints[j]].cluster.preCluster15].data.push(rawMapData[i]);
-                            preCluster15[rawMapData[nearPoints[j]].cluster.preCluster15].pointsString += '|'+rawMapData[i].id;
-                            rawMapData[i].cluster.preCluster15 = rawMapData[nearPoints[j]].cluster.preCluster15;
-                            clusterFound = true;
-                        }
-                        else{
-                            oldCluster = rawMapData[nearPoints[j]].cluster.preCluster15;
-                            newCluster = rawMapData[i].cluster.preCluster15;
-                            if(newCluster != oldCluster){
-                                clusterData = preCluster15[oldCluster].data;
-                                k = clusterData.length;
-                                while(k--){
-                                    clusterData[k].cluster.preCluster15 = newCluster;
-                                    preCluster15[newCluster].data.push(clusterData[k]);
-                                }
-                                preCluster15[newCluster].pointsString += '|'+preCluster15[oldCluster].pointsString;
-                                preCluster15[oldCluster].data = [];
-                                preCluster15[oldCluster].hasData = false;
-                                preCluster15[oldCluster].pointsString = '';
-                            }
-                        }
-                    }
-                }
-                if(!clusterFound){
-                    preCluster15.push({id:clusterIndex,point : {lat: null,lng: null},data:[rawMapData[i]],hasData : true,hasSingleData : false, pointsString : rawMapData[i].id })
-                    rawMapData[i].cluster.preCluster15 = clusterIndex;
-                    clusterIndex++;
-                }
-            }
-        }
         
         //--------------------------------------------------------------------------------------------------------------
         //------------------------------------------------preCluster16--------------------------------------------------
@@ -274,29 +230,8 @@ eventMap.service('Cluster', function() {
 
         //--------------------------------------------------------------------------------------------------------------
         //------------------------------------------------use when only pre clustering is done--------------------------
-
+        // clusters are generated from the precluster result
         var latSum,lngSum,pointCount;
-        //---preCluster15
-        i = preCluster15.length;
-        while(i--){
-            if(preCluster15[i].hasData){
-                latSum = lngSum = 0;
-                var data = {concert : [],exhib: [], film: [], other: []};
-                pointCount = preCluster15[i].data.length;
-                j = pointCount;
-                while(j--){
-                    latSum += preCluster15[i].data[j].point.lat;
-                    lngSum += preCluster15[i].data[j].point.lng;
-
-                    data[preCluster15[i].data[j].type].push(preCluster15[i].data[j]);
-                }
-                preCluster15[i].point.lat = latSum/pointCount;
-                preCluster15[i].point.lng = lngSum/pointCount;
-                preCluster15[i].data = data;
-                preCluster15[i].marker = null;
-                if(pointCount == 1)  preCluster15[i].hasSingleData = true;
-            }
-        }
         //---preCluster16
         i = preCluster16.length;
         while(i--){
@@ -362,9 +297,10 @@ eventMap.service('Cluster', function() {
         }
         //---
 
-        return {preCluster15 : preCluster15, preCluster16 : preCluster16, preCluster17 : preCluster17, preCluster18 : preCluster18};
+        return {preCluster16 : preCluster16, preCluster17 : preCluster17, preCluster18 : preCluster18};
     }
 
+    //calculate distance between each point and generate near point arrays
     this.calculateDistance = function(rawMapData){
         var i, j,dist;
 

@@ -1,5 +1,9 @@
-eventMap.FilterBarController = function( $scope, $rootScope, Slider,MapService) {
+'use strict';
 
+// Controller for the Filter bar
+
+eventMap.FilterBarController = function( $scope, $rootScope, Slider,MapService) {
+    // init slider values
     $scope.sliderTable = Slider.getSliderTable(0.45,0.7,1000);
     $scope.sliderCurrentDate = Slider.getSliderCurrentDate();
     $scope.sliderStartDate = Slider.getSliderStartDate();
@@ -9,6 +13,7 @@ eventMap.FilterBarController = function( $scope, $rootScope, Slider,MapService) 
     $scope.sliderEndDate6 = new Date($scope.sliderEndDate.getTime());
     $scope.sliderEndDate6.setHours(6);
 
+    //init filter
     $scope.filter = {concert: true,
         exhib: true,
         film: true,
@@ -23,12 +28,16 @@ eventMap.FilterBarController = function( $scope, $rootScope, Slider,MapService) 
     $scope.filter.end.setHours(6);
     $scope.filter.end.setDate($scope.filter.start.getDate()+8);
 
+    // get slider values
+    var sliderValues = Slider.getSliderValues($scope.sliderTable,$scope.sliderStartDate6,$scope.sliderEndDate6,$scope.filter.start,$scope.filter.end);
+
+
+    //init POI buttons
     $scope.poiButtonsActive = true;
     $scope.eatDrinkActive = false;
     $scope.busActive = false;
 
-    var sliderValues = Slider.getSliderValues($scope.sliderTable,$scope.sliderStartDate6,$scope.sliderEndDate6,$scope.filter.start,$scope.filter.end);
-
+    // create slider
     jQuery("#filter-slider").slider({
         range: true,
         min: 0,
@@ -59,12 +68,14 @@ eventMap.FilterBarController = function( $scope, $rootScope, Slider,MapService) 
         }
     });
 
+    //listener to update the view to the current filter
     $scope.$on('updateFilterInView', function(event,filter) {
         var sliderValues = Slider.getSliderValues($scope.sliderTable,$scope.sliderStartDate6,$scope.sliderEndDate6,filter.start,filter.end);
         jQuery("#filter-slider").slider('values', [ sliderValues.start, sliderValues.end ]);
         $scope.filter = filter;
     });
 
+    //set filter dates in view
     $scope.setFilterDates = function(string){
         var today = new Date();
         if(today.getHours() < 6){
@@ -101,8 +112,7 @@ eventMap.FilterBarController = function( $scope, $rootScope, Slider,MapService) 
         if($scope.datepicker) $scope.updateDatepicker();
     }
 
-    //Datepicker
-
+    //create datepickers
     $scope.datepicker = false;
 
     $(function() {
@@ -131,6 +141,7 @@ eventMap.FilterBarController = function( $scope, $rootScope, Slider,MapService) 
         });
     });
 
+    // listener to update the datepicker
     $scope.$watch('datepicker',function(newValue){
         if(newValue) $scope.updateDatepicker();
     })
@@ -161,13 +172,13 @@ eventMap.FilterBarController = function( $scope, $rootScope, Slider,MapService) 
 
     };
 
-
-
+    //onklick for category filter buttons
     $scope.onCategoryBtnClick = function(category){
         $scope.filter[category] = !$scope.filter[category];
         $scope.actualizeData();
     }
 
+    //function to actualize the map data
     $scope.actualizeData = function(){
         $rootScope.$broadcast('actualizeData',angular.copy($scope.filter));
     }
@@ -180,6 +191,7 @@ eventMap.FilterBarController = function( $scope, $rootScope, Slider,MapService) 
         $rootScope.$broadcast('actualizeData',angular.copy($scope.filter));
     });
 
+    //onclick functions for POI buttons
     $scope.$on('setPoiButtonsActive', function(event,mode) {
         if(!$scope.$$phase) {
             $scope.$apply(function(){
@@ -196,8 +208,6 @@ eventMap.FilterBarController = function( $scope, $rootScope, Slider,MapService) 
             $scope.poiButtonsActive = mode;
         }
     });
-
-
     $scope.setPOIOverlay = function(type,mode){
         if($scope.poiButtonsActive){
             if(type == 'bus'){
