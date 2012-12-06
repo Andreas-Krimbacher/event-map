@@ -1,0 +1,3596 @@
+[
+	{
+		"x": "8.520004",
+		"y": "47.365147",
+		"name": "Delmonico Fine Arts Restaurant",
+		"type": "rest"
+	},
+	{
+		"x": "8.520036",
+		"y": "47.367343",
+		"name": "Al Capone",
+		"type": "rest"
+	},
+	{
+		"x": "8.520135",
+		"y": "47.37008",
+		"name": "Migros Take Away",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.520189",
+		"y": "47.366741",
+		"name": "World's End",
+		"type": "cafe"
+	},
+	{
+		"x": "8.520214",
+		"y": "47.363953",
+		"name": "The Lemon Grass",
+		"type": "rest"
+	},
+	{
+		"x": "8.520224",
+		"y": "47.363582",
+		"name": "Memo Kebab Pizza",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.520232",
+		"y": "47.367177",
+		"name": "Wiizäpfli",
+		"type": "bar"
+	},
+	{
+		"x": "8.520351",
+		"y": "47.369526",
+		"name": "New Point",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.520441",
+		"y": "47.364141",
+		"name": "Verona",
+		"type": "rest"
+	},
+	{
+		"x": "8.520473",
+		"y": "47.379968",
+		"name": "Restaurant Güterbahnhof",
+		"type": "rest"
+	},
+	{
+		"x": "8.520605",
+		"y": "47.378362",
+		"name": "Greulich",
+		"type": "hotel"
+	},
+	{
+		"x": "8.520673",
+		"y": "47.376715",
+		"name": "Pergola",
+		"type": "rest"
+	},
+	{
+		"x": "8.520741",
+		"y": "47.369801",
+		"name": "Famiglia Tremonte",
+		"type": "rest"
+	},
+	{
+		"x": "8.520783",
+		"y": "47.364542",
+		"name": "Artusi",
+		"type": "rest"
+	},
+	{
+		"x": "8.520824",
+		"y": "47.370277",
+		"name": "Petit Saigon",
+		"type": "rest"
+	},
+	{
+		"x": "8.520872",
+		"y": "47.369863",
+		"name": "Desperado",
+		"type": "rest"
+	},
+	{
+		"x": "8.521226",
+		"y": "47.366232",
+		"name": "Napoli (da Gerardo)",
+		"type": "rest"
+	},
+	{
+		"x": "8.521253",
+		"y": "47.377875",
+		"name": "Sankt Meinrad",
+		"type": "rest"
+	},
+	{
+		"x": "8.521306",
+		"y": "47.365145",
+		"name": "Restaurant Sunnezyt",
+		"type": "rest"
+	},
+	{
+		"x": "8.521484",
+		"y": "47.37177",
+		"name": "FiveSpice",
+		"type": "rest"
+	},
+	{
+		"x": "8.521521",
+		"y": "47.364451",
+		"name": "Monaco Bar",
+		"type": "bar"
+	},
+	{
+		"x": "8.52156",
+		"y": "47.374294",
+		"name": "Cafe Kalkbreite",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.521596",
+		"y": "47.365919",
+		"name": "La casa del cappuccino",
+		"type": "cafe"
+	},
+	{
+		"x": "8.521854",
+		"y": "47.373755",
+		"name": "Depot Bar",
+		"type": "bar"
+	},
+	{
+		"x": "8.521936",
+		"y": "47.374313",
+		"name": "Di Leonardo",
+		"type": "rest"
+	},
+	{
+		"x": "8.52223",
+		"y": "47.374491",
+		"name": "Charlie",
+		"type": "bar"
+	},
+	{
+		"x": "8.522256",
+		"y": "47.374016",
+		"name": "Körnerstube",
+		"type": "rest"
+	},
+	{
+		"x": "8.522345",
+		"y": "47.376155",
+		"name": "La Baracca",
+		"type": "rest"
+	},
+	{
+		"x": "8.522585",
+		"y": "47.37738",
+		"name": "Zebra Bar",
+		"type": "bar"
+	},
+	{
+		"x": "8.522685",
+		"y": "47.36016",
+		"name": "Zur Goldenen Rose",
+		"type": "rest"
+	},
+	{
+		"x": "8.52292",
+		"y": "47.374471",
+		"name": "Huusmaa",
+		"type": "cafe"
+	},
+	{
+		"x": "8.523028",
+		"y": "47.377211",
+		"name": "Kafi für Dich",
+		"type": "cafe"
+	},
+	{
+		"x": "8.523313",
+		"y": "47.372431",
+		"name": "Elisaburg",
+		"type": "rest"
+	},
+	{
+		"x": "8.523359",
+		"y": "47.37871",
+		"name": "Ristorante & Pizzeria Grottino 79",
+		"type": "rest"
+	},
+	{
+		"x": "8.523363",
+		"y": "47.374287",
+		"name": "Gate 125",
+		"type": "bar"
+	},
+	{
+		"x": "8.523441",
+		"y": "47.370912",
+		"name": "Bahnhof Wiedikon",
+		"type": "rest"
+	},
+	{
+		"x": "8.523595",
+		"y": "47.373275",
+		"name": "Köchlistube",
+		"type": "rest"
+	},
+	{
+		"x": "8.523613",
+		"y": "47.371262",
+		"name": "Spetacolo",
+		"type": "cafe"
+	},
+	{
+		"x": "8.523779",
+		"y": "47.379427",
+		"name": "Werkhof",
+		"type": "rest"
+	},
+	{
+		"x": "8.524057",
+		"y": "47.37442",
+		"name": "Forum",
+		"type": "pub"
+	},
+	{
+		"x": "8.524059",
+		"y": "47.372634",
+		"name": "Si o No",
+		"type": "pub"
+	},
+	{
+		"x": "8.524133",
+		"y": "47.370798",
+		"name": "Pearls",
+		"type": "bar"
+	},
+	{
+		"x": "8.524222",
+		"y": "47.373299",
+		"name": "El Fuego Latino",
+		"type": "bar"
+	},
+	{
+		"x": "8.524378",
+		"y": "47.375622",
+		"name": "Kobal",
+		"type": "rest"
+	},
+	{
+		"x": "8.524386",
+		"y": "47.371004",
+		"name": "Cafeteria Arcade",
+		"type": "cafe"
+	},
+	{
+		"x": "8.524409",
+		"y": "47.374845",
+		"name": "Suan Long",
+		"type": "rest"
+	},
+	{
+		"x": "8.524436",
+		"y": "47.377747",
+		"name": "Restaurant B",
+		"type": "rest"
+	},
+	{
+		"x": "8.52447",
+		"y": "47.375453",
+		"name": "Cafe Oase",
+		"type": "cafe"
+	},
+	{
+		"x": "8.524495",
+		"y": "47.372519",
+		"name": "Muniandy Vilas",
+		"type": "rest"
+	},
+	{
+		"x": "8.524501",
+		"y": "47.374537",
+		"name": "Broadway",
+		"type": "rest"
+	},
+	{
+		"x": "8.524541",
+		"y": "47.371549",
+		"name": "King's Kurry",
+		"type": "rest"
+	},
+	{
+		"x": "8.524555",
+		"y": "47.375562",
+		"name": "Sportbar",
+		"type": "pub"
+	},
+	{
+		"x": "8.524563",
+		"y": "47.375036",
+		"name": "Peking Garden",
+		"type": "rest"
+	},
+	{
+		"x": "8.524718",
+		"y": "47.374821",
+		"name": "Dini Mueter",
+		"type": "rest"
+	},
+	{
+		"x": "8.524732",
+		"y": "47.374217",
+		"name": "Plazda",
+		"type": "pub"
+	},
+	{
+		"x": "8.524902",
+		"y": "47.371637",
+		"name": "Hermanseck",
+		"type": "rest"
+	},
+	{
+		"x": "8.524976",
+		"y": "47.375229",
+		"name": "Tinto",
+		"type": "rest"
+	},
+	{
+		"x": "8.524984",
+		"y": "47.379023",
+		"name": "Pflug",
+		"type": "rest"
+	},
+	{
+		"x": "8.525019",
+		"y": "47.373993",
+		"name": "La Penisola",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.525035",
+		"y": "47.376563",
+		"name": "Karaoke 4you",
+		"type": "bar"
+	},
+	{
+		"x": "8.525152",
+		"y": "47.375905",
+		"name": "Celia",
+		"type": "rest"
+	},
+	{
+		"x": "8.525153",
+		"y": "47.374159",
+		"name": "Schmuklerski",
+		"type": "rest"
+	},
+	{
+		"x": "8.525177",
+		"y": "47.379139",
+		"name": "Lade",
+		"type": "rest"
+	},
+	{
+		"x": "8.525236",
+		"y": "47.379523",
+		"name": "La Strega",
+		"type": "bar"
+	},
+	{
+		"x": "8.525293",
+		"y": "47.376487",
+		"name": "Subway",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.525325",
+		"y": "47.379315",
+		"name": "Siri",
+		"type": "bar"
+	},
+	{
+		"x": "8.525552",
+		"y": "47.374034",
+		"name": "Negishi",
+		"type": "rest"
+	},
+	{
+		"x": "8.525575",
+		"y": "47.378148",
+		"name": "Lina's Bar",
+		"type": "bar"
+	},
+	{
+		"x": "8.525585",
+		"y": "47.376613",
+		"name": "Treff-Point Kiosk",
+		"type": "cafe"
+	},
+	{
+		"x": "8.525645",
+		"y": "47.371909",
+		"name": "Gartenhof",
+		"type": "rest"
+	},
+	{
+		"x": "8.525707",
+		"y": "47.379694",
+		"name": "Eichhörnli",
+		"type": "rest"
+	},
+	{
+		"x": "8.525763",
+		"y": "47.377591",
+		"name": "Schweizer Weinstube",
+		"type": "rest"
+	},
+	{
+		"x": "8.525882",
+		"y": "47.376913",
+		"name": "Gotthard",
+		"type": "rest"
+	},
+	{
+		"x": "8.525887",
+		"y": "47.374972",
+		"name": "Central",
+		"type": "pub"
+	},
+	{
+		"x": "8.525924",
+		"y": "47.377657",
+		"name": "BonneVille",
+		"type": "bar"
+	},
+	{
+		"x": "8.525928",
+		"y": "47.379382",
+		"name": "Biondi",
+		"type": "rest"
+	},
+	{
+		"x": "8.525932",
+		"y": "47.376578",
+		"name": "Hooters",
+		"type": "rest"
+	},
+	{
+		"x": "8.525979",
+		"y": "47.377028",
+		"name": "Malibu Lounge",
+		"type": "bar"
+	},
+	{
+		"x": "8.526038",
+		"y": "47.372579",
+		"name": "Moléson",
+		"type": "rest"
+	},
+	{
+		"x": "8.526056",
+		"y": "47.375227",
+		"name": "Xenix Bar",
+		"type": "pub"
+	},
+	{
+		"x": "8.526075",
+		"y": "47.379478",
+		"name": "The Caribbean",
+		"type": "cafe"
+	},
+	{
+		"x": "8.526081",
+		"y": "47.377453",
+		"name": "Red Lips Cabaret Bar",
+		"type": "bar"
+	},
+	{
+		"x": "8.526093",
+		"y": "47.379285",
+		"name": "Bar 63",
+		"type": "bar"
+	},
+	{
+		"x": "8.526103",
+		"y": "47.37789",
+		"name": "Apocalipsis",
+		"type": "bar"
+	},
+	{
+		"x": "8.526114",
+		"y": "47.361544",
+		"name": "99",
+		"type": "rest"
+	},
+	{
+		"x": "8.526121",
+		"y": "47.373839",
+		"name": "Les délics d'orient",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.52615",
+		"y": "47.378207",
+		"name": "Kern Bar",
+		"type": "bar"
+	},
+	{
+		"x": "8.526151",
+		"y": "47.361894",
+		"name": "Weisses Rössli",
+		"type": "rest"
+	},
+	{
+		"x": "8.526154",
+		"y": "47.373154",
+		"name": "Paneolio",
+		"type": "rest"
+	},
+	{
+		"x": "8.526172",
+		"y": "47.376921",
+		"name": "Casablanca",
+		"type": "cafe"
+	},
+	{
+		"x": "8.526206",
+		"y": "47.379602",
+		"name": "Kacike Bar",
+		"type": "bar"
+	},
+	{
+		"x": "8.526259",
+		"y": "47.377332",
+		"name": "Aargauerhof",
+		"type": "rest"
+	},
+	{
+		"x": "8.526265",
+		"y": "47.379397",
+		"name": "Midway",
+		"type": "bar"
+	},
+	{
+		"x": "8.526358",
+		"y": "47.377477",
+		"name": "Bierhalle zum Krokodil",
+		"type": "rest"
+	},
+	{
+		"x": "8.526363",
+		"y": "47.37826",
+		"name": "Jeanette Bar",
+		"type": "bar"
+	},
+	{
+		"x": "8.526546",
+		"y": "47.377434",
+		"name": "Green Mango Internet Cafe Bar",
+		"type": "cafe"
+	},
+	{
+		"x": "8.526554",
+		"y": "47.373881",
+		"name": "Le Cedre",
+		"type": "rest"
+	},
+	{
+		"x": "8.526599",
+		"y": "47.378777",
+		"name": "Stella Alpina",
+		"type": "rest"
+	},
+	{
+		"x": "8.526609",
+		"y": "47.361815",
+		"name": "Lotus Garden",
+		"type": "rest"
+	},
+	{
+		"x": "8.526617",
+		"y": "47.378604",
+		"name": "Fogo Latino",
+		"type": "bar"
+	},
+	{
+		"x": "8.526656",
+		"y": "47.362414",
+		"name": "Bederhof",
+		"type": "rest"
+	},
+	{
+		"x": "8.526663",
+		"y": "47.377592",
+		"name": "Espresso Bar",
+		"type": "cafe"
+	},
+	{
+		"x": "8.526673",
+		"y": "47.377625",
+		"name": "World Bar",
+		"type": "bar"
+	},
+	{
+		"x": "8.526684",
+		"y": "47.378087",
+		"name": "Vacant",
+		"type": "bar"
+	},
+	{
+		"x": "8.526718",
+		"y": "47.361168",
+		"name": "Don Leone",
+		"type": "rest"
+	},
+	{
+		"x": "8.526723",
+		"y": "47.379779",
+		"name": "Amazonia Bar",
+		"type": "pub"
+	},
+	{
+		"x": "8.526733",
+		"y": "47.361525",
+		"name": "Strudelhaus",
+		"type": "cafe"
+	},
+	{
+		"x": "8.526751",
+		"y": "47.362484",
+		"name": "Bederbar",
+		"type": "bar"
+	},
+	{
+		"x": "8.526848",
+		"y": "47.378653",
+		"name": "Rotana",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.526876",
+		"y": "47.378439",
+		"name": "Lambada Bar Club",
+		"type": "bar"
+	},
+	{
+		"x": "8.526946",
+		"y": "47.377264",
+		"name": "Restaurant Sonne",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.527058",
+		"y": "47.372047",
+		"name": "Restaurant Werd",
+		"type": "rest"
+	},
+	{
+		"x": "8.527064",
+		"y": "47.377264",
+		"name": "Sonne",
+		"type": "rest"
+	},
+	{
+		"x": "8.527097",
+		"y": "47.378783",
+		"name": "Gambrinus",
+		"type": "rest"
+	},
+	{
+		"x": "8.527121",
+		"y": "47.377929",
+		"name": "Pizzeria Borsalino",
+		"type": "rest"
+	},
+	{
+		"x": "8.527148",
+		"y": "47.378191",
+		"name": "Longstreet Bar Club",
+		"type": "bar"
+	},
+	{
+		"x": "8.527154",
+		"y": "47.375652",
+		"name": "Brasserie Helvetiaplatz",
+		"type": "rest"
+	},
+	{
+		"x": "8.52721",
+		"y": "47.37849",
+		"name": "Schweizerdegen",
+		"type": "rest"
+	},
+	{
+		"x": "8.527214",
+		"y": "47.378261",
+		"name": "Piranha Bar",
+		"type": "bar"
+	},
+	{
+		"x": "8.527234",
+		"y": "47.376983",
+		"name": "Biergarten",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.527312",
+		"y": "47.378784",
+		"name": "Lugano Bar",
+		"type": "bar"
+	},
+	{
+		"x": "8.527322",
+		"y": "47.379133",
+		"name": "X-Trend",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.52733",
+		"y": "47.377798",
+		"name": "Bar-izzi",
+		"type": "rest"
+	},
+	{
+		"x": "8.527332",
+		"y": "47.376955",
+		"name": "Biergarten",
+		"type": "rest"
+	},
+	{
+		"x": "8.527354",
+		"y": "47.377599",
+		"name": "BARteca",
+		"type": "rest"
+	},
+	{
+		"x": "8.527365",
+		"y": "47.379244",
+		"name": "Memphis",
+		"type": "cafe"
+	},
+	{
+		"x": "8.527376",
+		"y": "47.378875",
+		"name": "Take Away zur alten Metzgerei",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.527411",
+		"y": "47.379952",
+		"name": "Old Pub Gregory",
+		"type": "bar"
+	},
+	{
+		"x": "8.52742",
+		"y": "47.379378",
+		"name": "Rothaus",
+		"type": "hotel"
+	},
+	{
+		"x": "8.527445",
+		"y": "47.377079",
+		"name": "Revier",
+		"type": "bar"
+	},
+	{
+		"x": "8.527467",
+		"y": "47.377534",
+		"name": "Red Light",
+		"type": "bar"
+	},
+	{
+		"x": "8.527586",
+		"y": "47.373789",
+		"name": "Asia Noodle",
+		"type": "rest"
+	},
+	{
+		"x": "8.527628",
+		"y": "47.376796",
+		"name": "Aquatilis Bar",
+		"type": "bar"
+	},
+	{
+		"x": "8.527636",
+		"y": "47.375937",
+		"name": "Rex Populi",
+		"type": "rest"
+	},
+	{
+		"x": "8.527641",
+		"y": "47.372568",
+		"name": "Arabesque",
+		"type": "rest"
+	},
+	{
+		"x": "8.527649",
+		"y": "47.377254",
+		"name": "La Catrina",
+		"type": "bar"
+	},
+	{
+		"x": "8.527663",
+		"y": "47.373914",
+		"name": "St. Jakob ThéCafé",
+		"type": "cafe"
+	},
+	{
+		"x": "8.527681",
+		"y": "47.379827",
+		"name": "La Cucina",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.52769",
+		"y": "47.377609",
+		"name": "Zucchero",
+		"type": "cafe"
+	},
+	{
+		"x": "8.527702",
+		"y": "47.377067",
+		"name": "Regina",
+		"type": "hotel"
+	},
+	{
+		"x": "8.527767",
+		"y": "47.377355",
+		"name": "Pizzeria Mario",
+		"type": "rest"
+	},
+	{
+		"x": "8.527788",
+		"y": "47.378761",
+		"name": "Keo",
+		"type": "rest"
+	},
+	{
+		"x": "8.527796",
+		"y": "47.377993",
+		"name": "Negresco",
+		"type": "bar"
+	},
+	{
+		"x": "8.527806",
+		"y": "47.378163",
+		"name": "Esquina",
+		"type": "rest"
+	},
+	{
+		"x": "8.527852",
+		"y": "47.37609",
+		"name": "Ah-Hua",
+		"type": "rest"
+	},
+	{
+		"x": "8.527855",
+		"y": "47.379663",
+		"name": "Strauss",
+		"type": "rest"
+	},
+	{
+		"x": "8.527874",
+		"y": "47.376849",
+		"name": "Chilli's Bar",
+		"type": "pub"
+	},
+	{
+		"x": "8.52789",
+		"y": "47.37631",
+		"name": "Fanny Hill",
+		"type": "bar"
+	},
+	{
+		"x": "8.527908",
+		"y": "47.377466",
+		"name": "Brauerhof",
+		"type": "bar"
+	},
+	{
+		"x": "8.527998",
+		"y": "47.376731",
+		"name": "Chilli's Hotel",
+		"type": "hotel"
+	},
+	{
+		"x": "8.528002",
+		"y": "47.373624",
+		"name": "Ristorante Coopi",
+		"type": "rest"
+	},
+	{
+		"x": "8.528039",
+		"y": "47.378637",
+		"name": "Brasil-Grill",
+		"type": "rest"
+	},
+	{
+		"x": "8.528092",
+		"y": "47.372914",
+		"name": "Restaurant Cafeteria Avenida",
+		"type": "cafe"
+	},
+	{
+		"x": "8.528092",
+		"y": "47.376429",
+		"name": "Egoist Cabaret Nightclub",
+		"type": "bar"
+	},
+	{
+		"x": "8.528159",
+		"y": "47.379342",
+		"name": "Bar-Tifosi",
+		"type": "bar"
+	},
+	{
+		"x": "8.528167",
+		"y": "47.37658",
+		"name": "After Dark",
+		"type": "bar"
+	},
+	{
+		"x": "8.528181",
+		"y": "47.375039",
+		"name": "Fribourger Stübli",
+		"type": "rest"
+	},
+	{
+		"x": "8.528224",
+		"y": "47.376537",
+		"name": "Kiosk Semal",
+		"type": "cafe"
+	},
+	{
+		"x": "8.528262",
+		"y": "47.379453",
+		"name": "SansiBar",
+		"type": "bar"
+	},
+	{
+		"x": "8.528294",
+		"y": "47.379235",
+		"name": "Pizzeria Milano",
+		"type": "rest"
+	},
+	{
+		"x": "8.528333",
+		"y": "47.37264",
+		"name": "Bubbles",
+		"type": "rest"
+	},
+	{
+		"x": "8.528449",
+		"y": "47.378416",
+		"name": "Morgenstern da Mario",
+		"type": "rest"
+	},
+	{
+		"x": "8.528454",
+		"y": "47.37522",
+		"name": "Onkel Tom's Hütte \"\"Da Teresa\"\"",
+		"type": "rest"
+	},
+	{
+		"x": "8.52846",
+		"y": "47.37647",
+		"name": "New Velvet Bar",
+		"type": "bar"
+	},
+	{
+		"x": "8.528481",
+		"y": "47.37548",
+		"name": "L'Osteria Mamma Leone",
+		"type": "rest"
+	},
+	{
+		"x": "8.528531",
+		"y": "47.376934",
+		"name": "Thai-Food-Corner",
+		"type": "rest"
+	},
+	{
+		"x": "8.528542",
+		"y": "47.379824",
+		"name": "Pflegezentrum Erlenhof",
+		"type": "pub"
+	},
+	{
+		"x": "8.528559",
+		"y": "47.37679",
+		"name": "San Miguel",
+		"type": "bar"
+	},
+	{
+		"x": "8.528611",
+		"y": "47.376572",
+		"name": "Segantini",
+		"type": "rest"
+	},
+	{
+		"x": "8.528631",
+		"y": "47.378329",
+		"name": "Exer",
+		"type": "rest"
+	},
+	{
+		"x": "8.528657",
+		"y": "47.375334",
+		"name": "Il Gottopardo",
+		"type": "rest"
+	},
+	{
+		"x": "8.528691",
+		"y": "47.376197",
+		"name": "Don Miguel",
+		"type": "bar"
+	},
+	{
+		"x": "8.528732",
+		"y": "47.377153",
+		"name": "Tam-Tam",
+		"type": "bar"
+	},
+	{
+		"x": "8.528745",
+		"y": "47.373474",
+		"name": "Pizzeria Molino",
+		"type": "rest"
+	},
+	{
+		"x": "8.5288",
+		"y": "47.374959",
+		"name": "Teoh",
+		"type": "rest"
+	},
+	{
+		"x": "8.528835",
+		"y": "47.378776",
+		"name": "Total Bar",
+		"type": "pub"
+	},
+	{
+		"x": "8.528839",
+		"y": "47.37699",
+		"name": "Rizzi",
+		"type": "rest"
+	},
+	{
+		"x": "8.528911",
+		"y": "47.376099",
+		"name": "Vegan Kitchen and Bakery",
+		"type": "rest"
+	},
+	{
+		"x": "8.528944",
+		"y": "47.375747",
+		"name": "E.X. 4",
+		"type": "bar"
+	},
+	{
+		"x": "8.529001",
+		"y": "47.376593",
+		"name": "Trübli Bar",
+		"type": "rest"
+	},
+	{
+		"x": "8.529023",
+		"y": "47.372245",
+		"name": "Ristorante Bar Certo",
+		"type": "rest"
+	},
+	{
+		"x": "8.529076",
+		"y": "47.374953",
+		"name": "Don Leone",
+		"type": "bar"
+	},
+	{
+		"x": "8.529089",
+		"y": "47.373046",
+		"name": "Masala",
+		"type": "rest"
+	},
+	{
+		"x": "8.529113",
+		"y": "47.3783",
+		"name": "EasyHotel Zurich",
+		"type": "hotel"
+	},
+	{
+		"x": "8.529138",
+		"y": "47.374687",
+		"name": "Don Leone",
+		"type": "rest"
+	},
+	{
+		"x": "8.529159",
+		"y": "47.375538",
+		"name": "The Mixt",
+		"type": "bar"
+	},
+	{
+		"x": "8.529172",
+		"y": "47.378834",
+		"name": "Haiti Bar",
+		"type": "bar"
+	},
+	{
+		"x": "8.52924",
+		"y": "47.378201",
+		"name": "Liquid",
+		"type": "bar"
+	},
+	{
+		"x": "8.529252",
+		"y": "47.375724",
+		"name": "Convivio",
+		"type": "rest"
+	},
+	{
+		"x": "8.529303",
+		"y": "47.375427",
+		"name": "Daniel H.",
+		"type": "bar"
+	},
+	{
+		"x": "8.529309",
+		"y": "47.376382",
+		"name": "Ristorante Italia",
+		"type": "rest"
+	},
+	{
+		"x": "8.529314",
+		"y": "47.377418",
+		"name": "Art IV Bar chez Sarah",
+		"type": "bar"
+	},
+	{
+		"x": "8.529476",
+		"y": "47.374689",
+		"name": "Nachtigall",
+		"type": "rest"
+	},
+	{
+		"x": "8.5295",
+		"y": "47.377911",
+		"name": "Zum goldenen Fass",
+		"type": "rest"
+	},
+	{
+		"x": "8.529579",
+		"y": "47.37596",
+		"name": "Galmour Bar",
+		"type": "bar"
+	},
+	{
+		"x": "8.529583",
+		"y": "47.374354",
+		"name": "Somtam",
+		"type": "rest"
+	},
+	{
+		"x": "8.529601",
+		"y": "47.373411",
+		"name": "McDonald's",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.529726",
+		"y": "47.377778",
+		"name": "Raja Bongo",
+		"type": "rest"
+	},
+	{
+		"x": "8.529779",
+		"y": "47.379359",
+		"name": "Rosita's",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.529801",
+		"y": "47.37443",
+		"name": "Vasco's Bar",
+		"type": "bar"
+	},
+	{
+		"x": "8.529812",
+		"y": "47.377949",
+		"name": "Le Chef",
+		"type": "rest"
+	},
+	{
+		"x": "8.52987",
+		"y": "47.378702",
+		"name": "Fambar",
+		"type": "bar"
+	},
+	{
+		"x": "8.529956",
+		"y": "47.374303",
+		"name": "Sherif's Bar",
+		"type": "bar"
+	},
+	{
+		"x": "8.529967",
+		"y": "47.378015",
+		"name": "Viet-Thai",
+		"type": "rest"
+	},
+	{
+		"x": "8.529968",
+		"y": "47.378654",
+		"name": "China-Vietnam Shop",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.530228",
+		"y": "47.374666",
+		"name": "Meta's Kutscherhalle",
+		"type": "rest"
+	},
+	{
+		"x": "8.530296",
+		"y": "47.372948",
+		"name": "Stauffacher Tor",
+		"type": "rest"
+	},
+	{
+		"x": "8.530404",
+		"y": "47.378455",
+		"name": "HotPasta 2",
+		"type": "rest"
+	},
+	{
+		"x": "8.530424",
+		"y": "47.377743",
+		"name": "Zeughaushof",
+		"type": "rest"
+	},
+	{
+		"x": "8.530607",
+		"y": "47.374361",
+		"name": "Real",
+		"type": "rest"
+	},
+	{
+		"x": "8.530627",
+		"y": "47.377217",
+		"name": "Sommercafe im Zeughausareal",
+		"type": "rest"
+	},
+	{
+		"x": "8.530798",
+		"y": "47.374181",
+		"name": "Prime Steakhouse",
+		"type": "rest"
+	},
+	{
+		"x": "8.530828",
+		"y": "47.374534",
+		"name": "Eat & Meet",
+		"type": "rest"
+	},
+	{
+		"x": "8.530917",
+		"y": "47.364579",
+		"name": "Joey's Coffee & Kitchen",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.53111",
+		"y": "47.364423",
+		"name": "Maronistand",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.531206",
+		"y": "47.363826",
+		"name": "Suan Long",
+		"type": "rest"
+	},
+	{
+		"x": "8.531398",
+		"y": "47.36484",
+		"name": "McDonald's",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.531493",
+		"y": "47.362735",
+		"name": "The Spice Gourmet",
+		"type": "rest"
+	},
+	{
+		"x": "8.531728",
+		"y": "47.373243",
+		"name": "Helvetia",
+		"type": "rest"
+	},
+	{
+		"x": "8.531771",
+		"y": "47.364702",
+		"name": "Starbucks",
+		"type": "cafe"
+	},
+	{
+		"x": "8.531828",
+		"y": "47.370223",
+		"name": "Athena",
+		"type": "rest"
+	},
+	{
+		"x": "8.531897",
+		"y": "47.370901",
+		"name": "Stocks",
+		"type": "bar"
+	},
+	{
+		"x": "8.532012",
+		"y": "47.374575",
+		"name": "Bernerhof",
+		"type": "rest"
+	},
+	{
+		"x": "8.532038",
+		"y": "47.363917",
+		"name": "Ascot",
+		"type": "hotel"
+	},
+	{
+		"x": "8.532054",
+		"y": "47.363892",
+		"name": "Turf Bar",
+		"type": "bar"
+	},
+	{
+		"x": "8.532073",
+		"y": "47.365435",
+		"name": "Rendez-Vous",
+		"type": "rest"
+	},
+	{
+		"x": "8.532077",
+		"y": "47.364361",
+		"name": "Fujiya of Japan Teppanyaki Steak & Seefood",
+		"type": "rest"
+	},
+	{
+		"x": "8.532217",
+		"y": "47.363869",
+		"name": "Restaurant Ascot",
+		"type": "rest"
+	},
+	{
+		"x": "8.532355",
+		"y": "47.363505",
+		"name": "San Marco",
+		"type": "rest"
+	},
+	{
+		"x": "8.532409",
+		"y": "47.364876",
+		"name": "Wembley",
+		"type": "rest"
+	},
+	{
+		"x": "8.53243",
+		"y": "47.363766",
+		"name": "Tifo",
+		"type": "rest"
+	},
+	{
+		"x": "8.532445",
+		"y": "47.363053",
+		"name": "Olive Garden",
+		"type": "rest"
+	},
+	{
+		"x": "8.532494",
+		"y": "47.373059",
+		"name": "Subway",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.53252",
+		"y": "47.377787",
+		"name": "Café Hochschule für Technik Zürich",
+		"type": "cafe"
+	},
+	{
+		"x": "8.532566",
+		"y": "47.365833",
+		"name": "Tapas Bar Old Inn",
+		"type": "rest"
+	},
+	{
+		"x": "8.532704",
+		"y": "47.371322",
+		"name": "Rimini Bar",
+		"type": "bar"
+	},
+	{
+		"x": "8.532713",
+		"y": "47.377085",
+		"name": "Camino",
+		"type": "rest"
+	},
+	{
+		"x": "8.532753",
+		"y": "47.372992",
+		"name": "Saigon",
+		"type": "rest"
+	},
+	{
+		"x": "8.532892",
+		"y": "47.370233",
+		"name": "Nagasui",
+		"type": "rest"
+	},
+	{
+		"x": "8.533027",
+		"y": "47.362503",
+		"name": "Breitinger",
+		"type": "hotel"
+	},
+	{
+		"x": "8.533247",
+		"y": "47.37736",
+		"name": "Churrascaria Spettus",
+		"type": "rest"
+	},
+	{
+		"x": "8.533348",
+		"y": "47.376388",
+		"name": "Hafenkneipe",
+		"type": "pub"
+	},
+	{
+		"x": "8.533395",
+		"y": "47.360198",
+		"name": "Il Tartufo",
+		"type": "rest"
+	},
+	{
+		"x": "8.533514",
+		"y": "47.372593",
+		"name": "Bar Basso",
+		"type": "bar"
+	},
+	{
+		"x": "8.533686",
+		"y": "47.369808",
+		"name": "2. Akt",
+		"type": "pub"
+	},
+	{
+		"x": "8.533716",
+		"y": "47.374427",
+		"name": "El Lokal",
+		"type": "rest"
+	},
+	{
+		"x": "8.533852",
+		"y": "47.376131",
+		"name": "New Point",
+		"type": "rest"
+	},
+	{
+		"x": "8.533898",
+		"y": "47.363504",
+		"name": "Pizzeria Mimosa",
+		"type": "rest"
+	},
+	{
+		"x": "8.533968",
+		"y": "47.372104",
+		"name": "Wagamama",
+		"type": "rest"
+	},
+	{
+		"x": "8.533996",
+		"y": "47.368657",
+		"name": "Korner",
+		"type": "rest"
+	},
+	{
+		"x": "8.534074",
+		"y": "47.36724",
+		"name": "Spectaturs",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.534121",
+		"y": "47.360213",
+		"name": "L'Altro",
+		"type": "rest"
+	},
+	{
+		"x": "8.534183",
+		"y": "47.366584",
+		"name": "Silberkugel",
+		"type": "rest"
+	},
+	{
+		"x": "8.53431",
+		"y": "47.373024",
+		"name": "Babu's Bakery & Coffeehouse",
+		"type": "cafe"
+	},
+	{
+		"x": "8.534358",
+		"y": "47.364567",
+		"name": "Alden",
+		"type": "hotel"
+	},
+	{
+		"x": "8.534431",
+		"y": "47.376506",
+		"name": "Clipper",
+		"type": "rest"
+	},
+	{
+		"x": "8.534453",
+		"y": "47.372202",
+		"name": "Paddy Reilly's",
+		"type": "pub"
+	},
+	{
+		"x": "8.534683",
+		"y": "47.372787",
+		"name": "Vacant",
+		"type": "pub"
+	},
+	{
+		"x": "8.53477",
+		"y": "47.37475",
+		"name": "Restaurant Reithalle",
+		"type": "rest"
+	},
+	{
+		"x": "8.534991",
+		"y": "47.372861",
+		"name": "Delicato",
+		"type": "rest"
+	},
+	{
+		"x": "8.535034",
+		"y": "47.375101",
+		"name": "Stall 6",
+		"type": "cafe"
+	},
+	{
+		"x": "8.535055",
+		"y": "47.372923",
+		"name": "Mausefalle",
+		"type": "pub"
+	},
+	{
+		"x": "8.535582",
+		"y": "47.374367",
+		"name": "MaDonna",
+		"type": "rest"
+	},
+	{
+		"x": "8.535666",
+		"y": "47.37307",
+		"name": "Cafe Schmidhof",
+		"type": "cafe"
+	},
+	{
+		"x": "8.535789",
+		"y": "47.373597",
+		"name": "Golosone",
+		"type": "rest"
+	},
+	{
+		"x": "8.535905",
+		"y": "47.377915",
+		"name": "Caffè Spettacolo",
+		"type": "cafe"
+	},
+	{
+		"x": "8.535922",
+		"y": "47.368109",
+		"name": "Starbucks",
+		"type": "cafe"
+	},
+	{
+		"x": "8.535929",
+		"y": "47.368685",
+		"name": "Solino",
+		"type": "cafe"
+	},
+	{
+		"x": "8.536029",
+		"y": "47.365499",
+		"name": "Arabellasheraton Neues Schloss",
+		"type": "hotel"
+	},
+	{
+		"x": "8.536102",
+		"y": "47.367357",
+		"name": "Palavrion",
+		"type": "rest"
+	},
+	{
+		"x": "8.536171",
+		"y": "47.367288",
+		"name": "Beef Club",
+		"type": "rest"
+	},
+	{
+		"x": "8.536357",
+		"y": "47.371632",
+		"name": "Kaufleuten",
+		"type": "rest"
+	},
+	{
+		"x": "8.53649",
+		"y": "47.36677",
+		"name": "Sam's Pizza",
+		"type": "rest"
+	},
+	{
+		"x": "8.536531",
+		"y": "47.37172",
+		"name": "Kaufleuten",
+		"type": "bar"
+	},
+	{
+		"x": "8.536549",
+		"y": "47.374913",
+		"name": "City Hotel",
+		"type": "hotel"
+	},
+	{
+		"x": "8.536578",
+		"y": "47.368376",
+		"name": "Nocciolina",
+		"type": "cafe"
+	},
+	{
+		"x": "8.53661",
+		"y": "47.361779",
+		"name": "Seebad Enge",
+		"type": "bar"
+	},
+	{
+		"x": "8.536686",
+		"y": "47.372906",
+		"name": "Glogge-Egge",
+		"type": "rest"
+	},
+	{
+		"x": "8.536709",
+		"y": "47.37323",
+		"name": "Hiltl",
+		"type": "rest"
+	},
+	{
+		"x": "8.536869",
+		"y": "47.365894",
+		"name": "Barfly'z",
+		"type": "bar"
+	},
+	{
+		"x": "8.536881",
+		"y": "47.368517",
+		"name": "La Stanza",
+		"type": "bar"
+	},
+	{
+		"x": "8.537178",
+		"y": "47.372204",
+		"name": "James Joyce",
+		"type": "rest"
+	},
+	{
+		"x": "8.537235",
+		"y": "47.379736",
+		"name": "Wirtschaft zum Vorbahnhof",
+		"type": "rest"
+	},
+	{
+		"x": "8.537375",
+		"y": "47.379967",
+		"name": "St.Gallerhof",
+		"type": "rest"
+	},
+	{
+		"x": "8.537377",
+		"y": "47.367621",
+		"name": "Le Poisson",
+		"type": "rest"
+	},
+	{
+		"x": "8.537487",
+		"y": "47.367506",
+		"name": "Glärnischhof",
+		"type": "hotel"
+	},
+	{
+		"x": "8.537522",
+		"y": "47.3771",
+		"name": "Schützengasse",
+		"type": "rest"
+	},
+	{
+		"x": "8.537531",
+		"y": "47.367609",
+		"name": "Vivace",
+		"type": "rest"
+	},
+	{
+		"x": "8.537815",
+		"y": "47.371352",
+		"name": "Carlton",
+		"type": "bar"
+	},
+	{
+		"x": "8.537953",
+		"y": "47.373182",
+		"name": "Ernst",
+		"type": "rest"
+	},
+	{
+		"x": "8.537999",
+		"y": "47.365184",
+		"name": "Intermezzo",
+		"type": "rest"
+	},
+	{
+		"x": "8.538058",
+		"y": "47.376131",
+		"name": "Boos",
+		"type": "pub"
+	},
+	{
+		"x": "8.538117",
+		"y": "47.373541",
+		"name": "Sprüngli",
+		"type": "cafe"
+	},
+	{
+		"x": "8.538132",
+		"y": "47.37146",
+		"name": "Starbucks",
+		"type": "cafe"
+	},
+	{
+		"x": "8.538498",
+		"y": "47.376039",
+		"name": "SAM's Pizza",
+		"type": "rest"
+	},
+	{
+		"x": "8.53852",
+		"y": "47.368937",
+		"name": "Coco",
+		"type": "rest"
+	},
+	{
+		"x": "8.538537",
+		"y": "47.37527",
+		"name": "McDonald's",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.538684",
+		"y": "47.374877",
+		"name": "Apperto",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.538684",
+		"y": "47.377124",
+		"name": "Mister Wong",
+		"type": "rest"
+	},
+	{
+		"x": "8.538756",
+		"y": "47.371738",
+		"name": "Manta Bar",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.538837",
+		"y": "47.376697",
+		"name": "Walliser Kanne",
+		"type": "rest"
+	},
+	{
+		"x": "8.539015",
+		"y": "47.373556",
+		"name": "Confiserie Honold",
+		"type": "cafe"
+	},
+	{
+		"x": "8.539103",
+		"y": "47.370929",
+		"name": "Al Leone",
+		"type": "cafe"
+	},
+	{
+		"x": "8.539258",
+		"y": "47.373662",
+		"name": "Starbucks",
+		"type": "cafe"
+	},
+	{
+		"x": "8.539265",
+		"y": "47.369375",
+		"name": "Sprüngli",
+		"type": "cafe"
+	},
+	{
+		"x": "8.539271",
+		"y": "47.376424",
+		"name": "St. Gotthard",
+		"type": "hotel"
+	},
+	{
+		"x": "8.53939",
+		"y": "47.374004",
+		"name": "The Lion",
+		"type": "pub"
+	},
+	{
+		"x": "8.539393",
+		"y": "47.376391",
+		"name": "St. Gotthard",
+		"type": "cafe"
+	},
+	{
+		"x": "8.539436",
+		"y": "47.367149",
+		"name": "Hotel Baur au Lac",
+		"type": "hotel"
+	},
+	{
+		"x": "8.539441",
+		"y": "47.376965",
+		"name": "Schweizerhof",
+		"type": "hotel"
+	},
+	{
+		"x": "8.539483",
+		"y": "47.374365",
+		"name": "Brasserie Lipp",
+		"type": "rest"
+	},
+	{
+		"x": "8.539553",
+		"y": "47.369903",
+		"name": "Restaurant Baur",
+		"type": "rest"
+	},
+	{
+		"x": "8.53968",
+		"y": "47.36996",
+		"name": "Savoy Bar",
+		"type": "bar"
+	},
+	{
+		"x": "8.539772",
+		"y": "47.369769",
+		"name": "Hotel Savoy Baur en Ville",
+		"type": "hotel"
+	},
+	{
+		"x": "8.539788",
+		"y": "47.375173",
+		"name": "Casa Mia",
+		"type": "rest"
+	},
+	{
+		"x": "8.539797",
+		"y": "47.376979",
+		"name": "Suan Long",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.53986",
+		"y": "47.374201",
+		"name": "Urania",
+		"type": "rest"
+	},
+	{
+		"x": "8.539881",
+		"y": "47.370637",
+		"name": "Kropf",
+		"type": "rest"
+	},
+	{
+		"x": "8.539899",
+		"y": "47.371334",
+		"name": "Tao's",
+		"type": "rest"
+	},
+	{
+		"x": "8.539903",
+		"y": "47.370045",
+		"name": "Contrapunto",
+		"type": "rest"
+	},
+	{
+		"x": "8.539922",
+		"y": "47.376414",
+		"name": "Balthasar",
+		"type": "cafe"
+	},
+	{
+		"x": "8.539994",
+		"y": "47.376401",
+		"name": "D-Vino",
+		"type": "rest"
+	},
+	{
+		"x": "8.539997",
+		"y": "47.370363",
+		"name": "Zeughauskeller",
+		"type": "rest"
+	},
+	{
+		"x": "8.540027",
+		"y": "47.372252",
+		"name": "Widder",
+		"type": "hotel"
+	},
+	{
+		"x": "8.540048",
+		"y": "47.370154",
+		"name": "Orsini",
+		"type": "rest"
+	},
+	{
+		"x": "8.540056",
+		"y": "47.377615",
+		"name": "Au Premier",
+		"type": "rest"
+	},
+	{
+		"x": "8.540063",
+		"y": "47.376383",
+		"name": "City",
+		"type": "cafe"
+	},
+	{
+		"x": "8.540074",
+		"y": "47.37575",
+		"name": "Nelson",
+		"type": "pub"
+	},
+	{
+		"x": "8.540148",
+		"y": "47.376776",
+		"name": "Starbucks",
+		"type": "cafe"
+	},
+	{
+		"x": "8.5402",
+		"y": "47.370105",
+		"name": "Münsterhof",
+		"type": "rest"
+	},
+	{
+		"x": "8.540216",
+		"y": "47.376176",
+		"name": "Sein",
+		"type": "rest"
+	},
+	{
+		"x": "8.540217",
+		"y": "47.368986",
+		"name": "Milchbar",
+		"type": "rest"
+	},
+	{
+		"x": "8.540225",
+		"y": "47.370248",
+		"name": "Heugümper",
+		"type": "rest"
+	},
+	{
+		"x": "8.54029",
+		"y": "47.375786",
+		"name": "Schminkbar",
+		"type": "pub"
+	},
+	{
+		"x": "8.540334",
+		"y": "47.376717",
+		"name": "McDonald's",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.540402",
+		"y": "47.376135",
+		"name": "Yumihana",
+		"type": "rest"
+	},
+	{
+		"x": "8.540404",
+		"y": "47.372008",
+		"name": "Reblaube",
+		"type": "rest"
+	},
+	{
+		"x": "8.540431",
+		"y": "47.370249",
+		"name": "Zunfthaus zur Waag",
+		"type": "rest"
+	},
+	{
+		"x": "8.540434",
+		"y": "47.377551",
+		"name": "Imagine",
+		"type": "rest"
+	},
+	{
+		"x": "8.540569",
+		"y": "47.3693",
+		"name": "Strozzi's",
+		"type": "rest"
+	},
+	{
+		"x": "8.540588",
+		"y": "47.366001",
+		"name": "Bistro & Grill am See",
+		"type": "rest"
+	},
+	{
+		"x": "8.540605",
+		"y": "47.377998",
+		"name": "Brasserie Federal",
+		"type": "rest"
+	},
+	{
+		"x": "8.540676",
+		"y": "47.370685",
+		"name": "Bindella",
+		"type": "rest"
+	},
+	{
+		"x": "8.540738",
+		"y": "47.377253",
+		"name": "Bona Dea",
+		"type": "rest"
+	},
+	{
+		"x": "8.540826",
+		"y": "47.368603",
+		"name": "Old Fashion Bar",
+		"type": "rest"
+	},
+	{
+		"x": "8.540853",
+		"y": "47.376751",
+		"name": "Newsbar",
+		"type": "pub"
+	},
+	{
+		"x": "8.540909",
+		"y": "47.376838",
+		"name": "Au Gratin",
+		"type": "rest"
+	},
+	{
+		"x": "8.54092",
+		"y": "47.372473",
+		"name": "Lindenhofkeller",
+		"type": "rest"
+	},
+	{
+		"x": "8.540964",
+		"y": "47.377403",
+		"name": "Burger King",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.541364",
+		"y": "47.376172",
+		"name": "Movie",
+		"type": "rest"
+	},
+	{
+		"x": "8.54141",
+		"y": "47.370502",
+		"name": "Zum Gelben Schnabel",
+		"type": "rest"
+	},
+	{
+		"x": "8.541658",
+		"y": "47.369976",
+		"name": "Zunfthaus zur Meisen",
+		"type": "rest"
+	},
+	{
+		"x": "8.54179",
+		"y": "47.373118",
+		"name": "Restaurant Schipfe",
+		"type": "rest"
+	},
+	{
+		"x": "8.541861",
+		"y": "47.370859",
+		"name": "Café Wühre",
+		"type": "cafe"
+	},
+	{
+		"x": "8.54187",
+		"y": "47.371358",
+		"name": "Zum Storchen",
+		"type": "hotel"
+	},
+	{
+		"x": "8.541896",
+		"y": "47.370928",
+		"name": "Teehaus Wühre",
+		"type": "cafe"
+	},
+	{
+		"x": "8.542434",
+		"y": "47.367615",
+		"name": "Bauschänzli",
+		"type": "pub"
+	},
+	{
+		"x": "8.542684",
+		"y": "47.372118",
+		"name": "Rathaus-Café",
+		"type": "cafe"
+	},
+	{
+		"x": "8.542991",
+		"y": "47.372382",
+		"name": "Gran-Café",
+		"type": "cafe"
+	},
+	{
+		"x": "8.54302",
+		"y": "47.373518",
+		"name": "Bianchi",
+		"type": "rest"
+	},
+	{
+		"x": "8.543038",
+		"y": "47.373723",
+		"name": "01bar",
+		"type": "bar"
+	},
+	{
+		"x": "8.543056",
+		"y": "47.373791",
+		"name": "Hotel Krone",
+		"type": "hotel"
+	},
+	{
+		"x": "8.543069",
+		"y": "47.37275",
+		"name": "Pacifico",
+		"type": "bar"
+	},
+	{
+		"x": "8.543163",
+		"y": "47.373139",
+		"name": "Six",
+		"type": "bar"
+	},
+	{
+		"x": "8.543202",
+		"y": "47.370857",
+		"name": "Haus zum Rüden",
+		"type": "rest"
+	},
+	{
+		"x": "8.543204",
+		"y": "47.37232",
+		"name": "CP First",
+		"type": "bar"
+	},
+	{
+		"x": "8.543211",
+		"y": "47.372372",
+		"name": "Statt Hotel",
+		"type": "hotel"
+	},
+	{
+		"x": "8.543257",
+		"y": "47.373377",
+		"name": "Hotel Hirschen",
+		"type": "hotel"
+	},
+	{
+		"x": "8.543285",
+		"y": "47.372155",
+		"name": "Cranberry",
+		"type": "pub"
+	},
+	{
+		"x": "8.543285",
+		"y": "47.372639",
+		"name": "BLUE MONKEY",
+		"type": "bar"
+	},
+	{
+		"x": "8.543285",
+		"y": "47.373135",
+		"name": "Regenbogen",
+		"type": "bar"
+	},
+	{
+		"x": "8.543296",
+		"y": "47.379953",
+		"name": "San Domenico",
+		"type": "rest"
+	},
+	{
+		"x": "8.543322",
+		"y": "47.37748",
+		"name": "Sushi Momo",
+		"type": "rest"
+	},
+	{
+		"x": "8.543332",
+		"y": "47.373218",
+		"name": "SPLENDID",
+		"type": "hotel"
+	},
+	{
+		"x": "8.543335",
+		"y": "47.372575",
+		"name": "BLUE MONKEY",
+		"type": "rest"
+	},
+	{
+		"x": "8.543336",
+		"y": "47.37247",
+		"name": "Zum groben Ernst",
+		"type": "bar"
+	},
+	{
+		"x": "8.543359",
+		"y": "47.373807",
+		"name": "Hotel Schäfli",
+		"type": "hotel"
+	},
+	{
+		"x": "8.543414",
+		"y": "47.37975",
+		"name": "Ferlin",
+		"type": "rest"
+	},
+	{
+		"x": "8.543418",
+		"y": "47.374902",
+		"name": "Aquarium",
+		"type": "rest"
+	},
+	{
+		"x": "8.543422",
+		"y": "47.373954",
+		"name": "Lee's Take-Away",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.543435",
+		"y": "47.372479",
+		"name": "TANK",
+		"type": "bar"
+	},
+	{
+		"x": "8.543447",
+		"y": "47.37108",
+		"name": "Thai Bamboo",
+		"type": "rest"
+	},
+	{
+		"x": "8.543449",
+		"y": "47.367932",
+		"name": "Pier 7",
+		"type": "rest"
+	},
+	{
+		"x": "8.54345",
+		"y": "47.373388",
+		"name": "Weinschenke",
+		"type": "rest"
+	},
+	{
+		"x": "8.543461",
+		"y": "47.372613",
+		"name": "Nachtflug",
+		"type": "pub"
+	},
+	{
+		"x": "8.543484",
+		"y": "47.373781",
+		"name": "DoubleU Bar",
+		"type": "pub"
+	},
+	{
+		"x": "8.543507",
+		"y": "47.37233",
+		"name": "Edi's Weinstube",
+		"type": "pub"
+	},
+	{
+		"x": "8.54351",
+		"y": "47.374658",
+		"name": "Babalu Zürich",
+		"type": "pub"
+	},
+	{
+		"x": "8.543551",
+		"y": "47.371387",
+		"name": "Aelpli Bar",
+		"type": "bar"
+	},
+	{
+		"x": "8.543566",
+		"y": "47.373143",
+		"name": "Hotel Adler",
+		"type": "hotel"
+	},
+	{
+		"x": "8.543591",
+		"y": "47.374392",
+		"name": "Da Vinci",
+		"type": "rest"
+	},
+	{
+		"x": "8.543598",
+		"y": "47.374654",
+		"name": "Klein Instanbul",
+		"type": "rest"
+	},
+	{
+		"x": "8.543599",
+		"y": "47.373481",
+		"name": "Ristorante Liguria",
+		"type": "rest"
+	},
+	{
+		"x": "8.543607",
+		"y": "47.374789",
+		"name": "Toscano",
+		"type": "rest"
+	},
+	{
+		"x": "8.543608",
+		"y": "47.372662",
+		"name": "Franziskaner",
+		"type": "hotel"
+	},
+	{
+		"x": "8.543616",
+		"y": "47.373365",
+		"name": "Mexicano",
+		"type": "rest"
+	},
+	{
+		"x": "8.54362",
+		"y": "47.373685",
+		"name": "Food point",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.543628",
+		"y": "47.373152",
+		"name": "Swiss Chuchi",
+		"type": "rest"
+	},
+	{
+		"x": "8.543634",
+		"y": "47.377084",
+		"name": "Central Plaza",
+		"type": "hotel"
+	},
+	{
+		"x": "8.543642",
+		"y": "47.375411",
+		"name": "Café Canale Grande",
+		"type": "bar"
+	},
+	{
+		"x": "8.543657",
+		"y": "47.372982",
+		"name": "Pulcino",
+		"type": "rest"
+	},
+	{
+		"x": "8.543669",
+		"y": "47.372685",
+		"name": "Zum Roten Kamel",
+		"type": "rest"
+	},
+	{
+		"x": "8.543673",
+		"y": "47.372881",
+		"name": "Spaghetti Factory",
+		"type": "rest"
+	},
+	{
+		"x": "8.543707",
+		"y": "47.372677",
+		"name": "Henrici",
+		"type": "cafe"
+	},
+	{
+		"x": "8.543718",
+		"y": "47.374545",
+		"name": "Mohre-Chopf",
+		"type": "cafe"
+	},
+	{
+		"x": "8.543741",
+		"y": "47.374603",
+		"name": "Tre Cucine",
+		"type": "rest"
+	},
+	{
+		"x": "8.543742",
+		"y": "47.369025",
+		"name": "Molino-Select",
+		"type": "rest"
+	},
+	{
+		"x": "8.543745",
+		"y": "47.374874",
+		"name": "Tasca Romero",
+		"type": "rest"
+	},
+	{
+		"x": "8.543757",
+		"y": "47.375059",
+		"name": "Sushi Momo",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.543775",
+		"y": "47.37199",
+		"name": "Khan's",
+		"type": "rest"
+	},
+	{
+		"x": "8.54378",
+		"y": "47.371907",
+		"name": "Tapas y Vinos",
+		"type": "rest"
+	},
+	{
+		"x": "8.543805",
+		"y": "47.375978",
+		"name": "Limmatblick",
+		"type": "hotel"
+	},
+	{
+		"x": "8.543807",
+		"y": "47.372145",
+		"name": "Rheinfelder Bierhaus",
+		"type": "rest"
+	},
+	{
+		"x": "8.543807",
+		"y": "47.372202",
+		"name": "Santa Lucia",
+		"type": "rest"
+	},
+	{
+		"x": "8.543815",
+		"y": "47.373934",
+		"name": "Züri Bar",
+		"type": "pub"
+	},
+	{
+		"x": "8.543816",
+		"y": "47.373844",
+		"name": "Kontiki",
+		"type": "pub"
+	},
+	{
+		"x": "8.543818",
+		"y": "47.371227",
+		"name": "Schoffel",
+		"type": "rest"
+	},
+	{
+		"x": "8.54382",
+		"y": "47.375317",
+		"name": "Nosch",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.54384",
+		"y": "47.37272",
+		"name": "Piadina Bar",
+		"type": "rest"
+	},
+	{
+		"x": "8.543842",
+		"y": "47.372849",
+		"name": "1001",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.543851",
+		"y": "47.370593",
+		"name": "Dézaley Restaurant Vaudois",
+		"type": "rest"
+	},
+	{
+		"x": "8.543877",
+		"y": "47.372898",
+		"name": "Louis Take Away",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.543879",
+		"y": "47.372995",
+		"name": "Brasserie Louis",
+		"type": "rest"
+	},
+	{
+		"x": "8.543897",
+		"y": "47.374095",
+		"name": "McDonald's",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.543899",
+		"y": "47.370781",
+		"name": "Mère Catherine",
+		"type": "rest"
+	},
+	{
+		"x": "8.5439",
+		"y": "47.375817",
+		"name": "Bierhalle Wolf",
+		"type": "rest"
+	},
+	{
+		"x": "8.543906",
+		"y": "47.371684",
+		"name": "Casa Bar",
+		"type": "pub"
+	},
+	{
+		"x": "8.543935",
+		"y": "47.37236",
+		"name": "Starbucks",
+		"type": "cafe"
+	},
+	{
+		"x": "8.543937",
+		"y": "47.376123",
+		"name": "Züri Snäck 1",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.543942",
+		"y": "47.373065",
+		"name": "Wellenberg",
+		"type": "hotel"
+	},
+	{
+		"x": "8.543949",
+		"y": "47.375989",
+		"name": "Kebap Haus",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.543953",
+		"y": "47.374674",
+		"name": "Cana Bar",
+		"type": "pub"
+	},
+	{
+		"x": "8.543956",
+		"y": "47.374636",
+		"name": "Alexis Bar",
+		"type": "bar"
+	},
+	{
+		"x": "8.543959",
+		"y": "47.37192",
+		"name": "Pigalle",
+		"type": "bar"
+	},
+	{
+		"x": "8.543959",
+		"y": "47.371964",
+		"name": "Pure Asia",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.543959",
+		"y": "47.374533",
+		"name": "Alexander Wurst & Snackbar",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.543961",
+		"y": "47.371943",
+		"name": "Goldenes Schwert",
+		"type": "rest"
+	},
+	{
+		"x": "8.543964",
+		"y": "47.373535",
+		"name": "Platzhirsch",
+		"type": "pub"
+	},
+	{
+		"x": "8.543965",
+		"y": "47.374589",
+		"name": "Hotel Alexander",
+		"type": "hotel"
+	},
+	{
+		"x": "8.543973",
+		"y": "47.372212",
+		"name": "Zunft zur Schmiden",
+		"type": "rest"
+	},
+	{
+		"x": "8.543986",
+		"y": "47.377355",
+		"name": "New York Food",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.543991",
+		"y": "47.375171",
+		"name": "Big Ben Pub",
+		"type": "pub"
+	},
+	{
+		"x": "8.544011",
+		"y": "47.369291",
+		"name": "Hotel Altstadt",
+		"type": "hotel"
+	},
+	{
+		"x": "8.544052",
+		"y": "47.376323",
+		"name": "Schurter",
+		"type": "cafe"
+	},
+	{
+		"x": "8.544059",
+		"y": "47.373567",
+		"name": "Zodiac",
+		"type": "bar"
+	},
+	{
+		"x": "8.544071",
+		"y": "47.375413",
+		"name": "Calypso Take Away",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.544093",
+		"y": "47.376064",
+		"name": "Chopstick",
+		"type": "rest"
+	},
+	{
+		"x": "8.544095",
+		"y": "47.36916",
+		"name": "Helmhaus",
+		"type": "hotel"
+	},
+	{
+		"x": "8.544109",
+		"y": "47.376013",
+		"name": "La Pasta",
+		"type": "rest"
+	},
+	{
+		"x": "8.544124",
+		"y": "47.373383",
+		"name": "Colibri",
+		"type": "cafe"
+	},
+	{
+		"x": "8.544127",
+		"y": "47.37548",
+		"name": "Havanna Bar/Club",
+		"type": "pub"
+	},
+	{
+		"x": "8.544146",
+		"y": "47.376398",
+		"name": "Weinstube",
+		"type": "rest"
+	},
+	{
+		"x": "8.544148",
+		"y": "47.376453",
+		"name": "Pot au Vert",
+		"type": "rest"
+	},
+	{
+		"x": "8.544154",
+		"y": "47.376422",
+		"name": "Limmathof",
+		"type": "hotel"
+	},
+	{
+		"x": "8.544156",
+		"y": "47.375657",
+		"name": "N-68",
+		"type": "rest"
+	},
+	{
+		"x": "8.544173",
+		"y": "47.375748",
+		"name": "Johanniter",
+		"type": "rest"
+	},
+	{
+		"x": "8.544178",
+		"y": "47.367311",
+		"name": "Würstchenbude",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.544179",
+		"y": "47.376604",
+		"name": "Starbucks",
+		"type": "cafe"
+	},
+	{
+		"x": "8.544185",
+		"y": "47.371254",
+		"name": "Bodega Española",
+		"type": "rest"
+	},
+	{
+		"x": "8.544197",
+		"y": "47.368659",
+		"name": "Raben",
+		"type": "rest"
+	},
+	{
+		"x": "8.544202",
+		"y": "47.375918",
+		"name": "Rheinfelder Bierhalle",
+		"type": "rest"
+	},
+	{
+		"x": "8.54422",
+		"y": "47.372296",
+		"name": "Oliver Twist Pub",
+		"type": "pub"
+	},
+	{
+		"x": "8.544249",
+		"y": "47.369195",
+		"name": "Rösslibar",
+		"type": "pub"
+	},
+	{
+		"x": "8.544304",
+		"y": "47.371264",
+		"name": "Andorra",
+		"type": "cafe"
+	},
+	{
+		"x": "8.544357",
+		"y": "47.371495",
+		"name": "Schober",
+		"type": "cafe"
+	},
+	{
+		"x": "8.544431",
+		"y": "47.376145",
+		"name": "Rütli",
+		"type": "hotel"
+	},
+	{
+		"x": "8.544433",
+		"y": "47.374057",
+		"name": "Marion",
+		"type": "rest"
+	},
+	{
+		"x": "8.544458",
+		"y": "47.375891",
+		"name": "Ebrietas",
+		"type": "bar"
+	},
+	{
+		"x": "8.544459",
+		"y": "47.375827",
+		"name": "Carrousel",
+		"type": "bar"
+	},
+	{
+		"x": "8.544462",
+		"y": "47.368588",
+		"name": "Le Cèdre",
+		"type": "rest"
+	},
+	{
+		"x": "8.544463",
+		"y": "47.375727",
+		"name": "Citystudios",
+		"type": "hotel"
+	},
+	{
+		"x": "8.544468",
+		"y": "47.378926",
+		"name": "Pizza Pasta Ciao",
+		"type": "rest"
+	},
+	{
+		"x": "8.544476",
+		"y": "47.374306",
+		"name": "Predigerhof",
+		"type": "cafe"
+	},
+	{
+		"x": "8.544479",
+		"y": "47.375507",
+		"name": "Safari Bar",
+		"type": "bar"
+	},
+	{
+		"x": "8.544486",
+		"y": "47.375219",
+		"name": "Basilea",
+		"type": "hotel"
+	},
+	{
+		"x": "8.544508",
+		"y": "47.375128",
+		"name": "Zürcherhof",
+		"type": "hotel"
+	},
+	{
+		"x": "8.544511",
+		"y": "47.37498",
+		"name": "Walliser Keller",
+		"type": "rest"
+	},
+	{
+		"x": "8.544516",
+		"y": "47.372268",
+		"name": "Öpfelchammer",
+		"type": "rest"
+	},
+	{
+		"x": "8.544541",
+		"y": "47.370856",
+		"name": "Dialog",
+		"type": "rest"
+	},
+	{
+		"x": "8.544562",
+		"y": "47.367458",
+		"name": "Felix",
+		"type": "cafe"
+	},
+	{
+		"x": "8.544583",
+		"y": "47.368822",
+		"name": "California",
+		"type": "hotel"
+	},
+	{
+		"x": "8.544591",
+		"y": "47.36973",
+		"name": "Karl Der Grosse",
+		"type": "rest"
+	},
+	{
+		"x": "8.544647",
+		"y": "47.371352",
+		"name": "Restaurant Schlauch",
+		"type": "rest"
+	},
+	{
+		"x": "8.544649",
+		"y": "47.373794",
+		"name": "Punto Italiano",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.544658",
+		"y": "47.37351",
+		"name": "Barfüsser",
+		"type": "rest"
+	},
+	{
+		"x": "8.544674",
+		"y": "47.376273",
+		"name": "Hotel du Théâtre",
+		"type": "hotel"
+	},
+	{
+		"x": "8.544676",
+		"y": "47.373335",
+		"name": "Lucys",
+		"type": "bar"
+	},
+	{
+		"x": "8.544683",
+		"y": "47.373185",
+		"name": "Madrid",
+		"type": "rest"
+	},
+	{
+		"x": "8.5447",
+		"y": "47.368691",
+		"name": "Papa Joe's American Restaurant",
+		"type": "rest"
+	},
+	{
+		"x": "8.544704",
+		"y": "47.367706",
+		"name": "Terrasse",
+		"type": "rest"
+	},
+	{
+		"x": "8.544727",
+		"y": "47.371647",
+		"name": "Restaurant Turm",
+		"type": "rest"
+	},
+	{
+		"x": "8.544764",
+		"y": "47.376073",
+		"name": "Bonnie Prince Pub",
+		"type": "pub"
+	},
+	{
+		"x": "8.544782",
+		"y": "47.375438",
+		"name": "Ostia",
+		"type": "rest"
+	},
+	{
+		"x": "8.54479",
+		"y": "47.37521",
+		"name": "Zhong Hua",
+		"type": "rest"
+	},
+	{
+		"x": "8.544845",
+		"y": "47.374668",
+		"name": "Raclette Stube",
+		"type": "rest"
+	},
+	{
+		"x": "8.544857",
+		"y": "47.374567",
+		"name": "Blue Cherry",
+		"type": "bar"
+	},
+	{
+		"x": "8.544864",
+		"y": "47.374517",
+		"name": "Tagliatelle",
+		"type": "rest"
+	},
+	{
+		"x": "8.544892",
+		"y": "47.37446",
+		"name": "Scheuble",
+		"type": "hotel"
+	},
+	{
+		"x": "8.544932",
+		"y": "47.373144",
+		"name": "Isebähnli",
+		"type": "rest"
+	},
+	{
+		"x": "8.544933",
+		"y": "47.37345",
+		"name": "Bar Corazón",
+		"type": "rest"
+	},
+	{
+		"x": "8.544942",
+		"y": "47.375029",
+		"name": "Fresspunkt",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.544967",
+		"y": "47.378983",
+		"name": "Comfort Inn",
+		"type": "hotel"
+	},
+	{
+		"x": "8.544972",
+		"y": "47.368107",
+		"name": "Starbucks",
+		"type": "cafe"
+	},
+	{
+		"x": "8.545141",
+		"y": "47.368281",
+		"name": "Spaghetti Factory",
+		"type": "rest"
+	},
+	{
+		"x": "8.545158",
+		"y": "47.367792",
+		"name": "Café/Bar Odeon",
+		"type": "rest"
+	},
+	{
+		"x": "8.54516",
+		"y": "47.367084",
+		"name": "Belcafe",
+		"type": "cafe"
+	},
+	{
+		"x": "8.545208",
+		"y": "47.379143",
+		"name": "Crazy Cow",
+		"type": "rest"
+	},
+	{
+		"x": "8.545242",
+		"y": "47.372429",
+		"name": "Bauern Schänke",
+		"type": "rest"
+	},
+	{
+		"x": "8.545287",
+		"y": "47.368165",
+		"name": "Blockhus",
+		"type": "rest"
+	},
+	{
+		"x": "8.545333",
+		"y": "47.379182",
+		"name": "Leoneck Hotel",
+		"type": "hotel"
+	},
+	{
+		"x": "8.545373",
+		"y": "47.368398",
+		"name": "Kalkül",
+		"type": "pub"
+	},
+	{
+		"x": "8.545425",
+		"y": "47.368235",
+		"name": "Pinte Vaudoise",
+		"type": "rest"
+	},
+	{
+		"x": "8.545439",
+		"y": "47.368077",
+		"name": "Cakefriends",
+		"type": "cafe"
+	},
+	{
+		"x": "8.545545",
+		"y": "47.368293",
+		"name": "Villette",
+		"type": "hotel"
+	},
+	{
+		"x": "8.545548",
+		"y": "47.368839",
+		"name": "Weisser Wind",
+		"type": "rest"
+	},
+	{
+		"x": "8.54555",
+		"y": "47.368551",
+		"name": "Otter",
+		"type": "hotel"
+	},
+	{
+		"x": "8.545595",
+		"y": "47.367473",
+		"name": "Kronenhalle",
+		"type": "rest"
+	},
+	{
+		"x": "8.545602",
+		"y": "47.37242",
+		"name": "Kantorei",
+		"type": "rest"
+	},
+	{
+		"x": "8.545607",
+		"y": "47.372568",
+		"name": "Neumarkt",
+		"type": "rest"
+	},
+	{
+		"x": "8.54562",
+		"y": "47.368552",
+		"name": "Wüste",
+		"type": "pub"
+	},
+	{
+		"x": "8.545648",
+		"y": "47.368198",
+		"name": "Weisse Rose",
+		"type": "rest"
+	},
+	{
+		"x": "8.545692",
+		"y": "47.368709",
+		"name": "Oberdorf Beck",
+		"type": "cafe"
+	},
+	{
+		"x": "8.545694",
+		"y": "47.373618",
+		"name": "Zum Weissen Schwan",
+		"type": "rest"
+	},
+	{
+		"x": "8.545795",
+		"y": "47.375358",
+		"name": "Timeout",
+		"type": "rest"
+	},
+	{
+		"x": "8.545826",
+		"y": "47.371513",
+		"name": "Zum Grünen Glas",
+		"type": "rest"
+	},
+	{
+		"x": "8.545878",
+		"y": "47.36742",
+		"name": "Rosaly's",
+		"type": "rest"
+	},
+	{
+		"x": "8.545894",
+		"y": "47.3665",
+		"name": "Sternen-Grill",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.545901",
+		"y": "47.367118",
+		"name": "Coop City",
+		"type": "rest"
+	},
+	{
+		"x": "8.545936",
+		"y": "47.367483",
+		"name": "Belcafe",
+		"type": "cafe"
+	},
+	{
+		"x": "8.54594",
+		"y": "47.368351",
+		"name": "Krill",
+		"type": "rest"
+	},
+	{
+		"x": "8.545999",
+		"y": "47.367957",
+		"name": "bellavista",
+		"type": "cafe"
+	},
+	{
+		"x": "8.546004",
+		"y": "47.36951",
+		"name": "BnB",
+		"type": "hotel"
+	},
+	{
+		"x": "8.546039",
+		"y": "47.368309",
+		"name": "Tschingg",
+		"type": "rest"
+	},
+	{
+		"x": "8.546108",
+		"y": "47.367942",
+		"name": "Rolf's Wein Bar",
+		"type": "pub"
+	},
+	{
+		"x": "8.546144",
+		"y": "47.367722",
+		"name": "Vapiano",
+		"type": "rest"
+	},
+	{
+		"x": "8.546225",
+		"y": "47.363773",
+		"name": "Pumpstation open air",
+		"type": "rest"
+	},
+	{
+		"x": "8.546249",
+		"y": "47.373969",
+		"name": "Rechberg",
+		"type": "rest"
+	},
+	{
+		"x": "8.546255",
+		"y": "47.367066",
+		"name": "Skebe",
+		"type": "rest"
+	},
+	{
+		"x": "8.546409",
+		"y": "47.366708",
+		"name": "Globus",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.546437",
+		"y": "47.365009",
+		"name": "Belcanto",
+		"type": "rest"
+	},
+	{
+		"x": "8.546453",
+		"y": "47.367188",
+		"name": "Yooji's Bellevue",
+		"type": "rest"
+	},
+	{
+		"x": "8.546537",
+		"y": "47.376303",
+		"name": "SV Mensa Polyterasse",
+		"type": "rest"
+	},
+	{
+		"x": "8.546603",
+		"y": "47.376075",
+		"name": "Cafeteria Polyterrasse",
+		"type": "cafe"
+	},
+	{
+		"x": "8.54664",
+		"y": "47.375925",
+		"name": "bQm",
+		"type": "cafe"
+	},
+	{
+		"x": "8.546646",
+		"y": "47.373523",
+		"name": "Hirschberg",
+		"type": "rest"
+	},
+	{
+		"x": "8.546731",
+		"y": "47.372784",
+		"name": "Cafe Neumärt",
+		"type": "cafe"
+	},
+	{
+		"x": "8.546742",
+		"y": "47.366403",
+		"name": "Santa Lucia",
+		"type": "rest"
+	},
+	{
+		"x": "8.546926",
+		"y": "47.379742",
+		"name": "Basilikum",
+		"type": "rest"
+	},
+	{
+		"x": "8.546932",
+		"y": "47.379965",
+		"name": "Restaurant Haldenbach",
+		"type": "rest"
+	},
+	{
+		"x": "8.546951",
+		"y": "47.366252",
+		"name": "Mövenpick Ice Cream Gallery",
+		"type": "cafe"
+	},
+	{
+		"x": "8.547",
+		"y": "47.377256",
+		"name": "Clausiusbar",
+		"type": "rest"
+	},
+	{
+		"x": "8.54702",
+		"y": "47.379442",
+		"name": "Jimmys Pizzeria",
+		"type": "rest"
+	},
+	{
+		"x": "8.547058",
+		"y": "47.364397",
+		"name": "Ambassador",
+		"type": "hotel"
+	},
+	{
+		"x": "8.547085",
+		"y": "47.36613",
+		"name": "Starbucks",
+		"type": "cafe"
+	},
+	{
+		"x": "8.54716",
+		"y": "47.364372",
+		"name": "A l'Opera",
+		"type": "rest"
+	},
+	{
+		"x": "8.547206",
+		"y": "47.364311",
+		"name": "Europe",
+		"type": "hotel"
+	},
+	{
+		"x": "8.547289",
+		"y": "47.365443",
+		"name": "Goethe Bar",
+		"type": "bar"
+	},
+	{
+		"x": "8.547291",
+		"y": "47.364186",
+		"name": "Quaglinos",
+		"type": "rest"
+	},
+	{
+		"x": "8.547357",
+		"y": "47.365476",
+		"name": "Brasserie Schiller",
+		"type": "rest"
+	},
+	{
+		"x": "8.547385",
+		"y": "47.363996",
+		"name": "Du Théatre",
+		"type": "rest"
+	},
+	{
+		"x": "8.547536",
+		"y": "47.367135",
+		"name": "Suan-Long",
+		"type": "rest"
+	},
+	{
+		"x": "8.547619",
+		"y": "47.363713",
+		"name": "Drinxbar",
+		"type": "pub"
+	},
+	{
+		"x": "8.547642",
+		"y": "47.366444",
+		"name": "McDonald's",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.547711",
+		"y": "47.362153",
+		"name": "Steigenberger Bellerive",
+		"type": "hotel"
+	},
+	{
+		"x": "8.547826",
+		"y": "47.36075",
+		"name": "Molino Frascati",
+		"type": "rest"
+	},
+	{
+		"x": "8.547862",
+		"y": "47.366966",
+		"name": "Outback Lodge",
+		"type": "rest"
+	},
+	{
+		"x": "8.547867",
+		"y": "47.377395",
+		"name": "Tannenbar",
+		"type": "cafe"
+	},
+	{
+		"x": "8.54788",
+		"y": "47.366571",
+		"name": "Mishio",
+		"type": "rest"
+	},
+	{
+		"x": "8.547889",
+		"y": "47.365453",
+		"name": "MM Stadelhofen",
+		"type": "rest"
+	},
+	{
+		"x": "8.547949",
+		"y": "47.378473",
+		"name": "Domino's Pizza",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.547952",
+		"y": "47.378685",
+		"name": "Hot Pasta",
+		"type": "rest"
+	},
+	{
+		"x": "8.547965",
+		"y": "47.378254",
+		"name": "The Corner",
+		"type": "rest"
+	},
+	{
+		"x": "8.547986",
+		"y": "47.370735",
+		"name": "Kunsthaus",
+		"type": "rest"
+	},
+	{
+		"x": "8.547986",
+		"y": "47.379049",
+		"name": "Palmhof",
+		"type": "rest"
+	},
+	{
+		"x": "8.547988",
+		"y": "47.379595",
+		"name": "Indian Takeaway",
+		"type": "fastfood"
+	},
+	{
+		"x": "8.548037",
+		"y": "47.37632",
+		"name": "Cafébar",
+		"type": "cafe"
+	},
+	{
+		"x": "8.548106",
+		"y": "47.376178",
+		"name": "Polysnack",
+		"type": "cafe"
+	},
+	{
+		"x": "8.548232",
+		"y": "47.365152",
+		"name": "Soul",
+		"type": "rest"
+	},
+	{
+		"x": "8.548404",
+		"y": "47.365513",
+		"name": "Topolino",
+		"type": "rest"
+	},
+	{
+		"x": "8.548465",
+		"y": "47.363025",
+		"name": "Bistro",
+		"type": "rest"
+	},
+	{
+		"x": "8.548506",
+		"y": "47.366166",
+		"name": "Bahnhof Stadelhofen",
+		"type": "rest"
+	},
+	{
+		"x": "8.548517",
+		"y": "47.361841",
+		"name": "Cafe Black",
+		"type": "cafe"
+	},
+	{
+		"x": "8.548623",
+		"y": "47.364646",
+		"name": "Purpur",
+		"type": "rest"
+	},
+	{
+		"x": "8.548664",
+		"y": "47.365049",
+		"name": "Cheti's Curry",
+		"type": "rest"
+	},
+	{
+		"x": "8.548744",
+		"y": "47.366118",
+		"name": "Weisses Kreuz",
+		"type": "rest"
+	},
+	{
+		"x": "8.548805",
+		"y": "47.378314",
+		"name": "FoodLAB",
+		"type": "rest"
+	},
+	{
+		"x": "8.549084",
+		"y": "47.365931",
+		"name": "Commercio",
+		"type": "rest"
+	},
+	{
+		"x": "8.549115",
+		"y": "47.366176",
+		"name": "Mandarin",
+		"type": "cafe"
+	},
+	{
+		"x": "8.549145",
+		"y": "47.370098",
+		"name": "Terroir",
+		"type": "rest"
+	},
+	{
+		"x": "8.549243",
+		"y": "47.364117",
+		"name": "Cafe Mondial",
+		"type": "cafe"
+	},
+	{
+		"x": "8.549412",
+		"y": "47.361387",
+		"name": "Latino",
+		"type": "rest"
+	},
+	{
+		"x": "8.549412",
+		"y": "47.361387",
+		"name": "Latino",
+		"type": "hotel"
+	},
+	{
+		"x": "8.549432",
+		"y": "47.363211",
+		"name": "Moser's Backparadies",
+		"type": "cafe"
+	},
+	{
+		"x": "8.549456",
+		"y": "47.369512",
+		"name": "Pizzeria Pomodoro",
+		"type": "rest"
+	},
+	{
+		"x": "8.549475",
+		"y": "47.370332",
+		"name": "My Place",
+		"type": "bar"
+	},
+	{
+		"x": "8.549543",
+		"y": "47.363554",
+		"name": "Bimi",
+		"type": "rest"
+	},
+	{
+		"x": "8.549551",
+		"y": "47.36302",
+		"name": "Asian Moon",
+		"type": "rest"
+	},
+	{
+		"x": "8.549657",
+		"y": "47.363437",
+		"name": "Vipasa",
+		"type": "bar"
+	},
+	{
+		"x": "8.549992",
+		"y": "47.36067",
+		"name": "Amalfi",
+		"type": "rest"
+	}
+]
