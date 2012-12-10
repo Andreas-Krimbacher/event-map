@@ -241,7 +241,18 @@ eventMap.service('MapData', function(Cluster,MapService, $http, $rootScope) {
 
             //generate rawmapdata
             var id = 0;
+
+            var titles = [];
+
             for(var x in dataFromFile){
+
+                // hack to prevent double entries
+                if(_.indexOf(titles,dataFromFile[x].title) != -1){
+                    continue;
+                }
+                titles.push(dataFromFile[x].title);
+
+
                 if(!imageBoundaries.contains(new google.maps.LatLng(dataFromFile[x].point.lat,dataFromFile[x].point.lng))){
                     continue;
                 }
@@ -281,6 +292,13 @@ eventMap.service('MapData', function(Cluster,MapService, $http, $rootScope) {
                     title: dataFromFile[x].title,
                     info : dataFromFile[x].info});
 
+
+
+                //time fix (to get test data for today)
+                var additionalDays = Math.round((new Date() - new Date(2012,10,19)) / 86400000);
+                rawMapData[rawMapData.length-1].startDate.setTime(rawMapData[rawMapData.length-1].startDate.getTime()+additionalDays*86400000);
+                rawMapData[rawMapData.length-1].endDate.setTime(rawMapData[rawMapData.length-1].endDate.getTime()+additionalDays*86400000);
+                //
 
                 if(types.indexOf(dataFromFile[x].type) == -1) types.push(dataFromFile[x].type);
 

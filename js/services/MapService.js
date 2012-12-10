@@ -484,7 +484,8 @@ eventMap.service('MapService', function(ImageLoader,$rootScope,$location, $http,
             zoom: 15,
             draggable:false,
             streetViewControl: false,
-            mapTypeControl:false
+            mapTypeControl:false,
+	scaleControl:true
         };
 
         //base map options
